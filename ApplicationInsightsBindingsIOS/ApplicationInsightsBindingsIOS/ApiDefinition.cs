@@ -1,9 +1,7 @@
 ﻿using System;
-
-using UIKit;
+using ApplicationInsights;
 using Foundation;
 using ObjCRuntime;
-using CoreGraphics;
 
 namespace ApplicationInsightsIOS
 {
