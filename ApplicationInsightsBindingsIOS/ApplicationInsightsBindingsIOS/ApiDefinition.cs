@@ -5,7 +5,7 @@ using Foundation;
 using ObjCRuntime;
 using CoreGraphics;
 
-namespace ApplicationInsightsBindingsIOS
+namespace ApplicationInsightsIOS
 {
 	// @interface MSAIApplicationInsights : NSObject
 	[BaseType (typeof(NSObject))]
