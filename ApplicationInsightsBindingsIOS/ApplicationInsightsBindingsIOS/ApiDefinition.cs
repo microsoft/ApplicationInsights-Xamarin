@@ -47,6 +47,15 @@ namespace ApplicationInsightsBindingsIOS
 		[Export ("serverURL", ArgumentSemantic.Strong)]
 		string ServerURL { get; set; }
 
+		// @property (getter = isCrashManagerDisabled, nonatomic) BOOL crashManagerDisabled;
+		[Export ("crashManagerDisabled")]
+		bool CrashManagerDisabled { [Bind ("isCrashManagerDisabled")] get; set; }
+
+		// +(void)setCrashManagerDisabled:(BOOL)crashManagerDisabled;
+		[Static]
+		[Export ("setCrashManagerDisabled:")]
+		void SetCrashManagerDisabled (bool crashManagerDisabled);
+
 		// @property (getter = isTelemetryManagerDisabled, nonatomic) BOOL telemetryManagerDisabled;
 		[Export ("telemetryManagerDisabled")]
 		bool TelemetryManagerDisabled { [Bind ("isTelemetryManagerDisabled")] get; set; }
@@ -118,6 +127,15 @@ namespace ApplicationInsightsBindingsIOS
 		[Export ("debugLogEnabled")]
 		bool DebugLogEnabled { [Bind ("isDebugLogEnabled")] get; set; }
 
+		// +(void)testIdentifier;
+		[Static]
+		[Export ("testIdentifier")]
+		void TestIdentifier ();
+
+		// -(void)testIdentifier;
+		[Export ("testIdentifier")]
+		void TestIdentifier ();
+
 		// +(NSString *)version;
 		[Static]
 		[Export ("version")]
@@ -135,6 +153,152 @@ namespace ApplicationInsightsBindingsIOS
 		// -(NSString *)build;
 		[Export ("build")]
 		string Build { get; }
+	}
+
+	// @interface MSAICrashManager : NSObject
+	[BaseType (typeof(NSObject))]
+	interface MSAICrashManager
+	{
+		// +(instancetype)sharedManager;
+		[Static]
+		[Export ("sharedManager")]
+		MSAICrashManager SharedManager ();
+
+		// @property (assign, nonatomic) BOOL isSetupCorrectly;
+		[Export ("isSetupCorrectly")]
+		bool IsSetupCorrectly { get; set; }
+
+		// @property (assign, nonatomic, setter = setCrashManagerDisabled:) BOOL isCrashManagerDisabled;
+		[Export ("isCrashManagerDisabled")]
+		bool IsCrashManagerDisabled { get; [Bind ("setCrashManagerDisabled:")] set; }
+
+		// @property (assign, nonatomic) BOOL machExceptionHandlerEnabled;
+		[Export ("machExceptionHandlerEnabled")]
+		bool MachExceptionHandlerEnabled { get; set; }
+
+		// @property (assign, nonatomic) BOOL onDeviceSymbolicationEnabled;
+		[Export ("onDeviceSymbolicationEnabled")]
+		bool OnDeviceSymbolicationEnabled { get; set; }
+
+		// @property (assign, nonatomic) BOOL appNotTerminatingCleanlyDetectionEnabled;
+		[Export ("appNotTerminatingCleanlyDetectionEnabled")]
+		bool AppNotTerminatingCleanlyDetectionEnabled { get; set; }
+
+		// -(void)setCrashCallbacks:(MSAICrashManagerCallbacks *)callbacks;
+		[Export ("setCrashCallbacks:")]
+		unsafe void SetCrashCallbacks (MSAICrashManagerCallbacks* callbacks);
+
+		// @property (readonly, nonatomic) BOOL didCrashInLastSession;
+		[Export ("didCrashInLastSession")]
+		bool DidCrashInLastSession { get; }
+
+		// @property (readonly, nonatomic, strong) MSAICrashDetails * lastSessionCrashDetails;
+		[Export ("lastSessionCrashDetails", ArgumentSemantic.Strong)]
+		MSAICrashDetails LastSessionCrashDetails { get; }
+
+		// @property (readonly, nonatomic) NSTimeInterval timeintervalCrashInLastSessionOccured;
+		[Export ("timeintervalCrashInLastSessionOccured")]
+		double TimeintervalCrashInLastSessionOccured { get; }
+
+		// @property (readonly, nonatomic) BOOL didReceiveMemoryWarningInLastSession;
+		[Export ("didReceiveMemoryWarningInLastSession")]
+		bool DidReceiveMemoryWarningInLastSession { get; }
+
+		// @property (readonly, getter = getIsDebuggerAttached, nonatomic) BOOL debuggerIsAttached;
+		[Export ("debuggerIsAttached")]
+		bool DebuggerIsAttached { [Bind ("getIsDebuggerAttached")] get; }
+
+		// -(void)generateTestCrash;
+		[Export ("generateTestCrash")]
+		void GenerateTestCrash ();
+	}
+
+	// @protocol MSAICrashManagerDelegate <NSObject>
+	[Protocol, Model]
+	[BaseType (typeof(NSObject))]
+	interface MSAICrashManagerDelegate
+	{
+		// @optional -(void)crashManagerWillSendCrashReport;
+		[Export ("crashManagerWillSendCrashReport")]
+		void CrashManagerWillSendCrashReport ();
+
+		// @optional -(void)crashManagerDidFailWithError:(NSError *)error;
+		[Export ("crashManagerDidFailWithError:")]
+		void CrashManagerDidFailWithError (NSError error);
+
+		// @optional -(void)crashManagerDidFinishSendingCrashReport;
+		[Export ("crashManagerDidFinishSendingCrashReport")]
+		void CrashManagerDidFinishSendingCrashReport ();
+
+		// @optional -(BOOL)considerAppNotTerminatedCleanlyReportForCrashManager;
+		[Export ("considerAppNotTerminatedCleanlyReportForCrashManager")]
+		bool ConsiderAppNotTerminatedCleanlyReportForCrashManager { get; }
+	}
+
+	// @interface MSAICrashDetails : NSObject
+	[BaseType (typeof(NSObject))]
+	interface MSAICrashDetails
+	{
+		// @property (readonly, nonatomic, strong) NSString * incidentIdentifier;
+		[Export ("incidentIdentifier", ArgumentSemantic.Strong)]
+		string IncidentIdentifier { get; }
+
+		// @property (readonly, nonatomic, strong) NSString * reporterKey;
+		[Export ("reporterKey", ArgumentSemantic.Strong)]
+		string ReporterKey { get; }
+
+		// @property (readonly, nonatomic, strong) NSString * signal;
+		[Export ("signal", ArgumentSemantic.Strong)]
+		string Signal { get; }
+
+		// @property (readonly, nonatomic, strong) NSString * exceptionName;
+		[Export ("exceptionName", ArgumentSemantic.Strong)]
+		string ExceptionName { get; }
+
+		// @property (readonly, nonatomic, strong) NSString * exceptionReason;
+		[Export ("exceptionReason", ArgumentSemantic.Strong)]
+		string ExceptionReason { get; }
+
+		// @property (readonly, nonatomic, strong) NSDate * appStartTime;
+		[Export ("appStartTime", ArgumentSemantic.Strong)]
+		NSDate AppStartTime { get; }
+
+		// @property (readonly, nonatomic, strong) NSDate * crashTime;
+		[Export ("crashTime", ArgumentSemantic.Strong)]
+		NSDate CrashTime { get; }
+
+		// @property (readonly, nonatomic, strong) NSString * osVersion;
+		[Export ("osVersion", ArgumentSemantic.Strong)]
+		string OsVersion { get; }
+
+		// @property (readonly, nonatomic, strong) NSString * osBuild;
+		[Export ("osBuild", ArgumentSemantic.Strong)]
+		string OsBuild { get; }
+
+		// @property (readonly, nonatomic, strong) NSString * appBuild;
+		[Export ("appBuild", ArgumentSemantic.Strong)]
+		string AppBuild { get; }
+
+		// -(BOOL)isAppKill;
+		[Export ("isAppKill")]
+		bool IsAppKill { get; }
+	}
+
+	// @interface PageViewLogging (UIViewController)
+	[Category]
+	[BaseType (typeof(UIViewController))]
+	interface UIViewController_PageViewLogging
+	{
+	}
+
+	// @interface MSAICategoryContainer : NSObject
+	[BaseType (typeof(NSObject))]
+	interface MSAICategoryContainer
+	{
+		// +(void)activateCategory;
+		[Static]
+		[Export ("activateCategory")]
+		void ActivateCategory ();
 	}
 
 	// @interface MSAITelemetryManager : NSObject
@@ -245,6 +409,4 @@ namespace ApplicationInsightsBindingsIOS
 		[Export ("trackException:")]
 		void TrackException (NSException exception);
 	}
-
 }
-
