@@ -1,5 +1,5 @@
 ﻿using System;
-using ApplicationInsights;
+using ApplicationInsightsIOS;
 using Foundation;
 using ObjCRuntime;
 
@@ -28,18 +28,6 @@ namespace ApplicationInsightsIOS
 		[Static]
 		[Export ("sharedInstance")]
 		MSAIApplicationInsights SharedInstance { get; }
-
-		// -(void)setup;
-		[Export ("setup")]
-		void Setup ();
-
-		// -(void)setupWithInstrumentationKey:(NSString *)instrumentationKey;
-		[Export ("setupWithInstrumentationKey:")]
-		void SetupWithInstrumentationKey (string instrumentationKey);
-
-		// -(void)start;
-		[Export ("start")]
-		void Start ();
 
 		// @property (nonatomic, strong) NSString * serverURL;
 		[Export ("serverURL", ArgumentSemantic.Strong)]
@@ -86,16 +74,8 @@ namespace ApplicationInsightsIOS
 		[Export ("setUserId:")]
 		void SetUserId (string userId);
 
-		// -(void)setUserId:(NSString *)userId;
-		[Export ("setUserId:")]
-		void SetUserId (string userId);
-
 		// +(void)startNewSession;
 		[Static]
-		[Export ("startNewSession")]
-		void StartNewSession ();
-
-		// -(void)startNewSession;
 		[Export ("startNewSession")]
 		void StartNewSession ();
 
@@ -104,16 +84,8 @@ namespace ApplicationInsightsIOS
 		[Export ("setAppBackgroundTimeBeforeSessionExpires:")]
 		void SetAppBackgroundTimeBeforeSessionExpires (nuint appBackgroundTimeBeforeSessionExpires);
 
-		// -(void)setAppBackgroundTimeBeforeSessionExpires:(NSUInteger)appBackgroundTimeBeforeSessionExpires;
-		[Export ("setAppBackgroundTimeBeforeSessionExpires:")]
-		void SetAppBackgroundTimeBeforeSessionExpires (nuint appBackgroundTimeBeforeSessionExpires);
-
 		// +(void)renewSessionWithId:(NSString *)sessionId;
 		[Static]
-		[Export ("renewSessionWithId:")]
-		void RenewSessionWithId (string sessionId);
-
-		// -(void)renewSessionWithId:(NSString *)sessionId;
 		[Export ("renewSessionWithId:")]
 		void RenewSessionWithId (string sessionId);
 
@@ -130,25 +102,13 @@ namespace ApplicationInsightsIOS
 		[Export ("testIdentifier")]
 		void TestIdentifier ();
 
-		// -(void)testIdentifier;
-		[Export ("testIdentifier")]
-		void TestIdentifier ();
-
 		// +(NSString *)version;
 		[Static]
 		[Export ("version")]
 		string Version { get; }
 
-		// -(NSString *)version;
-		[Export ("version")]
-		string Version { get; }
-
 		// +(NSString *)build;
 		[Static]
-		[Export ("build")]
-		string Build { get; }
-
-		// -(NSString *)build;
 		[Export ("build")]
 		string Build { get; }
 	}
@@ -182,17 +142,9 @@ namespace ApplicationInsightsIOS
 		[Export ("appNotTerminatingCleanlyDetectionEnabled")]
 		bool AppNotTerminatingCleanlyDetectionEnabled { get; set; }
 
-		// -(void)setCrashCallbacks:(MSAICrashManagerCallbacks *)callbacks;
-		[Export ("setCrashCallbacks:")]
-		unsafe void SetCrashCallbacks (MSAICrashManagerCallbacks* callbacks);
-
 		// @property (readonly, nonatomic) BOOL didCrashInLastSession;
 		[Export ("didCrashInLastSession")]
 		bool DidCrashInLastSession { get; }
-
-		// @property (readonly, nonatomic, strong) MSAICrashDetails * lastSessionCrashDetails;
-		[Export ("lastSessionCrashDetails", ArgumentSemantic.Strong)]
-		MSAICrashDetails LastSessionCrashDetails { get; }
 
 		// @property (readonly, nonatomic) NSTimeInterval timeintervalCrashInLastSessionOccured;
 		[Export ("timeintervalCrashInLastSessionOccured")]
@@ -211,103 +163,10 @@ namespace ApplicationInsightsIOS
 		void GenerateTestCrash ();
 	}
 
-	// @protocol MSAICrashManagerDelegate <NSObject>
-	[Protocol, Model]
-	[BaseType (typeof(NSObject))]
-	interface MSAICrashManagerDelegate
-	{
-		// @optional -(void)crashManagerWillSendCrashReport;
-		[Export ("crashManagerWillSendCrashReport")]
-		void CrashManagerWillSendCrashReport ();
-
-		// @optional -(void)crashManagerDidFailWithError:(NSError *)error;
-		[Export ("crashManagerDidFailWithError:")]
-		void CrashManagerDidFailWithError (NSError error);
-
-		// @optional -(void)crashManagerDidFinishSendingCrashReport;
-		[Export ("crashManagerDidFinishSendingCrashReport")]
-		void CrashManagerDidFinishSendingCrashReport ();
-
-		// @optional -(BOOL)considerAppNotTerminatedCleanlyReportForCrashManager;
-		[Export ("considerAppNotTerminatedCleanlyReportForCrashManager")]
-		bool ConsiderAppNotTerminatedCleanlyReportForCrashManager { get; }
-	}
-
-	// @interface MSAICrashDetails : NSObject
-	[BaseType (typeof(NSObject))]
-	interface MSAICrashDetails
-	{
-		// @property (readonly, nonatomic, strong) NSString * incidentIdentifier;
-		[Export ("incidentIdentifier", ArgumentSemantic.Strong)]
-		string IncidentIdentifier { get; }
-
-		// @property (readonly, nonatomic, strong) NSString * reporterKey;
-		[Export ("reporterKey", ArgumentSemantic.Strong)]
-		string ReporterKey { get; }
-
-		// @property (readonly, nonatomic, strong) NSString * signal;
-		[Export ("signal", ArgumentSemantic.Strong)]
-		string Signal { get; }
-
-		// @property (readonly, nonatomic, strong) NSString * exceptionName;
-		[Export ("exceptionName", ArgumentSemantic.Strong)]
-		string ExceptionName { get; }
-
-		// @property (readonly, nonatomic, strong) NSString * exceptionReason;
-		[Export ("exceptionReason", ArgumentSemantic.Strong)]
-		string ExceptionReason { get; }
-
-		// @property (readonly, nonatomic, strong) NSDate * appStartTime;
-		[Export ("appStartTime", ArgumentSemantic.Strong)]
-		NSDate AppStartTime { get; }
-
-		// @property (readonly, nonatomic, strong) NSDate * crashTime;
-		[Export ("crashTime", ArgumentSemantic.Strong)]
-		NSDate CrashTime { get; }
-
-		// @property (readonly, nonatomic, strong) NSString * osVersion;
-		[Export ("osVersion", ArgumentSemantic.Strong)]
-		string OsVersion { get; }
-
-		// @property (readonly, nonatomic, strong) NSString * osBuild;
-		[Export ("osBuild", ArgumentSemantic.Strong)]
-		string OsBuild { get; }
-
-		// @property (readonly, nonatomic, strong) NSString * appBuild;
-		[Export ("appBuild", ArgumentSemantic.Strong)]
-		string AppBuild { get; }
-
-		// -(BOOL)isAppKill;
-		[Export ("isAppKill")]
-		bool IsAppKill { get; }
-	}
-
-	// @interface PageViewLogging (UIViewController)
-	[Category]
-	[BaseType (typeof(UIViewController))]
-	interface UIViewController_PageViewLogging
-	{
-	}
-
-	// @interface MSAICategoryContainer : NSObject
-	[BaseType (typeof(NSObject))]
-	interface MSAICategoryContainer
-	{
-		// +(void)activateCategory;
-		[Static]
-		[Export ("activateCategory")]
-		void ActivateCategory ();
-	}
-
 	// @interface MSAITelemetryManager : NSObject
 	[BaseType (typeof(NSObject))]
 	interface MSAITelemetryManager
 	{
-		// +(instancetype)sharedManager;
-		[Static]
-		[Export ("sharedManager")]
-		MSAITelemetryManager SharedManager ();
-
 		// +(void)trackEventWithName:(NSString *)eventName;
 		[Static]
 		[Export ("trackEventWithName:")]
@@ -360,50 +219,6 @@ namespace ApplicationInsightsIOS
 
 		// +(void)trackException:(NSException *)exception;
 		[Static]
-		[Export ("trackException:")]
-		void TrackException (NSException exception);
-
-		// -(void)trackEventWithName:(NSString *)eventName;
-		[Export ("trackEventWithName:")]
-		void TrackEventWithName (string eventName);
-
-		// -(void)trackEventWithName:(NSString *)eventName properties:(NSDictionary *)properties;
-		[Export ("trackEventWithName:properties:")]
-		void TrackEventWithName (string eventName, NSDictionary properties);
-
-		// -(void)trackEventWithName:(NSString *)eventName properties:(NSDictionary *)properties measurements:(NSDictionary *)measurements;
-		[Export ("trackEventWithName:properties:measurements:")]
-		void TrackEventWithName (string eventName, NSDictionary properties, NSDictionary measurements);
-
-		// -(void)trackTraceWithMessage:(NSString *)message;
-		[Export ("trackTraceWithMessage:")]
-		void TrackTraceWithMessage (string message);
-
-		// -(void)trackTraceWithMessage:(NSString *)message properties:(NSDictionary *)properties;
-		[Export ("trackTraceWithMessage:properties:")]
-		void TrackTraceWithMessage (string message, NSDictionary properties);
-
-		// -(void)trackMetricWithName:(NSString *)metricName value:(double)value;
-		[Export ("trackMetricWithName:value:")]
-		void TrackMetricWithName (string metricName, double value);
-
-		// -(void)trackMetricWithName:(NSString *)metricName value:(double)value properties:(NSDictionary *)properties;
-		[Export ("trackMetricWithName:value:properties:")]
-		void TrackMetricWithName (string metricName, double value, NSDictionary properties);
-
-		// -(void)trackPageView:(NSString *)pageName;
-		[Export ("trackPageView:")]
-		void TrackPageView (string pageName);
-
-		// -(void)trackPageView:(NSString *)pageName duration:(long)duration;
-		[Export ("trackPageView:duration:")]
-		void TrackPageView (string pageName, nint duration);
-
-		// -(void)trackPageView:(NSString *)pageName duration:(long)duration properties:(NSDictionary *)properties;
-		[Export ("trackPageView:duration:properties:")]
-		void TrackPageView (string pageName, nint duration, NSDictionary properties);
-
-		// -(void)trackException:(NSException *)exception;
 		[Export ("trackException:")]
 		void TrackException (NSException exception);
 	}
