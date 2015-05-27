@@ -1,1 +1,31 @@
-﻿<Properties StartupItem="ApplicationInsightsBindingsIOS/ApplicationInsightsBindingsIOS.csproj" />
+﻿<Properties StartupItem="ApplicationInsightsBindingsIOS/ApplicationInsightsBindingsIOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ApplicationInsightsBindingsIOS/ApiDefinition.cs">
+    <Files>
+      <File FileName="ApplicationInsightsBindingsIOS/ApiDefinition.cs" Line="6" Column="33" />
+      <File FileName="../SampleApp/AppDelegate.cs" Line="4" Column="1" />
+      <File FileName="../SampleApp/packages.config" Line="1" Column="1" />
+      <File FileName="../SampleApp/Main.cs" Line="1" Column="1" />
+      <File FileName="ApplicationInsightsBindingsIOS/Properties/AssemblyInfo.cs" Line="28" Column="38" />
+      <File FileName="ApplicationInsightsBindingsIOS/libApplicationInsightsSDK.linkwith.cs" Line="5" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ApplicationInsightsBindingsIOS" expanded="True">
+            <Node name="ApplicationInsightsBindingsIOS" expanded="True">
+              <Node name="Properties" expanded="True" />
+              <Node name="ApiDefinition.cs" selected="True" />
+              <Node name="libApplicationInsightsSDK.a" expanded="True" />
+            </Node>
+            <Node name="SampleApp" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

@@ -1,5 +1,4 @@
 ﻿using System;
-using ApplicationInsightsIOS;
 using Foundation;
 using ObjCRuntime;
 using CoreTelephony;

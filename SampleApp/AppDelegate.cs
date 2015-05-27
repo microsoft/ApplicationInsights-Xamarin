@@ -17,6 +17,7 @@ namespace SampleApp
 			set;
 		}
 
+
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
 			// Override point for customization after application launch.
@@ -29,10 +30,6 @@ namespace SampleApp
 
 			MSAIApplicationInsights.SetupWithInstrumentationKey ("112e5f18-4d0d-4f8d-8063-efe2fc4f0595");
 			MSAIApplicationInsights.SharedInstance.ServerURL = "https://dc-int.services.visualstudio.com/v2/track";
-
-			MSAIApplicationInsights.Start ();
-
-			MSAITelemetryManager.TrackEventWithName ("Event");
 
 			return true;
 		}
