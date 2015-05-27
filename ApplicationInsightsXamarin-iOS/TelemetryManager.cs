@@ -7,7 +7,7 @@ namespace ApplicationInsightsXamarinIOS
 {
 	public class TelemetryManager
 	{
-			
+
 		public static void TrackEvent (string eventName){
 			MSAITelemetryManager.TrackEventWithName (eventName);
 		}

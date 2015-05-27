@@ -1,6 +1,6 @@
 ﻿using Foundation;
 using UIKit;
-using ApplicationInsightsIOS;
+using ApplicationInsightsXamarinIOS;
 using CoreTelephony;
 
 namespace SampleApp
@@ -28,9 +28,10 @@ namespace SampleApp
 			Xamarin.Calabash.Start();
 			#endif
 
-			MSAIApplicationInsights.SetupWithInstrumentationKey ("112e5f18-4d0d-4f8d-8063-efe2fc4f0595");
-			MSAIApplicationInsights.SharedInstance.ServerURL = "https://dc-int.services.visualstudio.com/v2/track";
+			ApplicationInsights.Setup ("myIkey");
 
+			ApplicationInsights.Start ();
+			TelemetryManager.TrackEvent ("MyEvent");
 			return true;
 		}
 

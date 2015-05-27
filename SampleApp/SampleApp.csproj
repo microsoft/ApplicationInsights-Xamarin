@@ -85,9 +85,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\ApplicationInsightsBindingsIOS\ApplicationInsightsBindingsIOS\ApplicationInsightsBindingsIOS.csproj">
-      <Project>{FBB32C82-CD0A-4971-B828-211549F1EE72}</Project>
-      <Name>ApplicationInsightsBindingsIOS</Name>
+    <ProjectReference Include="..\ApplicationInsightsXamarin-iOS\ApplicationInsightsXamarin-iOS.csproj">
+      <Project>{3511389A-BF5A-4CBE-9D71-9B66C204CE13}</Project>
+      <Name>ApplicationInsightsXamarin-iOS</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
