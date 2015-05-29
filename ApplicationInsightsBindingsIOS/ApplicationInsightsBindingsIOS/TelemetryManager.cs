@@ -10,6 +10,7 @@ namespace ApplicationInsightsXamarinIOS
 
 		public static void TrackEvent (string eventName){
 			MSAITelemetryManager.TrackEventWithName (eventName);
+
 		}
 
 		public static void TrackEvent (string eventName, NSDictionary properties){

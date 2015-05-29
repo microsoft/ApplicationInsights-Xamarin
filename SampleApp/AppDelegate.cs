@@ -2,6 +2,7 @@
 using UIKit;
 using ApplicationInsightsXamarinIOS;
 using CoreTelephony;
+using System;
 
 namespace SampleApp
 {
@@ -28,10 +29,11 @@ namespace SampleApp
 			Xamarin.Calabash.Start();
 			#endif
 
-			ApplicationInsights.Setup ("myIkey");
+			ApplicationInsights.Setup ("6c5d4f2e-001f-4499-9327-be9bd21d25d6");
 
 			ApplicationInsights.Start ();
-			TelemetryManager.TrackEvent ("MyEvent");
+			TelemetryManager.TrackEvent ("I'm here");
+
 			return true;
 		}
 

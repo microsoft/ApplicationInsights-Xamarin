@@ -73,6 +73,7 @@
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="Main.storyboard" />
+    <InterfaceDefinition Include="DetailViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -82,12 +83,16 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="DetailViewController.cs" />
+    <Compile Include="DetailViewController.designer.cs">
+      <DependentUpon>DetailViewController.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\ApplicationInsightsXamarin-iOS\ApplicationInsightsXamarin-iOS.csproj">
-      <Project>{3511389A-BF5A-4CBE-9D71-9B66C204CE13}</Project>
-      <Name>ApplicationInsightsXamarin-iOS</Name>
+    <ProjectReference Include="..\ApplicationInsightsBindingsIOS\ApplicationInsightsBindingsIOS\ApplicationInsightsBindingsIOS.csproj">
+      <Project>{FBB32C82-CD0A-4971-B828-211549F1EE72}</Project>
+      <Name>ApplicationInsightsBindingsIOS</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

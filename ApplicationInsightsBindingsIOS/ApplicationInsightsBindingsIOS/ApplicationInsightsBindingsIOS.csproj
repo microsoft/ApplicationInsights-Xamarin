@@ -35,13 +35,12 @@
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="libApplicationInsightsSDK.linkwith.cs">
       <DependentUpon>libApplicationInsightsSDK.a</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationInsights.cs" />
+    <Compile Include="TelemetryManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
