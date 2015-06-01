@@ -2,6 +2,7 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 using UIKit;
+using ApplicationInsightsXamarinIOS;
 
 namespace SampleApp
 {
@@ -17,7 +18,7 @@ namespace SampleApp
 		{
 			base.ViewDidLoad ();
 			Title = "Application Insights Xamarin";
-			TableView.Source = new ExampleTableViewControllerSource(NavigationController);
+			TableView.Source = new ExampleTableViewControllerSource(NavigationController, TableView);
 		}
 	}
 }

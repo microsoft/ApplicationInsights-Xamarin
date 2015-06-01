@@ -17,6 +17,9 @@ namespace SampleApp
 		string cellIdentifier = "cell";
 
 		UINavigationController navigationController;
+		UITableView tableView;
+
+		private ExampleAlertViewDelegate alertViewDelegate;
 
 		private UISwitch autoPageViewSwitch = new UISwitch();
 		private bool autoPageViewsEnabled = true;
@@ -24,15 +27,29 @@ namespace SampleApp
 		private UISwitch autoSessionSwitch = new UISwitch();
 		private bool autoSessionEnabled = true;
 
-		public ExampleTableViewControllerSource (UINavigationController nc)
+		private string userId;
+		private string serverUrl;
+
+		public ExampleTableViewControllerSource (UINavigationController nc, UITableView tableView)
 		{
 			navigationController = nc;
+			this.tableView = tableView;
 
 			autoPageViewSwitch.On = autoPageViewsEnabled;
 			autoPageViewSwitch.AddTarget(OnPageViewSwitchChanged, UIControlEvent.ValueChanged);
 
 			autoSessionSwitch.On = autoSessionEnabled;
 			autoSessionSwitch.AddTarget(OnSessionSwitchChanged, UIControlEvent.ValueChanged);
+
+			serverUrl = ApplicationInsights.GetServerUrl();
+			userId = "";
+		}
+
+		private ExampleAlertViewDelegate GetAlertViewDelegate(){
+			if(alertViewDelegate == null){
+				alertViewDelegate = new ExampleAlertViewDelegate(this);
+			}
+			return alertViewDelegate;
 		}
 
 		private void OnPageViewSwitchChanged(object sender, EventArgs e)
@@ -45,6 +62,29 @@ namespace SampleApp
 		{
 			autoSessionEnabled = autoSessionSwitch.On;
 			ApplicationInsights.SetAutoSessionManagementDisabled(!autoSessionEnabled);
+		}
+
+		private void ShowUserIdAlert(){
+			UIAlertView alert = new UIAlertView("User", "Enter an user ID", GetAlertViewDelegate(), "Cancel", "OK");
+			alert.AlertViewStyle = UIAlertViewStyle.PlainTextInput;
+			alert.Tag = ExampleHelper.kMSAITelemetryAlertTagUserId;
+			alert.GetTextField (0).Text = userId;
+			alert.Show();
+		}
+
+		private void ShowRenewSessionAlert(){
+			UIAlertView alert = new UIAlertView("Renew session", "Enter the ID for a new session", GetAlertViewDelegate(), "Cancel", "Renew");
+			alert.AlertViewStyle = UIAlertViewStyle.PlainTextInput;
+			alert.Tag = ExampleHelper.kMSAITelemetryAlertTagRenewSession;
+			alert.Show();
+		}
+
+		private void ShowServerUrlAlert(){
+			UIAlertView alert = new UIAlertView("Telemetry server", "Enter a new server url", GetAlertViewDelegate(), "Cancel", "OK");
+			alert.AlertViewStyle = UIAlertViewStyle.PlainTextInput;
+			alert.Tag = ExampleHelper.kMSAITelemetryAlertTagServerUrl;
+			alert.GetTextField (0).Text = serverUrl;
+			alert.Show();
 		}
 
 		public override nint NumberOfSections (UITableView tableView)
@@ -128,8 +168,10 @@ namespace SampleApp
 
 				if (row == 0) {
 					cell.TextLabel.Text = "Server url";
+					cell.DetailTextLabel.Text = serverUrl;
 				} else if (row == 1) {
 					cell.TextLabel.Text = "User Id";
+					cell.DetailTextLabel.Text = userId;
 				}
 
 			}
@@ -164,7 +206,7 @@ namespace SampleApp
 			} else if (section == kMSAIIndexAutoCollectionSection) {
 
 				if (row == 1) {
-					// TODO: Show session alert;
+					ShowRenewSessionAlert ();
 				} else if (row == 3) {
 					UIViewController vc = new UIViewController ();
 					vc.Title = "Detail View Controller";
@@ -177,15 +219,50 @@ namespace SampleApp
 			} else if (section == kMSAIIndexConfigurationSection) {
 
 				if (row == 0) {
-					// TODO: Show server url alert
+					ShowServerUrlAlert ();
 				} else if (row == 1) {
-					// TODO Show user id alert
+					ShowUserIdAlert ();
 				}
 
 			}
 		}
 
-	}
+		class ExampleAlertViewDelegate : UIAlertViewDelegate {
 
+			private ExampleTableViewControllerSource outerClass;
+
+			public ExampleAlertViewDelegate(ExampleTableViewControllerSource outerClass){
+				this.outerClass = outerClass;
+			}
+
+			public override void Clicked (UIAlertView alertview, nint buttonIndex)
+			{
+				if (buttonIndex == 0) {
+					return;
+				}
+
+				switch (alertview.Tag) {
+				case ExampleHelper.kMSAITelemetryAlertTagRenewSession:{
+						string sessionId = alertview.GetTextField (0).Text;
+						ApplicationInsights.RenewSessionWithId (sessionId);
+						break;
+					}
+				case ExampleHelper.kMSAITelemetryAlertTagUserId:{
+						string userId = alertview.GetTextField (0).Text;
+						outerClass.userId = userId;
+						outerClass.tableView.ReloadData();
+						break;
+					}
+
+				case ExampleHelper.kMSAITelemetryAlertTagServerUrl:{
+						string serverUrl = alertview.GetTextField (0).Text;
+						outerClass.serverUrl = serverUrl;
+						outerClass.tableView.ReloadData();
+						break;
+					}
+				}
+			}
+		}
+	}
 }
 
