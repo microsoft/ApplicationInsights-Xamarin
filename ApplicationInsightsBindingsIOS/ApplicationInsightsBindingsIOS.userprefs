@@ -1,17 +1,15 @@
 ﻿<Properties StartupItem="ApplicationInsightsBindingsIOS/ApplicationInsightsBindingsIOS.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|iPhoneSimulator" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../SampleApp/AppDelegate.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../SampleApp/ExampleTableViewControllerSource.cs">
     <Files>
-      <File FileName="../SampleApp/DetailViewController.cs" Line="2" Column="1" />
-      <File FileName="../SampleApp/AppDelegate.cs" Line="44" Column="4" />
-      <File FileName="../ApplicationInsightsXamarin-iOS/ApplicationInsights.cs" Line="23" Column="1" />
-      <File FileName="../ApplicationInsightsXamarin-iOS/TelemetryManager.cs" Line="1" Column="1" />
+      <File FileName="../SampleApp/AppDelegate.cs" Line="36" Column="1" />
+      <File FileName="../SampleApp/ExampleTableViewControllerSource.cs" Line="20" Column="3" />
+      <File FileName="../SampleApp/ExampleTableViewController.cs" Line="19" Column="4" />
+      <File FileName="../SampleApp/Entitlements.plist" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/christophwendt/Documents/WorkspaceMicrosoft/ApplicationInsightsXamarin-iOS/SampleApp/AppDelegate.cs" line="32" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <DisabledProjects>

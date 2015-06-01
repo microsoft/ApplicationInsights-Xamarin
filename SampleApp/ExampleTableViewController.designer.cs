@@ -11,8 +11,8 @@ using UIKit;
 
 namespace SampleApp
 {
-	[Register ("DetailViewController")]
-	partial class DetailViewController
+	[Register ("ExampleTableViewController")]
+	partial class ExampleTableViewController
 	{
 		void ReleaseDesignerOutlets ()
 		{

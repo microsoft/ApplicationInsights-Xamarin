@@ -73,7 +73,6 @@
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
     <InterfaceDefinition Include="Main.storyboard" />
-    <InterfaceDefinition Include="DetailViewController.xib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -83,9 +82,18 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="DetailViewController.cs" />
-    <Compile Include="DetailViewController.designer.cs">
-      <DependentUpon>DetailViewController.cs</DependentUpon>
+    <Compile Include="U.cs" />
+    <Compile Include="U.designer.cs">
+      <DependentUpon>U.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UITab.cs" />
+    <Compile Include="UITab.designer.cs">
+      <DependentUpon>UITab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExampleTableViewControllerSource.cs" />
+    <Compile Include="ExampleTableViewController.cs" />
+    <Compile Include="ExampleTableViewController.designer.cs">
+      <DependentUpon>ExampleTableViewController.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
