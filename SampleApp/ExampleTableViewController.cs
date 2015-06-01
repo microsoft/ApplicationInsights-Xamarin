@@ -16,6 +16,7 @@ namespace SampleApp
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
+			Title = "Application Insights Xamarin";
 			TableView.Source = new ExampleTableViewControllerSource(NavigationController);
 		}
 	}
