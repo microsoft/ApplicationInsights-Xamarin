@@ -15,14 +15,18 @@ namespace SampleApp
 
 		string cellIdentifier = "cell";
 
+		UINavigationController navigationController;
+
 		private UISwitch autoPageViewSwitch = new UISwitch();
 		private bool autoPageViewsEnabled = true;
 
 		private UISwitch autoSessionSwitch = new UISwitch();
 		private bool autoSessionEnabled = true;
 
-		public ExampleTableViewControllerSource ()
+		public ExampleTableViewControllerSource (UINavigationController nc)
 		{
+			navigationController = nc;
+
 			autoPageViewSwitch.On = autoPageViewsEnabled;
 			autoSessionSwitch.On = autoSessionEnabled;
 		}
