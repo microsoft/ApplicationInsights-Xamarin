@@ -24,6 +24,11 @@ namespace ApplicationInsightsXamarinIOS
 			MSAICrashManager crashManager = new MSAICrashManager ();
 			crashManager.GenerateTestCrash ();
 		}
+
+		public static string GetServerUrl (){
+			return MSAIApplicationInsights.SharedInstance.ServerURL; 
+		}
+
 		public static void SetServerUrl (string serverUrl){
 			MSAIApplicationInsights.SharedInstance.ServerURL = serverUrl; 
 		}
@@ -61,19 +66,15 @@ namespace ApplicationInsightsXamarinIOS
 		}
 
 		public static bool GetAppStoreEnvironment() {
-			return true;
-		}
-
-		public static void SetAppStoreEnvironment(bool appStoreEnvironment) {
-
+			return MSAIApplicationInsights.SharedInstance.AppStoreEnvironment; 
 		}
 
 		public static bool GetDebugLogEnabled() {
-			return true;
+			return MSAIApplicationInsights.SharedInstance.DebugLogEnabled; 
 		}
 
-		public static void SetDebugLogEnabled() {
-			
+		public static void SetDebugLogEnabled(bool debugLogEnabled) {
+			MSAIApplicationInsights.SharedInstance.DebugLogEnabled = debugLogEnabled; 
 		}
 	}
 }
