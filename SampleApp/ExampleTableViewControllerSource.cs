@@ -3,6 +3,7 @@ using System;
 
 using Foundation;
 using UIKit;
+using ApplicationInsightsXamarinIOS;
 
 namespace SampleApp
 {
@@ -28,7 +29,22 @@ namespace SampleApp
 			navigationController = nc;
 
 			autoPageViewSwitch.On = autoPageViewsEnabled;
+			autoPageViewSwitch.AddTarget(OnPageViewSwitchChanged, UIControlEvent.ValueChanged);
+
 			autoSessionSwitch.On = autoSessionEnabled;
+			autoSessionSwitch.AddTarget(OnSessionSwitchChanged, UIControlEvent.ValueChanged);
+		}
+
+		private void OnPageViewSwitchChanged(object sender, EventArgs e)
+		{
+			autoPageViewsEnabled = autoPageViewSwitch.On;
+			ApplicationInsights.SetAutoPageViewTrackingDisabled(!autoPageViewsEnabled);
+		}
+
+		private void OnSessionSwitchChanged(object sender, EventArgs e)
+		{
+			autoSessionEnabled = autoSessionSwitch.On;
+			ApplicationInsights.SetAutoSessionManagementDisabled(!autoSessionEnabled);
 		}
 
 		public override nint NumberOfSections (UITableView tableView)
@@ -124,6 +140,49 @@ namespace SampleApp
 		public override void RowSelected (UITableView tableView, NSIndexPath indexPath)
 		{
 			tableView.DeselectRow (indexPath, true);
+			nint section = indexPath.Section;
+			nint row = indexPath.Row;
+
+			if (section == kMSAIIndexCrashSection) {
+
+				if (row == 0) {
+					// TODO: Trigger native crash
+				} else if (row == 1) {
+					throw new Exception("Managed unhandled Exception");
+				}
+
+			} else if (section == kMSAIIndexTrackSection) {
+
+				if (row == 0) {
+					TelemetryManager.TrackEvent ("My Event");
+				} else if (row == 1) {
+					TelemetryManager.TrackTrace ("My Trace");
+				} else if (row == 2) {
+					TelemetryManager.TrackMetric ("My Metric", 2.0);
+				}
+
+			} else if (section == kMSAIIndexAutoCollectionSection) {
+
+				if (row == 1) {
+					// TODO: Show session alert;
+				} else if (row == 3) {
+					UIViewController vc = new UIViewController ();
+					vc.Title = "Detail View Controller";
+					if(navigationController != null){
+						vc.View.BackgroundColor = UIColor.White;
+						navigationController.PushViewController (vc, true);
+					}
+				}
+
+			} else if (section == kMSAIIndexConfigurationSection) {
+
+				if (row == 0) {
+					// TODO: Show server url alert
+				} else if (row == 1) {
+					// TODO Show user id alert
+				}
+
+			}
 		}
 
 	}
