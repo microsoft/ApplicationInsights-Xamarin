@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using UIKit;
 using ApplicationInsightsXamarinIOS;
+using Xamarin;
 using CoreTelephony;
 using System;
 
@@ -11,13 +12,13 @@ namespace SampleApp
 	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
+
 		// class-level declarations
 
 		public override UIWindow Window {
 			get;
 			set;
 		}
-
 
 		public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
 		{
@@ -28,10 +29,13 @@ namespace SampleApp
 			#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
 			#endif
-
-//			ApplicationInsights.Setup ("6c5d4f2e-001f-4499-9327-be9bd21d25d6");
-//			ApplicationInsights.Start ();
-//			TelemetryManager.TrackEvent ("I'm here");
+			if (ExampleHelper.USE_AI) {
+				ApplicationInsights.Setup ("a11683ec-3d08-474d-8218-0abca5f7adbb");
+				ApplicationInsights.SetServerUrl ("https://dc-int.services.visualstudio.com/v2/track");
+				ApplicationInsights.Start ();
+			} else {
+				Insights.Initialize("345000ef7333b5006b501513458baabce6549b81");
+			}
 
 			return true;
 		}
