@@ -4,6 +4,7 @@ using System;
 using Foundation;
 using UIKit;
 using ApplicationInsightsXamarinIOS;
+using TestCrashBindings;
 
 namespace SampleApp
 {
@@ -41,7 +42,10 @@ namespace SampleApp
 			autoSessionSwitch.On = autoSessionEnabled;
 			autoSessionSwitch.AddTarget(OnSessionSwitchChanged, UIControlEvent.ValueChanged);
 
-			serverUrl = ApplicationInsights.GetServerUrl();
+			if (ExampleHelper.USE_AI) {
+				serverUrl = ApplicationInsights.GetServerUrl();
+			}
+
 			userId = "";
 		}
 
@@ -55,13 +59,15 @@ namespace SampleApp
 		private void OnPageViewSwitchChanged(object sender, EventArgs e)
 		{
 			autoPageViewsEnabled = autoPageViewSwitch.On;
-			ApplicationInsights.SetAutoPageViewTrackingDisabled(!autoPageViewsEnabled);
+//			ApplicationInsights.SetAutoPageViewTrackingDisabled(!autoPageViewsEnabled);
 		}
 
 		private void OnSessionSwitchChanged(object sender, EventArgs e)
 		{
 			autoSessionEnabled = autoSessionSwitch.On;
-			ApplicationInsights.SetAutoSessionManagementDisabled(!autoSessionEnabled);
+			if (ExampleHelper.USE_AI) {
+				ApplicationInsights.SetAutoSessionManagementDisabled (!autoSessionEnabled);
+			}
 		}
 
 		private void ShowUserIdAlert(){
@@ -110,7 +116,7 @@ namespace SampleApp
 		{
 			switch (section) {
 			case kMSAIIndexCrashSection:
-				return 2;
+				return 3;
 			case kMSAIIndexTrackSection:
 				return 3;
 			case kMSAIIndexAutoCollectionSection:
@@ -136,7 +142,9 @@ namespace SampleApp
 				if (row == 0) {
 					cell.TextLabel.Text = "Native unhandled exception";
 				} else if (row == 1) {
-					cell.TextLabel.Text = "Managed unhandled exception";
+					cell.TextLabel.Text = "Throw managed unhandled exception";
+				}else if (row == 2) {
+					cell.TextLabel.Text = "Managed exception: Null Ref";
 				}
 
 			} else if (section == kMSAIIndexTrackSection) {
@@ -173,7 +181,6 @@ namespace SampleApp
 					cell.TextLabel.Text = "User Id";
 					cell.DetailTextLabel.Text = userId;
 				}
-
 			}
 				
 			return cell;
@@ -188,19 +195,27 @@ namespace SampleApp
 			if (section == kMSAIIndexCrashSection) {
 
 				if (row == 0) {
-					// TODO: Trigger native crash
+					ExamplePlugin.ForceAppCrash ();
 				} else if (row == 1) {
-					throw new Exception("Managed unhandled Exception");
+					FirstExampleMethod ();
+				} else if (row == 2) {
+					CreateNullRefException ();
 				}
 
 			} else if (section == kMSAIIndexTrackSection) {
 
 				if (row == 0) {
-					TelemetryManager.TrackEvent ("My Event");
+					if (ExampleHelper.USE_AI) {
+						TelemetryManager.TrackEvent ("My Event");
+					}
 				} else if (row == 1) {
-					TelemetryManager.TrackTrace ("My Trace");
+					if (ExampleHelper.USE_AI) {
+						TelemetryManager.TrackTrace ("My Trace");
+					}
 				} else if (row == 2) {
-					TelemetryManager.TrackMetric ("My Metric", 2.0);
+					if (ExampleHelper.USE_AI) {
+						TelemetryManager.TrackMetric ("My Metric", 2.0);
+					}
 				}
 
 			} else if (section == kMSAIIndexAutoCollectionSection) {
@@ -244,7 +259,9 @@ namespace SampleApp
 				switch (alertview.Tag) {
 				case ExampleHelper.kMSAITelemetryAlertTagRenewSession:{
 						string sessionId = alertview.GetTextField (0).Text;
-						ApplicationInsights.RenewSessionWithId (sessionId);
+						if (ExampleHelper.USE_AI) {
+							ApplicationInsights.RenewSessionWithId (sessionId);
+						}			
 						break;
 					}
 				case ExampleHelper.kMSAITelemetryAlertTagUserId:{
@@ -261,6 +278,32 @@ namespace SampleApp
 						break;
 					}
 				}
+			}
+		}
+
+		public void FirstExampleMethod(){
+			SecondExampleMethod();
+		}
+
+		public void SecondExampleMethod(){
+			ThirdExampleMethod();
+		}
+
+		public void ThirdExampleMethod(){
+			LastExampleMethod ();
+		}
+
+		public void LastExampleMethod(){
+			throw new Exception("Managed unhandled Exception");
+		}
+
+		public void CreateNullRefException(){
+			try {
+				object o = null;
+				o.GetHashCode ();
+			} catch {
+				// Catch block isn't called with crash reporting enabled.
+				// Instead, the app will crash.
 			}
 		}
 	}
