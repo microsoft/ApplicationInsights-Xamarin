@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp", "..\SampleApp\S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp.UITests", "..\SampleApp\SampleApp.UITests\SampleApp.UITests.csproj", "{9FB9F08C-FFF9-487F-9B8B-367103327F26}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCrashBindings", "TestCrashBindings\TestCrashBindings.csproj", "{E32D9B50-2EA7-423D-8783-24889302C1BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,18 @@ Global
 		{9FB9F08C-FFF9-487F-9B8B-367103327F26}.Release|iPhone.Build.0 = Release|Any CPU
 		{9FB9F08C-FFF9-487F-9B8B-367103327F26}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{9FB9F08C-FFF9-487F-9B8B-367103327F26}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Release|iPhone.Build.0 = Release|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{E32D9B50-2EA7-423D-8783-24889302C1BC}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{FBB32C82-CD0A-4971-B828-211549F1EE72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FBB32C82-CD0A-4971-B828-211549F1EE72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FBB32C82-CD0A-4971-B828-211549F1EE72}.Debug|iPhone.ActiveCfg = Debug|Any CPU
@@ -53,5 +67,26 @@ Global
 		{FBB32C82-CD0A-4971-B828-211549F1EE72}.Release|iPhone.Build.0 = Release|Any CPU
 		{FBB32C82-CD0A-4971-B828-211549F1EE72}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{FBB32C82-CD0A-4971-B828-211549F1EE72}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$1.DirectoryNamespaceAssociation = None
+		$1.ResourceNamePolicy = FileFormatDefault
+		$0.TextStylePolicy = $2
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.AfterDelegateDeclarationParameterComma = True
+		$3.inheritsSet = Mono
+		$3.inheritsScope = text/x-csharp
+		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
+		$4.FileWidth = 120
+		$4.TabsToSpaces = False
+		$4.inheritsSet = VisualStudio
+		$4.inheritsScope = text/plain
+		$4.scope = text/plain
+		version = 3.0
 	EndGlobalSection
 EndGlobal

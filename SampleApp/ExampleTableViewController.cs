@@ -2,13 +2,11 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 using UIKit;
-using ApplicationInsightsXamarinIOS;
 
 namespace SampleApp
 {
 	partial class ExampleTableViewController : UITableViewController
 	{
-
 
 		public ExampleTableViewController (IntPtr handle) : base (handle)
 		{
