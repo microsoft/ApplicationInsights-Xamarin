@@ -9,6 +9,7 @@
     <RootNamespace>SampleApp</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>SampleApp</AssemblyName>
+    <ReleaseVersion>3.0</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,6 +34,7 @@
     <MtouchArch>ARMv7, ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
     <CodesignKey>iPhone Developer</CodesignKey>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -57,6 +59,12 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
+    <MtouchSdkVersion>8.3</MtouchSdkVersion>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchLink>Full</MtouchLink>
+    <MtouchI18n>
+    </MtouchI18n>
+    <MtouchProfiling>true</MtouchProfiling>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -65,6 +73,12 @@
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Calabash">
       <HintPath>..\ApplicationInsightsBindingsIOS\packages\Xamarin.TestCloud.Agent.0.13.0\lib\Xamarin.iOS10\Calabash.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Insights">
+      <HintPath>..\ApplicationInsightsBindingsIOS\packages\Xamarin.Insights.1.10.2.110\lib\Xamarin.iOS10\Xamarin.Insights.dll</HintPath>
+    </Reference>
+    <Reference Include="PLCrashReporterUnifiedBinding">
+      <HintPath>..\ApplicationInsightsBindingsIOS\packages\Xamarin.Insights.1.10.2.110\lib\Xamarin.iOS10\PLCrashReporterUnifiedBinding.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +113,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <ProjectReference Include="..\ApplicationInsightsBindingsIOS\TestCrashBindings\TestCrashBindings.csproj">
+      <Project>{E32D9B50-2EA7-423D-8783-24889302C1BC}</Project>
+      <Name>TestCrashBindings</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ApplicationInsightsBindingsIOS\ApplicationInsightsBindingsIOS\ApplicationInsightsBindingsIOS.csproj">
       <Project>{FBB32C82-CD0A-4971-B828-211549F1EE72}</Project>
       <Name>ApplicationInsightsBindingsIOS</Name>
