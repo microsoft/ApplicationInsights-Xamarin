@@ -1,14 +1,34 @@
 ﻿using System;
 using ApplicationInsightsIOS;
+using Foundation;
+using System.Runtime.InteropServices;
+using ObjCRuntime;
+
 
 namespace ApplicationInsightsXamarinIOS
 {
 	public class ApplicationInsights
 	{
+		[DllImport ("libc")]
+		private static extern int sigaction (Signal sig, IntPtr act, IntPtr oact);
 
-		public ApplicationInsights ()
+		enum Signal {
+			SIGBUS = 10,
+			SIGSEGV = 11
+		}
+				
+		private static bool _crashManagerDisabled = false;
+
+		private static readonly ApplicationInsights instance = new ApplicationInsights();
+
+		private ApplicationInsights(){}
+
+		public static ApplicationInsights Instance
 		{
-			
+			get 
+			{
+				return instance; 
+			}
 		}
 			
 		public static void Setup (string instrumentationKey){
@@ -16,7 +36,19 @@ namespace ApplicationInsightsXamarinIOS
 		}
 
 		public static void Start (){
+			IntPtr sigbus = Marshal.AllocHGlobal (512);
+			IntPtr sigsegv = Marshal.AllocHGlobal (512);
+
+			// Store Mono SIGSEGV and SIGBUS handlers
+			sigaction (Signal.SIGBUS, IntPtr.Zero, sigbus);
+			sigaction (Signal.SIGSEGV, IntPtr.Zero, sigsegv);
+		
+			Instance.registerUnhandledExceptionHandler ();
 			MSAIApplicationInsights.Start ();
+
+			// Restore Mono SIGSEGV and SIGBUS handlers            
+			sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
+			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
 		}
 
 		public static void CrashNaticeLib(){
@@ -32,8 +64,9 @@ namespace ApplicationInsightsXamarinIOS
 		public static void SetServerUrl (string serverUrl){
 			MSAIApplicationInsights.SharedInstance.ServerURL = serverUrl; 
 		}
-
+			
 		public static void  SetCrashManagerDisabled (bool crashManagerDisabled){
+			_crashManagerDisabled = crashManagerDisabled;
 			MSAIApplicationInsights.SetCrashManagerDisabled (crashManagerDisabled);
 		}
 
