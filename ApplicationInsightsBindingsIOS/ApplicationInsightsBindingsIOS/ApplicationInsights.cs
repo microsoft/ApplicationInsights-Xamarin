@@ -126,8 +126,10 @@ namespace ApplicationInsightsIOS
 				details.HasFullStack = true;
 				details.Message = managedException.Message;
 				details.Stack = managedException.StackTrace;
+				details.TypeName = managedException.GetType ().Name;
 
 				MSAIExceptionData exceptionData = new MSAIExceptionData();
+				exceptionData.HandledAt = managedException.TargetSite.Name;
 				NSMutableArray exceptions = new NSMutableArray ();
 				exceptions.Add (details);
 				exceptionData.Exceptions = exceptions;
