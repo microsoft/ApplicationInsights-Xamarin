@@ -95,6 +95,11 @@ namespace ApplicationInsightsIOS
 		[Static]
 		[Export ("build")]
 		string Build { get; }
+
+		// +(void)ignoreCrashForSessionForDate:(NSDate *)date;
+		[Static]
+		[Export ("ignoreCrashForSessionForDate:")]
+		void IgnoreCrashForSessionForDate (NSDate date);
 	}
 
 	// @interface MSAICrashDetails : NSObject
@@ -145,7 +150,7 @@ namespace ApplicationInsightsIOS
 		[Export ("isAppKill")]
 		bool IsAppKill { get; }
 	}
-		
+
 	// @interface MSAICrashManager : NSObject
 	[BaseType (typeof(NSObject))]
 	interface MSAICrashManager
@@ -175,9 +180,9 @@ namespace ApplicationInsightsIOS
 		[Export ("appNotTerminatingCleanlyDetectionEnabled")]
 		bool AppNotTerminatingCleanlyDetectionEnabled { get; set; }
 
-//		// -(void)setCrashCallbacks:(MSAICrashManagerCallbacks *)callbacks;
-//		[Export ("setCrashCallbacks:")]
-//		unsafe void SetCrashCallbacks (MSAICrashManagerCallbacks* callbacks);
+		//		// -(void)setCrashCallbacks:(MSAICrashManagerCallbacks *)callbacks;
+		//		[Export ("setCrashCallbacks:")]
+		//		unsafe void SetCrashCallbacks (MSAICrashManagerCallbacks* callbacks);
 
 		// @property (readonly, nonatomic) BOOL didCrashInLastSession;
 		[Export ("didCrashInLastSession")]
@@ -392,14 +397,14 @@ namespace ApplicationInsightsIOS
 		[Export ("measurements", ArgumentSemantic.Strong)]
 		MSAIOrderedDictionary Measurements { get; set; }
 	}
-		
+
 	partial interface Constants
 	{
 		// extern NSString *const kMSAICrashErrorDomain;
 		[Field ("kMSAICrashErrorDomain")]
 		NSString kMSAICrashErrorDomain { get; }
 	}
-		
+
 	partial interface Constants
 	{
 		// extern NSString *const kMSAIErrorDomain;
