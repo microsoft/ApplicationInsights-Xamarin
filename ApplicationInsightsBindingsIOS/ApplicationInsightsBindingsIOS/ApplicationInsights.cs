@@ -133,8 +133,8 @@ namespace ApplicationInsightsIOS
 				exceptionData.Exceptions = exceptions;
 
 				TelemetryManager.TrackManagedException (exceptionData);
-		
-				System.Diagnostics.Process.GetCurrentProcess().Kill();
+				NSDate createDate = new NSDate ();
+				MSAIApplicationInsights.IgnoreCrashForSessionForDate (createDate);
 			}	
 		}
 	}
