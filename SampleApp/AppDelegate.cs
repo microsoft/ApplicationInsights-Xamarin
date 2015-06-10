@@ -1,6 +1,6 @@
 ﻿using Foundation;
 using UIKit;
-using ApplicationInsightsXamarinIOS;
+using ApplicationInsightsIOS;
 using Xamarin;
 using CoreTelephony;
 using System;
@@ -24,14 +24,9 @@ namespace SampleApp
 		{
 			// Override point for customization after application launch.
 			// If not required for your application you can safely delete this method
-
-			// Code to start the Xamarin Test Cloud Agent
-			#if ENABLE_TEST_CLOUD
-			Xamarin.Calabash.Start();
-			#endif
 			if (ExampleHelper.USE_AI) {
 				ApplicationInsights.Setup ("a11683ec-3d08-474d-8218-0abca5f7adbb");
-				ApplicationInsights.SetServerUrl ("https://dc-int.services.visualstudio.com/v2/track");
+				ApplicationInsights.SetServerUrl ("http://dc-int.services.visualstudio.com/v2/track");
 				ApplicationInsights.Start ();
 			} else {
 				Insights.Initialize("345000ef7333b5006b501513458baabce6549b81");

@@ -3,7 +3,7 @@ using ApplicationInsightsIOS;
 using ObjCRuntime;
 using Foundation;
 
-namespace ApplicationInsightsXamarinIOS
+namespace ApplicationInsightsIOS
 {
 	public class TelemetryManager
 	{
@@ -50,6 +50,10 @@ namespace ApplicationInsightsXamarinIOS
 
 		public static void TrackException (NSException exception){
 			MSAITelemetryManager.TrackException (exception);
+		}
+
+		public static void TrackManagedException (MSAIExceptionData exception){
+			MSAITelemetryManager.TrackManagedException (exception);
 		}
 	}
 }

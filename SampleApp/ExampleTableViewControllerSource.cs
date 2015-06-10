@@ -3,7 +3,7 @@ using System;
 
 using Foundation;
 using UIKit;
-using ApplicationInsightsXamarinIOS;
+using ApplicationInsightsIOS;
 using TestCrashBindings;
 
 namespace SampleApp
@@ -205,9 +205,9 @@ namespace SampleApp
 			} else if (section == kMSAIIndexTrackSection) {
 
 				if (row == 0) {
-					if (ExampleHelper.USE_AI) {
+					
 						TelemetryManager.TrackEvent ("My Event");
-					}
+
 				} else if (row == 1) {
 					if (ExampleHelper.USE_AI) {
 						TelemetryManager.TrackTrace ("My Trace");

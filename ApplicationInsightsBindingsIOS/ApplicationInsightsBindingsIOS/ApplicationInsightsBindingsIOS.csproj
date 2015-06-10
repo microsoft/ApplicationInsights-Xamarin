@@ -39,8 +39,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ApplicationInsights.cs" />
     <Compile Include="TelemetryManager.cs" />
-    <Compile Include="libApplicationInsightsSDK.linkwith.cs">
-      <DependentUpon>libApplicationInsightsSDK.a</DependentUpon>
+    <Compile Include="StructsAndEnums.cs" />
+    <Compile Include="libApplicationInsights.linkwith.cs">
+      <DependentUpon>libApplicationInsights.a</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +49,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <ItemGroup>
-    <ObjcBindingNativeLibrary Include="libApplicationInsightsSDK.a" />
+    <ObjcBindingNativeLibrary Include="libApplicationInsights.a" />
   </ItemGroup>
 </Project>

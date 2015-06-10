@@ -1,11 +1,11 @@
 ﻿using System;
-using ApplicationInsightsIOS;
 using Foundation;
 using System.Runtime.InteropServices;
 using ObjCRuntime;
+using ApplicationInsightsIOS;
+using System.Threading;
 
-
-namespace ApplicationInsightsXamarinIOS
+namespace ApplicationInsightsIOS
 {
 	public class ApplicationInsights
 	{
@@ -36,6 +36,7 @@ namespace ApplicationInsightsXamarinIOS
 		}
 
 		public static void Start (){
+			Console.WriteLine ("Start");
 			IntPtr sigbus = Marshal.AllocHGlobal (512);
 			IntPtr sigsegv = Marshal.AllocHGlobal (512);
 
@@ -43,9 +44,8 @@ namespace ApplicationInsightsXamarinIOS
 			sigaction (Signal.SIGBUS, IntPtr.Zero, sigbus);
 			sigaction (Signal.SIGSEGV, IntPtr.Zero, sigsegv);
 		
-			Instance.registerUnhandledExceptionHandler ();
 			MSAIApplicationInsights.Start ();
-
+			Instance.registerUnhandledExceptionHandler ();
 			// Restore Mono SIGSEGV and SIGBUS handlers            
 			sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
 			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
@@ -111,30 +111,31 @@ namespace ApplicationInsightsXamarinIOS
 		}
 			
 		private void registerUnhandledExceptionHandler(){
+			Console.WriteLine ("registerUnhandledExceptionHandler");
 			if (!_crashManagerDisabled) {
 				System.AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
-//				Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
 			}
 		}
 			
 		public void OnUnhandledException(object e, System.UnhandledExceptionEventArgs args){
+			Exception managedException = (Exception) args.ExceptionObject;
+			Console.WriteLine ("OnUnhandledException");
+			if (managedException != null && !managedException.Source.Equals("Xamarin.iOS")) {
+				
+				MSAIExceptionDetails details = new MSAIExceptionDetails ();
+				details.HasFullStack = true;
+				details.Message = managedException.Message;
+				details.Stack = managedException.StackTrace;
 
-//			Exception exception = (Exception)e;
-//			var name = ".NET crash";
-//			var msg = e.ToString();
-//			if(e is Exception) {
-//				name = string.Format("{0}: {1}", e.GetType().FullName, (e as Exception).Message);
-//			}
-//			name = name.Replace("%", "%%");
-//			msg = msg.Replace("%", "%%");
-//			var nse = new NSException(name, msg, null);
-//			var sel = new Selector("raise");
-//			Messaging.void_objc_msgSend(nse.Handle, sel.Handle);
-//			if(!exception.Source.Equals("Xamarin.iOS")){
-//				TelemetryManager.TrackManagedException(exception.Message);
-//			}
+				MSAIExceptionData exceptionData = new MSAIExceptionData();
+				NSMutableArray exceptions = new NSMutableArray ();
+				exceptions.Add (details);
+				exceptionData.Exceptions = exceptions;
 
-			Console.WriteLine ((e as Exception).Source);
+				TelemetryManager.TrackManagedException (exceptionData);
+		
+				System.Diagnostics.Process.GetCurrentProcess().Kill();
+			}	
 		}
 	}
 }
