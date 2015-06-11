@@ -48,13 +48,13 @@ namespace ApplicationInsightsIOS
 			MSAITelemetryManager.TrackPageView (pageName, duration, properties);
 		}
 
-		public static void TrackException (NSException exception){
-			MSAITelemetryManager.TrackException (exception);
-		}
-
-		public static void TrackManagedException (MSAIExceptionData exception){
-			MSAITelemetryManager.TrackManagedException (exception);
+		public static void TrackManagedException (Exception  exception, bool handled){
+			if (exception != null) {
+				string type = exception.GetType ().Name;
+				string stacktrace = exception.StackTrace;
+				string message = exception.Message;
+				MSAITelemetryManager.TrackManagedException (type, message, stacktrace, handled);
+			}	
 		}
 	}
 }
-

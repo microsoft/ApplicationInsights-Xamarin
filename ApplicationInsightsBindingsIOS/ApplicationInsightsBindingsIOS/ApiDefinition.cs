@@ -410,5 +410,7 @@ namespace ApplicationInsightsIOS
 		// extern NSString *const kMSAIErrorDomain;
 		[Field ("kMSAIErrorDomain")]
 		NSString kMSAIErrorDomain { get; }
+		[Export ("trackManagedExceptionWithType:message:stacktrace:handled:")]
+		void TrackManagedException (string type, string message, string stacktrace, bool handled);
 	}
 }

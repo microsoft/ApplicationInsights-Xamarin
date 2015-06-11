@@ -122,13 +122,13 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\ApplicationInsightsBindingsIOS\TestCrashBindings\TestCrashBindings.csproj">
-      <Project>{E32D9B50-2EA7-423D-8783-24889302C1BC}</Project>
-      <Name>TestCrashBindings</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ApplicationInsightsBindingsIOS\ApplicationInsightsBindingsIOS\ApplicationInsightsBindingsIOS.csproj">
       <Project>{FBB32C82-CD0A-4971-B828-211549F1EE72}</Project>
       <Name>ApplicationInsightsBindingsIOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ApplicationInsightsBindingsIOS\TestCrashBindings\TestCrashBindings.csproj">
+      <Project>{E32D9B50-2EA7-423D-8783-24889302C1BC}</Project>
+      <Name>TestCrashBindings</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

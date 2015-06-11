@@ -119,24 +119,8 @@ namespace ApplicationInsightsIOS
 			
 		public void OnUnhandledException(object e, System.UnhandledExceptionEventArgs args){
 			Exception managedException = (Exception) args.ExceptionObject;
-			Console.WriteLine ("OnUnhandledException");
 			if (managedException != null && !managedException.Source.Equals("Xamarin.iOS")) {
-				
-				MSAIExceptionDetails details = new MSAIExceptionDetails ();
-				details.HasFullStack = true;
-				details.Message = managedException.Message;
-				details.Stack = managedException.StackTrace;
-				details.TypeName = managedException.GetType ().Name;
-
-				MSAIExceptionData exceptionData = new MSAIExceptionData();
-				exceptionData.HandledAt = managedException.TargetSite.Name;
-				NSMutableArray exceptions = new NSMutableArray ();
-				exceptions.Add (details);
-				exceptionData.Exceptions = exceptions;
-
-				TelemetryManager.TrackManagedException (exceptionData);
-				NSDate createDate = new NSDate ();
-				MSAIApplicationInsights.IgnoreCrashForSessionForDate (createDate);
+				TelemetryManager.TrackManagedException (managedException, false);
 			}	
 		}
 	}
