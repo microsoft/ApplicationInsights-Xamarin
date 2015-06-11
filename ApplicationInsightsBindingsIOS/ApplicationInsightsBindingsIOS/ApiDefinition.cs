@@ -1,7 +1,7 @@
 ﻿using System;
-using ApplicationInsightsIOS;
 using Foundation;
 using ObjCRuntime;
+using ApplicationInsightsIOS;
 
 namespace ApplicationInsightsIOS
 {
@@ -9,10 +9,6 @@ namespace ApplicationInsightsIOS
 	[BaseType (typeof(NSObject))]
 	interface MSAIApplicationInsights
 	{
-		// +(void)setup;
-		[Static]
-		[Export ("setup")]
-		void Setup ();
 
 		// +(void)setupWithInstrumentationKey:(NSString *)instrumentationKey;
 		[Static]
@@ -33,36 +29,20 @@ namespace ApplicationInsightsIOS
 		[Export ("serverURL", ArgumentSemantic.Strong)]
 		string ServerURL { get; set; }
 
-		// @property (getter = isCrashManagerDisabled, nonatomic) BOOL crashManagerDisabled;
-		[Export ("crashManagerDisabled")]
-		bool CrashManagerDisabled { [Bind ("isCrashManagerDisabled")] get; set; }
-
 		// +(void)setCrashManagerDisabled:(BOOL)crashManagerDisabled;
 		[Static]
 		[Export ("setCrashManagerDisabled:")]
 		void SetCrashManagerDisabled (bool crashManagerDisabled);
-
-		// @property (getter = isTelemetryManagerDisabled, nonatomic) BOOL telemetryManagerDisabled;
-		[Export ("telemetryManagerDisabled")]
-		bool TelemetryManagerDisabled { [Bind ("isTelemetryManagerDisabled")] get; set; }
 
 		// +(void)setTelemetryManagerDisabled:(BOOL)telemetryManagerDisabled;
 		[Static]
 		[Export ("setTelemetryManagerDisabled:")]
 		void SetTelemetryManagerDisabled (bool telemetryManagerDisabled);
 
-		// @property (getter = isAutoPageViewTrackingDisabled, nonatomic) BOOL autoPageViewTrackingDisabled;
-		[Export ("autoPageViewTrackingDisabled")]
-		bool AutoPageViewTrackingDisabled { [Bind ("isAutoPageViewTrackingDisabled")] get; set; }
-
 		// +(void)setAutoPageViewTrackingDisabled:(BOOL)autoPageViewTrackingDisabled;
 		[Static]
 		[Export ("setAutoPageViewTrackingDisabled:")]
 		void SetAutoPageViewTrackingDisabled (bool autoPageViewTrackingDisabled);
-
-		// @property (getter = isAutoSessionManagementDisabled, nonatomic) BOOL autoSessionManagementDisabled;
-		[Export ("autoSessionManagementDisabled")]
-		bool AutoSessionManagementDisabled { [Bind ("isAutoSessionManagementDisabled")] get; set; }
 
 		// +(void)setAutoSessionManagementDisabled:(BOOL)autoSessionManagementDisabled;
 		[Static]
@@ -111,56 +91,6 @@ namespace ApplicationInsightsIOS
 		[Static]
 		[Export ("build")]
 		string Build { get; }
-	}
-
-	// @interface MSAICrashManager : NSObject
-	[BaseType (typeof(NSObject))]
-	interface MSAICrashManager
-	{
-		// +(instancetype)sharedManager;
-		[Static]
-		[Export ("sharedManager")]
-		MSAICrashManager SharedManager ();
-
-		// @property (assign, nonatomic) BOOL isSetupCorrectly;
-		[Export ("isSetupCorrectly")]
-		bool IsSetupCorrectly { get; set; }
-
-		// @property (assign, nonatomic, setter = setCrashManagerDisabled:) BOOL isCrashManagerDisabled;
-		[Export ("isCrashManagerDisabled")]
-		bool IsCrashManagerDisabled { get; [Bind ("setCrashManagerDisabled:")] set; }
-
-		// @property (assign, nonatomic) BOOL machExceptionHandlerEnabled;
-		[Export ("machExceptionHandlerEnabled")]
-		bool MachExceptionHandlerEnabled { get; set; }
-
-		// @property (assign, nonatomic) BOOL onDeviceSymbolicationEnabled;
-		[Export ("onDeviceSymbolicationEnabled")]
-		bool OnDeviceSymbolicationEnabled { get; set; }
-
-		// @property (assign, nonatomic) BOOL appNotTerminatingCleanlyDetectionEnabled;
-		[Export ("appNotTerminatingCleanlyDetectionEnabled")]
-		bool AppNotTerminatingCleanlyDetectionEnabled { get; set; }
-
-		// @property (readonly, nonatomic) BOOL didCrashInLastSession;
-		[Export ("didCrashInLastSession")]
-		bool DidCrashInLastSession { get; }
-
-		// @property (readonly, nonatomic) NSTimeInterval timeintervalCrashInLastSessionOccured;
-		[Export ("timeintervalCrashInLastSessionOccured")]
-		double TimeintervalCrashInLastSessionOccured { get; }
-
-		// @property (readonly, nonatomic) BOOL didReceiveMemoryWarningInLastSession;
-		[Export ("didReceiveMemoryWarningInLastSession")]
-		bool DidReceiveMemoryWarningInLastSession { get; }
-
-		// @property (readonly, getter = getIsDebuggerAttached, nonatomic) BOOL debuggerIsAttached;
-		[Export ("debuggerIsAttached")]
-		bool DebuggerIsAttached { [Bind ("getIsDebuggerAttached")] get; }
-
-		// -(void)generateTestCrash;
-		[Export ("generateTestCrash")]
-		void GenerateTestCrash ();
 	}
 
 	// @interface MSAITelemetryManager : NSObject
@@ -217,9 +147,9 @@ namespace ApplicationInsightsIOS
 		[Export ("trackPageView:duration:properties:")]
 		void TrackPageView (string pageName, nint duration, NSDictionary properties);
 
-		// +(void)trackException:(NSException *)exception;
+		// +(void)trackManagedExceptionWithType:(NSString *)type message:(NSString *)message stacktrace:(NSString *)stacktrace handled:(BOOL)handled;
 		[Static]
-		[Export ("trackException:")]
-		void TrackException (NSException exception);
+		[Export ("trackManagedExceptionWithType:message:stacktrace:handled:")]
+		void TrackManagedException (string type, string message, string stacktrace, bool handled);
 	}
 }

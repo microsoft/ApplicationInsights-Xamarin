@@ -1,1 +1,28 @@
-﻿<Properties StartupItem="ApplicationInsightsBindingsIOS/ApplicationInsightsBindingsIOS.csproj" />
+﻿<Properties StartupItem="ApplicationInsightsBindingsIOS/ApplicationInsightsBindingsIOS.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|iPhone" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ApplicationInsightsBindingsIOS/ApplicationInsights.cs">
+    <Files>
+      <File FileName="ApplicationInsightsBindingsIOS/obj/Debug/ios/ApplicationInsightsIOS/MSAIExceptionData.g.cs" Line="1" Column="1" />
+      <File FileName="ApplicationInsightsBindingsIOS/ApplicationInsights.cs" Line="135" Column="49" />
+      <File FileName="../SampleApp/AppDelegate.cs" Line="28" Column="33" />
+      <File FileName="ApplicationInsightsBindingsIOS/TelemetryManager.cs" Line="1" Column="1" />
+      <File FileName="ApplicationInsightsBindingsIOS/ApiDefinition.cs" Line="276" Column="34" />
+      <File FileName="ApplicationInsightsBindingsIOS/StructsAndEnums.cs" Line="1" Column="1" />
+      <File FileName="ApplicationInsightsBindingsIOS/libApplicationInsights.linkwith.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/christophwendt/Documents/WorkspaceMicrosoft/ApplicationInsightsXamarin-iOS/SampleApp/ExampleTableViewControllerSource.cs" line="191" column="1" />
+      <Breakpoint file="/Users/christophwendt/Documents/WorkspaceMicrosoft/ApplicationInsightsXamarin-iOS/ApplicationInsightsBindingsIOS/ApplicationInsightsBindingsIOS/ApplicationInsights.cs" line="122" column="1" />
+      <Breakpoint file="/Users/christophwendt/Documents/WorkspaceMicrosoft/ApplicationInsightsXamarin-iOS/ApplicationInsightsBindingsIOS/ApplicationInsightsBindingsIOS/ApplicationInsights.cs" line="48" column="1" />
+      <Breakpoint file="/Users/christophwendt/Documents/WorkspaceMicrosoft/ApplicationInsightsXamarin-iOS/ApplicationInsightsBindingsIOS/ApplicationInsightsBindingsIOS/ApplicationInsights.cs" line="116" column="1" />
+      <Breakpoint file="/Users/christophwendt/Documents/WorkspaceMicrosoft/ApplicationInsightsXamarin-iOS/ApplicationInsightsBindingsIOS/ApplicationInsightsBindingsIOS/ApplicationInsights.cs" line="39" column="1" />
+      <Breakpoint file="/Users/christophwendt/Documents/WorkspaceMicrosoft/ApplicationInsightsXamarin-iOS/ApplicationInsightsBindingsIOS/ApplicationInsightsBindingsIOS/ApplicationInsights.cs" line="133" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <DisabledProjects>
+    <String>../ApplicationInsightsXamarin-iOS/ApplicationInsightsXamarin-iOS.csproj</String>
+  </DisabledProjects>
+</Properties>
