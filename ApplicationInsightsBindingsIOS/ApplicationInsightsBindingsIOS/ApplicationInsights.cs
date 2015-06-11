@@ -23,7 +23,7 @@ namespace ApplicationInsightsIOS
 
 		private ApplicationInsights(){}
 
-		public static ApplicationInsights Instance
+		private static ApplicationInsights Instance
 		{
 			get 
 			{
@@ -49,12 +49,6 @@ namespace ApplicationInsightsIOS
 			// Restore Mono SIGSEGV and SIGBUS handlers            
 			sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
 			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
-		}
-
-		public static void CrashNaticeLib(){
-
-			MSAICrashManager crashManager = new MSAICrashManager ();
-			crashManager.GenerateTestCrash ();
 		}
 
 		public static string GetServerUrl (){
