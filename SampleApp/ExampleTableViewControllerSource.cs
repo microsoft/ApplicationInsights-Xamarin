@@ -59,7 +59,9 @@ namespace SampleApp
 		private void OnPageViewSwitchChanged(object sender, EventArgs e)
 		{
 			autoPageViewsEnabled = autoPageViewSwitch.On;
-//			ApplicationInsights.SetAutoPageViewTrackingDisabled(!autoPageViewsEnabled);
+			if (ExampleHelper.USE_AI) {
+				ApplicationInsights.SetAutoPageViewTrackingDisabled(!autoPageViewsEnabled);
+			}
 		}
 
 		private void OnSessionSwitchChanged(object sender, EventArgs e)

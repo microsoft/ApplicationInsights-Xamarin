@@ -25,8 +25,9 @@ namespace SampleApp
 			// Override point for customization after application launch.
 			// If not required for your application you can safely delete this method
 			if (ExampleHelper.USE_AI) {
-				ApplicationInsights.Setup ("a11683ec-3d08-474d-8218-0abca5f7adbb");
-				ApplicationInsights.SetServerUrl ("http://dc-int.services.visualstudio.com/v2/track");
+				ApplicationInsights.Setup ("4cd23039-6878-495f-bf84-ccfc8a84253e");
+				ApplicationInsights.SetServerUrl ("http://dc.services.visualstudio.com/v2/track");
+				ApplicationInsights.SetDebugLogEnabled (true);
 				ApplicationInsights.Start ();
 			} else {
 				Insights.Initialize("345000ef7333b5006b501513458baabce6549b81");
