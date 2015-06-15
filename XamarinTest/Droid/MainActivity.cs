@@ -19,6 +19,10 @@ namespace XamarinTest.Droid
 
 			global::Xamarin.Forms.Forms.Init (this, bundle);
 
+			ApplicationInsights.Setup (this.ApplicationContext, this.Application, "a11683ec-3d08-474d-8218-0abca5f7adbb");
+			ApplicationInsights.Start ();
+			TelemetryManager.TrackEvent ("My Android Event");
+
 			LoadApplication (new App ());
 		}
 	}

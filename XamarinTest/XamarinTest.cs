@@ -23,7 +23,7 @@ namespace XamarinTest
 
 		protected override void OnStart ()
 		{
-			// Handle when your app starts
+			TelemetryManager.TrackEvent ("My Shared Event");
 		}
 
 		protected override void OnSleep ()
