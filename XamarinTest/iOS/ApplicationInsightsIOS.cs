@@ -14,46 +14,36 @@ namespace XamarinTest.iOS
 	public class ApplicationInsightsIOS : IApplicationInsights
 	{
 
-		//		[DllImport ("libc")]
-		//		private static extern int sigaction (Signal sig, IntPtr act, IntPtr oact);
-		//
-		//		enum Signal {
-		//			SIGBUS = 10,
-		//			SIGSEGV = 11
-		//		}
+		[DllImport ("libc")]
+		private static extern int sigaction (Signal sig, IntPtr act, IntPtr oact);
+		
+		enum Signal {
+			SIGBUS = 10,
+			SIGSEGV = 11
+		}
 
 		private static bool _crashManagerDisabled = false;
 
-		//private static readonly ApplicationInsightsIOS instance = new ApplicationInsightsIOS();
-
 		public ApplicationInsightsIOS(){}
-
-		//		private static ApplicationInsightsIOS Instance
-		//		{
-		//			get 
-		//			{
-		//				return instance; 
-		//			}
-		//		}
 
 		public void Setup (string instrumentationKey){
 			MSAIApplicationInsights.Setup (instrumentationKey);
+			MSAIApplicationInsights.SetAutoSessionManagementDisabled (false);
 		}
 
 		public void Start (){
-			Console.WriteLine ("Start");
-			//			IntPtr sigbus = Marshal.AllocHGlobal (512);
-			//			IntPtr sigsegv = Marshal.AllocHGlobal (512);
-			//
-			//			// Store Mono SIGSEGV and SIGBUS handlers
-			//			sigaction (Signal.SIGBUS, IntPtr.Zero, sigbus);
-			//			sigaction (Signal.SIGSEGV, IntPtr.Zero, sigsegv);
-			//
+			IntPtr sigbus = Marshal.AllocHGlobal (512);
+			IntPtr sigsegv = Marshal.AllocHGlobal (512);
+
+			// Store Mono SIGSEGV and SIGBUS handlers
+			sigaction (Signal.SIGBUS, IntPtr.Zero, sigbus);
+			sigaction (Signal.SIGSEGV, IntPtr.Zero, sigsegv);
+
 			MSAIApplicationInsights.Start ();
 			registerUnhandledExceptionHandler ();
-			// Restore Mono SIGSEGV and SIGBUS handlers            
-			//			sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
-			//			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
+			Restore Mono SIGSEGV and SIGBUS handlers            
+			sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
+			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
 		}
 
 		public string GetServerUrl (){
