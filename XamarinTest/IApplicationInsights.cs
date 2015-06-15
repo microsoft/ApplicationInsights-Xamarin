@@ -1,10 +1,14 @@
 ﻿using System;
+using Android.App;
+using Android.Content;
 
 namespace XamarinTest
 {
 	public interface IApplicationInsights
 	{
 		void Setup (string instrumentationKey);
+
+		void Setup (Context context, Application application, string instrumentationKey);
 
 		void Start ();
 
