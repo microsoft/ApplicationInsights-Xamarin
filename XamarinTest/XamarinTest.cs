@@ -24,6 +24,9 @@ namespace XamarinTest
 		protected override void OnStart ()
 		{
 			TelemetryManager.TrackEvent ("My Shared Event");
+			ApplicationInsights.RenewSessionWithId ("MySession");
+			ApplicationInsights.SetUserId ("Christoph");
+			TelemetryManager.TrackMetric ("My custom metric", 2.2);
 		}
 
 		protected override void OnSleep ()
