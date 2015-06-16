@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using Xamarin.Forms;
 using AI.XamarinSDK.iOS;
 using XamarinTest.iOS;
+using System.Runtime.InteropServices;
 
 [assembly: Xamarin.Forms.Dependency (typeof (ApplicationInsightsIOS))]
 
@@ -40,8 +41,7 @@ namespace XamarinTest.iOS
 			sigaction (Signal.SIGSEGV, IntPtr.Zero, sigsegv);
 
 			MSAIApplicationInsights.Start ();
-			registerUnhandledExceptionHandler ();
-			Restore Mono SIGSEGV and SIGBUS handlers            
+			registerUnhandledExceptionHandler ();         
 			sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
 			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
 		}

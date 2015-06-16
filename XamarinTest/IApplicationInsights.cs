@@ -1,6 +1,9 @@
 ﻿using System;
+
+#if __ANDROID__
 using Android.App;
 using Android.Content;
+#endif
 
 namespace XamarinTest
 {
@@ -8,7 +11,9 @@ namespace XamarinTest
 	{
 		void Setup (string instrumentationKey);
 
+		#if __ANDROID__
 		void Setup (Context context, Application application, string instrumentationKey);
+		#endif
 
 		void Start ();
 

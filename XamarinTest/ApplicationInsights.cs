@@ -1,7 +1,10 @@
 ﻿using System;
+using Xamarin.Forms;
+
+#if __ANDROID__
 using Android.App;
 using Android.Content;
-using Xamarin.Forms;
+#endif
 
 namespace XamarinTest
 {
@@ -13,16 +16,18 @@ namespace XamarinTest
 			DependencyService.Get<IApplicationInsights> ().Setup (instrumentationKey);
 		}
 
-		public static void Setup (Context context, Android.App.Application application, string instrumentationKey){
+		#if __ANDROID__
+		public static void Setup (Context context, Application application, string instrumentationKey){
 			DependencyService.Get<IApplicationInsights> ().Setup (context, application, instrumentationKey);
 		}
+		#endif
 
 		public static void Start (){
 			DependencyService.Get<IApplicationInsights> ().Start ();
 		}
 
 		public static string GetServerUrl (){
-			DependencyService.Get<IApplicationInsights> ().GetServerUrl ();
+			return DependencyService.Get<IApplicationInsights> ().GetServerUrl ();
 		}
 
 		public static void SetServerUrl (string serverUrl){
@@ -62,11 +67,11 @@ namespace XamarinTest
 		}
 
 		public static bool GetAppStoreEnvironment(){
-			DependencyService.Get<IApplicationInsights> ().GetAppStoreEnvironment ();
+			return DependencyService.Get<IApplicationInsights> ().GetAppStoreEnvironment ();
 		}
 
 		public static bool GetDebugLogEnabled(){
-			DependencyService.Get<IApplicationInsights> ().GetDebugLogEnabled ();
+			return DependencyService.Get<IApplicationInsights> ().GetDebugLogEnabled ();
 		}
 
 		public static void SetDebugLogEnabled(bool debugLogEnabled){
