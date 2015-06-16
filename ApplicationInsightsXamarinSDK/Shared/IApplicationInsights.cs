@@ -5,7 +5,7 @@ using Android.App;
 using Android.Content;
 #endif
 
-namespace XamarinTest
+namespace AI.XamarinSDK
 {
 	public interface IApplicationInsights
 	{

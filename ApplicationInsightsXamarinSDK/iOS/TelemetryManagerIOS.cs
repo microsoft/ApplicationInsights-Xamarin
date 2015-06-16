@@ -3,12 +3,10 @@ using UIKit;
 using ObjCRuntime;
 using Foundation;
 using System.Collections.Generic;
-using AI.XamarinSDK.iOS;
-using XamarinTest.iOS;
 
-[assembly: Xamarin.Forms.Dependency (typeof (TelemetryManagerIOS))]
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.TelemetryManagerIOS))]
 
-namespace XamarinTest.iOS
+namespace AI.XamarinSDK.iOS
 {
 
 	public class TelemetryManagerIOS : ITelemetryManager

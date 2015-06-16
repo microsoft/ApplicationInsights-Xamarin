@@ -62,8 +62,6 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ApplicationInsights_Android.cs" />
-    <Compile Include="TelemetryManager_Android.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -85,6 +83,10 @@
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <Import Project="..\..\ApplicationInsightsXamarinSDK\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\ApplicationInsightsXamarinSDK\packages\Xamarin.Forms.1.3.3.6323\build\portable-win+net45+wp80+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <ItemGroup>
+    <ProjectReference Include="..\..\ApplicationInsightsXamarinSDK\Droid\Droid.csproj">
+      <Project>{25DFBE50-3DE9-402E-B6E0-C089F1425B45}</Project>
+      <Name>Droid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ApplicationInsightsXamarinSDK\Android\Android.csproj">
       <Project>{E1779521-C094-4CA0-ACFA-B26A1B2B80F3}</Project>
       <Name>Android</Name>

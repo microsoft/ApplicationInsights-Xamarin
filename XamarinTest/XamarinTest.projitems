@@ -10,9 +10,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)XamarinTest.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ApplicationInsights.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)IApplicationInsights.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ITelemetryManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TelemetryManager.cs" />
   </ItemGroup>
 </Project>

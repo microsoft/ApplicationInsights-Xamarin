@@ -3,11 +3,10 @@ using Android;
 using Android.App;
 using Android.Content;
 using Com.Microsoft.Applicationinsights.Library;
-using XamarinTest.Droid;
 
-[assembly: Xamarin.Forms.Dependency (typeof (ApplicationInsights_Android))]
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.ApplicationInsights_Android))]
 
-namespace XamarinTest.Droid
+namespace AI.XamarinSDK.Android
 {
 	public class ApplicationInsights_Android : Java.Lang.Object, IApplicationInsights
 	{
@@ -20,6 +19,7 @@ namespace XamarinTest.Droid
 		}
 
 		public void Setup (Context context, Application application, string instrumentationKey){
+			// TODO: Add MSAI prefix to class names of Android bindings
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (context, application, instrumentationKey);
 		}
 
@@ -60,7 +60,7 @@ namespace XamarinTest.Droid
 		}
 
 		public void SetUserId (string userId){
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.SetUserId (userId);
+			ApplicationInsights.SetUserId (userId);
 		}
 
 		public void StartNewSession (){

@@ -26,6 +26,9 @@ namespace XamarinTest.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Droid.Resource.String.ApplicationName = global::XamarinTest.Droid.Resource.String.ApplicationName;
+			global::Droid.Resource.String.Hello = global::XamarinTest.Droid.Resource.String.Hello;
+			global::Droid.Resource.String.library_name = global::XamarinTest.Droid.Resource.String.library_name;
 		}
 		
 		public partial class Attribute
@@ -60,11 +63,33 @@ namespace XamarinTest.Droid
 			}
 		}
 		
-		public partial class Style
+		public partial class String
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Mono_Android_Theme_Splash = 2130903040;
+			public const int ApplicationName = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int Hello = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int library_name = 2130903042;
+			
+			static String()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private String()
+			{
+			}
+		}
+		
+		public partial class Style
+		{
+			
+			// aapt resource value: 0x7f040000
+			public const int Mono_Android_Theme_Splash = 2130968576;
 			
 			static Style()
 			{

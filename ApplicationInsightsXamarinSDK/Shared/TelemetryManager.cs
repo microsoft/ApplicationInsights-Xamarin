@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using System.Collections.Generic;
 
-namespace XamarinTest
+namespace AI.XamarinSDK
 {
 	public class TelemetryManager
 	{

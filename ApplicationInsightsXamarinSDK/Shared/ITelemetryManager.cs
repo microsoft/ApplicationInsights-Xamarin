@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace XamarinTest
+namespace AI.XamarinSDK
 {
 	public interface ITelemetryManager
 	{

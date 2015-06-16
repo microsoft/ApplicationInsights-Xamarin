@@ -3,13 +3,12 @@ using Android;
 using Android.Runtime;
 using Android.App;
 using Android.Content;
-using Com.Microsoft.Applicationinsights.Library;
 using System.Collections.Generic;
-using XamarinTest.Droid;
+using Com.Microsoft.Applicationinsights.Library;
 
-[assembly: Xamarin.Forms.Dependency (typeof (TelemetryManager_Android))]
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.TelemetryManager_Android))]
 
-namespace XamarinTest.Droid
+namespace AI.XamarinSDK.Android
 {
 	public class TelemetryManager_Android : Java.Lang.Object, ITelemetryManager
 	{

@@ -5,12 +5,11 @@ using Foundation;
 using System.Collections.Generic;
 using Xamarin.Forms;
 using AI.XamarinSDK.iOS;
-using XamarinTest.iOS;
 using System.Runtime.InteropServices;
 
 [assembly: Xamarin.Forms.Dependency (typeof (ApplicationInsightsIOS))]
 
-namespace XamarinTest.iOS
+namespace AI.XamarinSDK.iOS
 {
 	public class ApplicationInsightsIOS : IApplicationInsights
 	{
