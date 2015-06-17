@@ -10,5 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)XamarinTest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)XamarinTestTableView.cs" />
   </ItemGroup>
 </Project>
