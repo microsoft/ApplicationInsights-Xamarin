@@ -7,7 +7,7 @@ using Xamarin.Forms;
 using AI.XamarinSDK.iOS;
 using System.Runtime.InteropServices;
 
-[assembly: Xamarin.Forms.Dependency (typeof (ApplicationInsightsIOS))]
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.ApplicationInsightsIOS))]
 
 namespace AI.XamarinSDK.iOS
 {

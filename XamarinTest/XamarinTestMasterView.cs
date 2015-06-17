@@ -22,7 +22,9 @@ namespace XamarinTest
 			PageView,
 			Session,
 			HandledException,
-			UnhandledException
+			UnhandledException,
+			UnmanagedSignal,
+			UnmanagedException
 		};
 
 		public XamarinTestMasterView ()
@@ -41,7 +43,7 @@ namespace XamarinTest
 				Root = new TableRoot {
 					new TableSection ("Crash reproting") {
 						new TextCell { 
-							Text = "Managed unhandled exception",
+							Text = "Managed exception crash",
 							Command = new Command (() => TrackTelemetryData(TelemetryType.UnhandledException))
 						},
 						new TextCell { 
@@ -49,7 +51,12 @@ namespace XamarinTest
 							Command = new Command (() => TrackTelemetryData(TelemetryType.HandledException))
 						},
 						new TextCell { 
-							Text = "Unmanaged unhandle1d exception"
+							Text = "Unmanaged signal crash",
+							Command = new Command (() => TrackTelemetryData(TelemetryType.UnmanagedSignal))
+						},
+						new TextCell { 
+							Text = "Unmanaged exception crash",
+							Command = new Command (() => TrackTelemetryData(TelemetryType.UnmanagedException))
 						}
 					},
 					new TableSection ("Telemetry data") {
@@ -157,6 +164,12 @@ namespace XamarinTest
 				break;
 			case TelemetryType.UnhandledException:
 				throw(new Exception ());
+				break;
+			case TelemetryType.UnmanagedSignal:
+				DummyLibrary.TriggerSignalCrash ();
+				break;
+			case TelemetryType.UnmanagedException:
+				DummyLibrary.TriggerExceptionCrash ();
 				break;
 			default:
 				break;
