@@ -113,6 +113,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="DummyLibraryIOS.cs" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="ITunesArtwork" />
@@ -125,6 +126,10 @@
     <ProjectReference Include="..\..\ApplicationInsightsXamarinSDK\iOS\iOS.csproj">
       <Project>{4B57344D-C4B3-44F8-8E15-CC5B3AF1CC24}</Project>
       <Name>iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DummyLibraryIOS\DummyLibraryIOS.csproj">
+      <Project>{10DF3537-4B56-42A2-91BE-9C98B77675A7}</Project>
+      <Name>DummyLibraryIOS</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

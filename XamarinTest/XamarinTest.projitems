@@ -12,5 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)XamarinTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XamarinTestDetailView.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)XamarinTestMasterView.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DummyLibrary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IDummyLibrary.cs" />
   </ItemGroup>
 </Project>
