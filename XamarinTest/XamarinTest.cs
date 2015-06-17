@@ -8,16 +8,14 @@ namespace XamarinTest
 	{
 		public App ()
 		{
-			var mainNav = new NavigationPage (new XamarinTestTableView ());
+			var mainNav = new NavigationPage (new XamarinTestMasterView ());
 			MainPage = mainNav;
 		}
 
 		protected override void OnStart ()
 		{
-			TelemetryManager.TrackEvent ("My Shared Event");
-			ApplicationInsights.RenewSessionWithId ("MySession");
-			ApplicationInsights.SetUserId ("Christoph");
-			TelemetryManager.TrackMetric ("My custom metric", 2.2);
+			ApplicationInsights.Setup ("a11683ec-3d08-474d-8218-0abca5f7adbb");
+			ApplicationInsights.Start ();
 		}
 
 		protected override void OnSleep ()
