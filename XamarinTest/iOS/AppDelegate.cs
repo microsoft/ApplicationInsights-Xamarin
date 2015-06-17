@@ -21,9 +21,6 @@ namespace XamarinTest.iOS
 
 
 			LoadApplication (new App ());
-			ApplicationInsights.Setup ("a11683ec-3d08-474d-8218-0abca5f7adbb");
-			ApplicationInsights.Start ();
-			TelemetryManager.TrackEvent ("Hi iOS Project");
 			return base.FinishedLaunching (app, options);
 		}
 	}

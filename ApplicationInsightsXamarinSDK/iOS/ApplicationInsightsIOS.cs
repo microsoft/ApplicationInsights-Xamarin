@@ -108,7 +108,7 @@ namespace AI.XamarinSDK.iOS
 		public void OnUnhandledException(object e, System.UnhandledExceptionEventArgs args){
 			Exception managedException = (Exception) args.ExceptionObject;
 			if (managedException != null && !managedException.Source.Equals("Xamarin.iOS")) {
-				//TelemetryManager.TrackManagedException (managedException, false);
+				TelemetryManager.TrackManagedException (managedException, false);
 			}	
 		}
 	}
