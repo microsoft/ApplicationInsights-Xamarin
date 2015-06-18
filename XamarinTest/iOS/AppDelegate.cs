@@ -4,6 +4,7 @@ using System.Linq;
 using AI.XamarinSDK;
 using Foundation;
 using UIKit;
+using XamarinTest;
 
 namespace XamarinTest.iOS
 {
@@ -14,11 +15,10 @@ namespace XamarinTest.iOS
 		{
 			global::Xamarin.Forms.Forms.Init ();
 
-			// Code for starting up the Xamarin Test Cloud Agent
+//			// Code for starting up the Xamarin Test Cloud Agent
 //			#if ENABLE_TEST_CLOUD
 //			Xamarin.Calabash.Start();
 //			#endif
-
 
 			LoadApplication (new App ());
 			return base.FinishedLaunching (app, options);

@@ -99,7 +99,6 @@ namespace AI.XamarinSDK.iOS
 		}
 
 		private void registerUnhandledExceptionHandler(){
-			Console.WriteLine ("registerUnhandledExceptionHandler");
 			if (!_crashManagerDisabled) {
 				System.AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 			}
@@ -107,6 +106,7 @@ namespace AI.XamarinSDK.iOS
 
 		public void OnUnhandledException(object e, System.UnhandledExceptionEventArgs args){
 			Exception managedException = (Exception) args.ExceptionObject;
+			Console.WriteLine (managedException.Source);
 			if (managedException != null && !managedException.Source.Equals("Xamarin.iOS")) {
 				TelemetryManager.TrackManagedException (managedException, false);
 			}	

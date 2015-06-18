@@ -1,6 +1,6 @@
 ﻿using System;
-using AI.XamarinSDK;
 using Xamarin.Forms;
+using AI.XamarinSDK;
 
 namespace XamarinTest
 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms;
 
 namespace XamarinTest
 {
@@ -9,11 +10,11 @@ namespace XamarinTest
 		}
 
 		public static void TriggerSignalCrash(){
-			Xamarin.Forms.DependencyService.Get<IDummyLibrary> ().TriggerSignalCrash();
+			DependencyService.Get<IDummyLibrary> ().TriggerSignalCrash ();
 		}
 
 		public static void TriggerExceptionCrash(){
-			Xamarin.Forms.DependencyService.Get<IDummyLibrary> ().TriggerExceptionCrash();
+			DependencyService.Get<IDummyLibrary> ().TriggerExceptionCrash ();
 		}
 	}
 }

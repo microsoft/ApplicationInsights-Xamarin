@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using AI.XamarinSDK;
 
+
 namespace XamarinTest
 {
 	public class App : Application
