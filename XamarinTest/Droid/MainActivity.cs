@@ -17,13 +17,7 @@ namespace XamarinTest.Droid
 		protected override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
-
 			global::Xamarin.Forms.Forms.Init (this, bundle);
-
-			ApplicationInsights.Setup (this.ApplicationContext, this.Application, "a11683ec-3d08-474d-8218-0abca5f7adbb");
-			ApplicationInsights.Start ();
-			TelemetryManager.TrackEvent ("My Android Event");
-
 			LoadApplication (new App ());
 		}
 	}
