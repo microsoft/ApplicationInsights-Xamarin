@@ -50,10 +50,12 @@ namespace XamarinTest
 							Text = "Managed handled exception",
 							Command = new Command (() => TrackTelemetryData(TelemetryType.HandledException))
 						},
+						#if __IOS__
 						new TextCell { 
 							Text = "Unmanaged signal crash",
 							Command = new Command (() => TrackTelemetryData(TelemetryType.UnmanagedSignal))
 						},
+						#endif
 						new TextCell { 
 							Text = "Unmanaged exception crash",
 							Command = new Command (() => TrackTelemetryData(TelemetryType.UnmanagedException))
@@ -166,7 +168,9 @@ namespace XamarinTest
 				throw(new Exception ());
 				break;
 			case TelemetryType.UnmanagedSignal:
+				#if __IOS__
 				DummyLibrary.TriggerSignalCrash ();
+				#endif
 				break;
 			case TelemetryType.UnmanagedException:
 				DummyLibrary.TriggerExceptionCrash ();
