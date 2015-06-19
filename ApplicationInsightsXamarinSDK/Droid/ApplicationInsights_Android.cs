@@ -1,5 +1,5 @@
 ﻿using System;
-using Android;
+using Android.Runtime;
 using Android.App;
 using Android.Content;
 using Com.Microsoft.Applicationinsights.Library;
@@ -10,6 +10,8 @@ namespace AI.XamarinSDK.Android
 {
 	public class ApplicationInsights_Android : Java.Lang.Object, IApplicationInsights
 	{
+		private static bool _crashManagerDisabled = false;
+
 		public ApplicationInsights_Android ()
 		{
 		}
@@ -19,12 +21,12 @@ namespace AI.XamarinSDK.Android
 		}
 
 		public void Setup (Context context, Application application, string instrumentationKey){
-			// TODO: Add MSAI prefix to class names of Android bindings
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (context, application, instrumentationKey);
 		}
 
 		public void Start (){
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Start ();
+			registerUnhandledExceptionHandler ();
 		}
 
 		public string GetServerUrl (){
@@ -36,6 +38,7 @@ namespace AI.XamarinSDK.Android
 		}
 
 		public void  SetCrashManagerDisabled (bool crashManagerDisabled){
+			_crashManagerDisabled = crashManagerDisabled;
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.SetExceptionTrackingDisabled(crashManagerDisabled);
 		}
 
@@ -86,6 +89,19 @@ namespace AI.XamarinSDK.Android
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.DeveloperMode = debugLogEnabled;
 		}
 
+		private void registerUnhandledExceptionHandler(){
+			if (!_crashManagerDisabled) {
+				AndroidEnvironment.UnhandledExceptionRaiser += OnUnhandledException;
+			}
+		}
+
+		public void OnUnhandledException(object e, RaiseThrowableEventArgs args){
+			Exception managedException = (Exception) args.Exception;
+			// Only track if managed unhandled exception. Track for exception.Source != entry assembly name
+			if (managedException != null && managedException.Message != null) {
+				TelemetryManager.TrackManagedException (managedException, false);
+			}	
+		}
 	}
 }
 

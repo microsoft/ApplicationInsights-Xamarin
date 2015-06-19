@@ -92,5 +92,9 @@
       <Project>{E1779521-C094-4CA0-ACFA-B26A1B2B80F3}</Project>
       <Name>Android</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DummyLibrary.Android\DummyLibrary.Android.csproj">
+      <Project>{68E5289F-6819-4757-812B-6D7AAF78FD7B}</Project>
+      <Name>DummyLibrary.Android</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
