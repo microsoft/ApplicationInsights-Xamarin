@@ -98,7 +98,7 @@ namespace AI.XamarinSDK.Android
 		public void OnUnhandledException(object e, RaiseThrowableEventArgs args){
 			Exception managedException = (Exception) args.Exception;
 			// Only track if managed unhandled exception. Track for exception.Source != entry assembly name
-			if (managedException != null && managedException.Message != null) {
+			if (managedException != null && managedException.Source.Equals("XamarinTest.Droid")) {
 				TelemetryManager.TrackManagedException (managedException, false);
 			}	
 		}

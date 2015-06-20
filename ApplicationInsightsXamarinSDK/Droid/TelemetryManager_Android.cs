@@ -68,6 +68,10 @@ namespace AI.XamarinSDK.Android
 		public void TrackManagedException (Exception  exception, bool handled)
 		{
 			if (exception != null) {
+				string type = exception.GetType ().Name;
+				string stacktrace = exception.StackTrace;
+				string message = exception.Message;
+				TelemetryClient.Instance.TrackManagedException (type, message, stacktrace, handled);
 			}	
 		}
 
