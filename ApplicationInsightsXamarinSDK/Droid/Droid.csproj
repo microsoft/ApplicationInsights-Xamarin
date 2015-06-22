@@ -63,6 +63,7 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="ApplicationInsights_Android.cs" />
     <Compile Include="TelemetryManager_Android.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
