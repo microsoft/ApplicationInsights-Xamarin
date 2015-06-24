@@ -18,15 +18,18 @@ namespace XamarinTest
 
 		protected override void OnStart ()
 		{
-			string iKey = "a11683ec-3d08-474d-8218-0abca5f7adbb";
-
-			#if __ANDROID__
-			Android.App.Activity activity = (Android.App.Activity) Forms.Context;
-			ApplicationInsights.Setup (activity.ApplicationContext, activity.Application, iKey);
-			#elif __IOS__
+			#if __IOS__
+			String iKey = "a11683ec-3d08-474d-8218-0abca5f7adbb";
 			ApplicationInsights.Setup (iKey);
-			#endif
+			ApplicationInsights.SetServerUrl ("http://dc-int.services.visualstudio.com/v2/track");
 			ApplicationInsights.Start ();
+			#elif __ANDROID__
+			ApplicationInsights.Setup (Android.App.Application.Context, (Android.App.Application)Android.App.Application.Context , "ca946245-ea1c-4e64-a7ea-a824f8109797");
+			ApplicationInsights.SetServerUrl ("http://dc-int.services.visualstudio.com/v2/track");
+			ApplicationInsights.Start ();
+			#endif
+
+
 		}
 
 		protected override void OnSleep ()
