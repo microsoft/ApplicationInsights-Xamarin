@@ -2,7 +2,7 @@
 using Android.Runtime;
 using Android.App;
 using Android.Content;
-using Com.Microsoft.Applicationinsights.Library;
+using Com.Microsoft.Applicationinsights;
 
 [assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.ApplicationInsights_Android))]
 

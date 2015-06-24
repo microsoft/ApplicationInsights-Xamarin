@@ -24,7 +24,8 @@ namespace XamarinTest
 			ApplicationInsights.SetServerUrl ("http://dc-int.services.visualstudio.com/v2/track");
 			ApplicationInsights.Start ();
 			#elif __ANDROID__
-			ApplicationInsights.Setup (Android.App.Application.Context, (Android.App.Application)Android.App.Application.Context , "ca946245-ea1c-4e64-a7ea-a824f8109797");
+			Android.App.Application app = ((Android.App.Activity)Forms.Context).Application;
+			ApplicationInsights.Setup (Android.App.Application.Context, app, "ca946245-ea1c-4e64-a7ea-a824f8109797");
 			ApplicationInsights.SetServerUrl ("http://dc-int.services.visualstudio.com/v2/track");
 			ApplicationInsights.Start ();
 			#endif
