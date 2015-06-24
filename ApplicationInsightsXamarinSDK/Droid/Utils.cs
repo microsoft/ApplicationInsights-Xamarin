@@ -5,13 +5,16 @@ namespace AI.XamarinSDK.Android
 {
 	public class Utils
 	{
-		public Utils ()
-		{
-		}
+		public static readonly string[] JAVA_EXCEPTION_PREFIXES = {"java.lang.", "android."};
 
 		public static bool IsManagedException(Exception exception){
-			// TODO: Check exception type (java.lang., android.) or exception source (entry assembly name) to determine whether the exception is thrown by managed or unmanaged code.
-			return exception.Source.Equals("XamarinTest.Droid")
+			string exceptionType = exception.GetBaseException ().GetType ().ToString ();
+			foreach (string prefix in JAVA_EXCEPTION_PREFIXES) {
+				if (exceptionType.ToLower ().StartsWith (prefix)) {
+					return false;
+				}
+			}
+			return true;
 		}
 
 	}
