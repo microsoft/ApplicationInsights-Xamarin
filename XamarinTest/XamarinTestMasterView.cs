@@ -165,7 +165,7 @@ namespace XamarinTest
 				}
 				break;
 			case TelemetryType.UnhandledException:
-				throw(new Exception ());
+				throw(new Java.Lang.NullPointerException());
 				break;
 			case TelemetryType.UnmanagedSignal:
 				#if __IOS__
