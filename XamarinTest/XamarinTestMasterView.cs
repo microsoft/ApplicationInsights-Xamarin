@@ -55,6 +55,13 @@ namespace XamarinTest
 							Text = "Unmanaged signal crash",
 							Command = new Command (() => TrackTelemetryData(TelemetryType.UnmanagedSignal))
 						},
+						#elif __ANDROID__
+						new TextCell { 
+							Text = "Managed Java exception",
+							Command = new Command (() => {
+								throw new Java.Lang.NullPointerException();
+							})
+						},
 						#endif
 						new TextCell { 
 							Text = "Unmanaged exception crash",
@@ -160,12 +167,12 @@ namespace XamarinTest
 			case TelemetryType.HandledException:
 				try {            
 					throw(new NullReferenceException());
-				}catch (Exception e){
+				}catch (Exception e){ 
 					// App shouldn't crash because of that
 				}
 				break;
 			case TelemetryType.UnhandledException:
-				throw(new Java.Lang.NullPointerException());
+				int value = 1 / int.Parse("0");
 				break;
 			case TelemetryType.UnmanagedSignal:
 				#if __IOS__
