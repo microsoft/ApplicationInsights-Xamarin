@@ -93,12 +93,12 @@ namespace AI.XamarinSDK.Android
 		private void registerUnhandledExceptionHandler(){
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.SetExceptionTrackingDisabled (true);
 			if (!_crashManagerDisabled) {
-				AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
+				AndroidEnvironment.UnhandledExceptionRaiser += OnUnhandledExceptionRaiser;
 			}
 		}
 
-		public void OnUnhandledException(object e, UnhandledExceptionEventArgs args){
-			Exception managedException = (Exception) args.ExceptionObject;
+		public void OnUnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e){
+			Exception managedException = (Exception)e.Exception;
 			if (managedException != null) {
 				TelemetryManager.TrackManagedException (managedException, false);
 			}	
