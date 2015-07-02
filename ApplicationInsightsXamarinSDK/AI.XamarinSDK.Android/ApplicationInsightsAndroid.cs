@@ -13,6 +13,11 @@ namespace AI.XamarinSDK.Android
 
 		public ApplicationInsightsAndroid (){}
 
+		public void Setup(string instrumentationKey)
+		{
+			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (Application.Context, null, instrumentationKey);
+		}
+
 		public void Setup (Context context, Application application, string instrumentationKey)
 		{
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (context, application, instrumentationKey);

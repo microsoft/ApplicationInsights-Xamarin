@@ -17,6 +17,7 @@ namespace AI.XamarinSDK
 
 		private ApplicationInsights() {}
 
+		#if __IOS__
 		/// <summary>
 		/// Setup the SDK with the instrumentation key of your app.
 		/// </summary>
@@ -26,7 +27,7 @@ namespace AI.XamarinSDK
 			target.Setup (instrumentationKey);
 		}
 
-		#if __ANDROID__
+		#elif __ANDROID__
 		/// <summary>
 		/// Setup the SDK with the instrumentation key of your app.
 		/// </summary>

@@ -24,11 +24,6 @@ namespace AI.XamarinSDK.iOS
 			MSAITelemetryManager.TrackEvent (eventName, Utils.ConvertToNSDictionary (properties));
 		}
 
-		public void TrackEvent (string eventName, Dictionary<string, string> properties, Dictionary<string, Double> measurements)
-		{
-			MSAITelemetryManager.TrackEvent (eventName, Utils.ConvertToNSDictionary (properties), null);
-		}
-
 		public void TrackTrace (string message)
 		{
 			MSAITelemetryManager.TrackTrace (message);
