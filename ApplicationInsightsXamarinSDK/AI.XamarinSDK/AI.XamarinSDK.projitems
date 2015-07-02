@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{C146023A-3BA3-4697-84C8-FFD30C984EFE}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>AI.XamarinSDK</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)ApplicationInsights.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IApplicationInsights.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ITelemetryManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TelemetryManager.cs" />
+  </ItemGroup>
+</Project>
