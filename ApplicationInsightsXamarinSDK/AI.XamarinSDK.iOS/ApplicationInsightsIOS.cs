@@ -27,12 +27,14 @@ namespace AI.XamarinSDK.iOS
 
 		public ApplicationInsightsIOS(){}
 
-		public void Setup (string instrumentationKey){
+		public void Setup (string instrumentationKey)
+		{
 			MSAIApplicationInsights.Setup (instrumentationKey);
 			MSAIApplicationInsights.SetAutoSessionManagementDisabled (false);
 		}
 
-		public void Start (){
+		public void Start ()
+		{
 			IntPtr sigbus = Marshal.AllocHGlobal (512);
 			IntPtr sigsegv = Marshal.AllocHGlobal (512);
 
@@ -46,7 +48,8 @@ namespace AI.XamarinSDK.iOS
 			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
 		}
 
-		public string GetServerUrl (){
+		public string GetServerUrl ()
+		{
 			return MSAIApplicationInsights.SharedInstance.ServerURL; 
 		}
 
@@ -54,32 +57,39 @@ namespace AI.XamarinSDK.iOS
 			MSAIApplicationInsights.SharedInstance.ServerURL = serverUrl; 
 		}
 
-		public void  SetCrashManagerDisabled (bool crashManagerDisabled){
+		public void  SetCrashManagerDisabled (bool crashManagerDisabled)
+		{
 			_crashManagerDisabled = crashManagerDisabled;
 			MSAIApplicationInsights.SetCrashManagerDisabled (crashManagerDisabled);
 		}
 
-		public void SetTelemetryManagerDisabled (bool telemetryManagerDisabled){
+		public void SetTelemetryManagerDisabled (bool telemetryManagerDisabled)
+		{
 			MSAIApplicationInsights.SetTelemetryManagerDisabled(telemetryManagerDisabled);
 		}
 
-		public void SetAutoPageViewTrackingDisabled (bool autoPageViewTrackingDisabled){
+		public void SetAutoPageViewTrackingDisabled (bool autoPageViewTrackingDisabled)
+		{
 			MSAIApplicationInsights.SetAutoPageViewTrackingDisabled (autoPageViewTrackingDisabled);
 		}
 
-		public void SetAutoSessionManagementDisabled (bool autoSessionManagementDisabled){
+		public void SetAutoSessionManagementDisabled (bool autoSessionManagementDisabled)
+		{
 			MSAIApplicationInsights.SetAutoSessionManagementDisabled (autoSessionManagementDisabled);
 		}
 
-		public void SetUserId (string userId){
+		public void SetUserId (string userId)
+		{
 			MSAIApplicationInsights.SetUserId (userId);
 		}
 
-		public void StartNewSession (){
+		public void StartNewSession ()
+		{
 			MSAIApplicationInsights.StartNewSession ();
 		}
 
-		public void SetSessionExpirationTime (int appBackgroundTime){
+		public void SetSessionExpirationTime (int appBackgroundTime)
+		{
 			MSAIApplicationInsights.SetAppBackgroundTimeBeforeSessionExpires ((nuint)appBackgroundTime);
 		}
 
@@ -87,21 +97,25 @@ namespace AI.XamarinSDK.iOS
 			MSAIApplicationInsights.RenewSessionWithId (sessionId);
 		}
 
-		public bool GetDebugLogEnabled() {
+		public bool GetDebugLogEnabled() 
+		{
 			return MSAIApplicationInsights.SharedInstance.DebugLogEnabled; 
 		}
 
-		public void SetDebugLogEnabled(bool debugLogEnabled) {
+		public void SetDebugLogEnabled(bool debugLogEnabled) 
+		{
 			MSAIApplicationInsights.SharedInstance.DebugLogEnabled = debugLogEnabled; 
 		}
 
-		private void registerUnhandledExceptionHandler(){
+		private void registerUnhandledExceptionHandler()
+		{
 			if (!_crashManagerDisabled) {
 				System.AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
 			}
 		}
 
-		public void OnUnhandledException(object e, System.UnhandledExceptionEventArgs args){
+		public void OnUnhandledException(object e, System.UnhandledExceptionEventArgs args)
+		{
 			Exception managedException = (Exception) args.ExceptionObject;
 			Console.WriteLine (managedException.Source);
 			if (managedException != null && !managedException.Source.Equals("Xamarin.iOS")) {
