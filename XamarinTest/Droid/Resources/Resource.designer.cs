@@ -26,6 +26,9 @@ namespace XamarinTest.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::AI.XamarinSDK.Android.Resource.String.ApplicationName = global::XamarinTest.Droid.Resource.String.ApplicationName;
+			global::AI.XamarinSDK.Android.Resource.String.Hello = global::XamarinTest.Droid.Resource.String.Hello;
+			global::AI.XamarinSDK.Android.Resource.String.library_name = global::XamarinTest.Droid.Resource.String.library_name;
 		}
 		
 		public partial class Attribute
@@ -53,6 +56,28 @@ namespace XamarinTest.Droid
 			}
 			
 			private Drawable()
+			{
+			}
+		}
+		
+		public partial class String
+		{
+			
+			// aapt resource value: 0x7f030000
+			public const int ApplicationName = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int Hello = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int library_name = 2130903042;
+			
+			static String()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private String()
 			{
 			}
 		}
