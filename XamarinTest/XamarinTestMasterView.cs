@@ -88,10 +88,13 @@ namespace XamarinTest
 							Text = "Track page view" ,
 							Command = new Command (() => TrackTelemetryData(TelemetryType.PageView))
 						},
+						#if __IOS__
 						new TextCell { 
 							Text = "Trigger auto page view" ,
+
 							Command = new Command (() => Navigation.PushAsync (new XamarinTestDetailView("Page view triggered")))
 						},
+						#endif
 						autoPageViewsCell
 					},
 					new TableSection ("Sessions") {
