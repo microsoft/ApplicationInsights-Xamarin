@@ -6,14 +6,14 @@ using Android.Content;
 using System.Collections.Generic;
 using Com.Microsoft.Applicationinsights.Library;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.TelemetryManager_Android))]
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.TelemetryManagerAndroid))]
 
 namespace AI.XamarinSDK.Android
 {
-	public class TelemetryManager_Android : Java.Lang.Object, ITelemetryManager
+	public class TelemetryManagerAndroid : Java.Lang.Object, ITelemetryManager
 	{
 
-		public TelemetryManager_Android(){}
+		public TelemetryManagerAndroid(){}
 
 		public void TrackEvent (string eventName)
 		{
@@ -23,11 +23,6 @@ namespace AI.XamarinSDK.Android
 		public void TrackEvent (string eventName, Dictionary<string, string> properties)
 		{
 			TelemetryClient.Instance.TrackEvent (eventName, properties);
-		}
-
-		public void TrackEvent (string eventName, Dictionary<string, string> properties, Dictionary<string, double> measurements)
-		{
-			TelemetryClient.Instance.TrackEvent(eventName, properties, null);
 		}
 
 		public void TrackTrace (string message)

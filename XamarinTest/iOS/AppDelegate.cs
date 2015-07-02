@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using AI.XamarinSDK;
 using Foundation;
 using UIKit;
 using XamarinTest;

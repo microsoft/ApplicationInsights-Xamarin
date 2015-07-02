@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOS", "iOS\iOS.csproj", "{4B57344D-C4B3-44F8-8E15-CC5B3AF1CC24}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.XamarinSDK.iOS", "AI.XamarinSDK.iOS\AI.XamarinSDK.iOS.csproj", "{4B57344D-C4B3-44F8-8E15-CC5B3AF1CC24}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android", "Android\Android.csproj", "{E1779521-C094-4CA0-ACFA-B26A1B2B80F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.XamarinSDK.AndroidBindings", "AI.XamarinSDK.AndroidBindings\AI.XamarinSDK.AndroidBindings.csproj", "{E1779521-C094-4CA0-ACFA-B26A1B2B80F3}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Shared", "Shared\Shared.shproj", "{C146023A-3BA3-4697-84C8-FFD30C984EFE}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AI.XamarinSDK", "AI.XamarinSDK\AI.XamarinSDK.shproj", "{C146023A-3BA3-4697-84C8-FFD30C984EFE}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XamarinTest", "..\XamarinTest\XamarinTest.shproj", "{82C99E84-3FEA-467E-BD7A-92FEFAC3A9DD}"
 EndProject
@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinTest.Droid", "..\Xam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinTest.UITests", "..\XamarinTest\UITests\XamarinTest.UITests.csproj", "{61F00129-88E6-460D-8D52-407C794A0D9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Droid", "Droid\Droid.csproj", "{25DFBE50-3DE9-402E-B6E0-C089F1425B45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.XamarinSDK.Android", "AI.XamarinSDK.Android\AI.XamarinSDK.Android.csproj", "{25DFBE50-3DE9-402E-B6E0-C089F1425B45}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyLibrary.iOS", "..\XamarinTest\DummyLibrary.iOS\DummyLibrary.iOS.csproj", "{CCA3EAB7-9B83-4F48-9CBF-CA3155A5969F}"
 EndProject

@@ -4,6 +4,7 @@ using ObjCRuntime;
 using Foundation;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using AI.XamarinSDK;
 using AI.XamarinSDK.iOS;
 using System.Runtime.InteropServices;
 

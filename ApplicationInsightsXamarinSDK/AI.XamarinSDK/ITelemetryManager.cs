@@ -9,8 +9,6 @@ namespace AI.XamarinSDK
 
 		void TrackEvent (string eventName, Dictionary<string, string> properties);
 
-		void TrackEvent (string eventName, Dictionary<string, string> properties, Dictionary<string, double> measurements);
-
 		void TrackTrace (string message);
 
 		void TrackTrace (string message, Dictionary<string, string> properties);

@@ -17,10 +17,6 @@ namespace AI.XamarinSDK
 			DependencyService.Get<ITelemetryManager>().TrackEvent(eventName, properties);
 		}
 
-		public static void TrackEvent (string eventName, Dictionary<string, string> properties, Dictionary<string, double> measurements){
-			DependencyService.Get<ITelemetryManager>().TrackEvent(eventName, properties, measurements);
-		}
-
 		public static void TrackTrace (string message){
 			DependencyService.Get<ITelemetryManager>().TrackTrace(message);
 		}

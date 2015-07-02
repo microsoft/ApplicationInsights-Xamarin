@@ -2,17 +2,16 @@
 using Android.Runtime;
 using Android.App;
 using Android.Content;
-using Com.Microsoft.Applicationinsights;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.ApplicationInsights_Android))]
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.ApplicationInsightsAndroid))]
 
 namespace AI.XamarinSDK.Android
 {
-	public class ApplicationInsights_Android : Java.Lang.Object, IApplicationInsights
+	public class ApplicationInsightsAndroid : Java.Lang.Object, IApplicationInsights
 	{
 		private static bool _crashManagerDisabled = false;
 
-		public ApplicationInsights_Android ()
+		public ApplicationInsightsAndroid ()
 		{
 		}
 

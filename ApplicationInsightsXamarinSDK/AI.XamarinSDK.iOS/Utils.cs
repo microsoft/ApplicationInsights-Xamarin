@@ -11,7 +11,7 @@ namespace AI.XamarinSDK.iOS
 			dictionary.Keys.CopyTo(keys, 0);
 
 			string[] values = new string[dictionary.Count];
-			dictionary.Keys.CopyTo(values, 0);
+			dictionary.Values.CopyTo(values, 0);
 
 			NSDictionary convertedDict = NSDictionary.FromObjectsAndKeys (values, keys);
 			return convertedDict;
