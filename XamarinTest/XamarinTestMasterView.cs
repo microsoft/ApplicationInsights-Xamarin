@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using AI.XamarinSDK;
+using System.Collections.Generic;
 
 namespace XamarinTest
 {
@@ -94,9 +95,6 @@ namespace XamarinTest
 						autoPageViewsCell
 					},
 					new TableSection ("Sessions") {
-							new TextCell { Text = "Renew session" ,
-							Command = new Command (() => TrackTelemetryData(TelemetryType.Event))
-						},
 						autoSessionManagementCell
 					},
 					new TableSection ("Configuration") {
@@ -150,7 +148,9 @@ namespace XamarinTest
 
 			switch (type) {
 			case TelemetryType.Event:
-				TelemetryManager.TrackEvent ("My custom event");
+				Dictionary<string, string> properties = new Dictionary<string, string> ();
+				properties.Add ("Xamarin Key", "Custom Property Value");
+				TelemetryManager.TrackEvent ("My custom event", properties);
 				break;
 			case TelemetryType.Metric:
 				TelemetryManager.TrackMetric ("My custom metric", 2.2);
