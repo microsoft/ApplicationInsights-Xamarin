@@ -68,10 +68,6 @@ namespace AI.XamarinSDK
 			target.RenewSessionWithId (sessionId);
 		}
 
-		public static bool GetAppStoreEnvironment(){
-			return target.GetAppStoreEnvironment ();
-		}
-
 		public static bool GetDebugLogEnabled(){
 			return target.GetDebugLogEnabled ();
 		}

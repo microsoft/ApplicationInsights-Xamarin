@@ -87,10 +87,6 @@ namespace AI.XamarinSDK.iOS
 			MSAIApplicationInsights.RenewSessionWithId (sessionId);
 		}
 
-		public bool GetAppStoreEnvironment() {
-			return MSAIApplicationInsights.SharedInstance.AppStoreEnvironment; 
-		}
-
 		public bool GetDebugLogEnabled() {
 			return MSAIApplicationInsights.SharedInstance.DebugLogEnabled; 
 		}

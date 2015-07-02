@@ -15,10 +15,6 @@ namespace AI.XamarinSDK.Android
 		{
 		}
 
-		public void Setup (string instrumentationKey){
-			// TDOD: Align public interface of SDKs
-		}
-
 		public void Setup (Context context, Application application, string instrumentationKey){
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (context, application, instrumentationKey);
 		}
@@ -75,10 +71,6 @@ namespace AI.XamarinSDK.Android
 
 		public void RenewSessionWithId (string sessionId){
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.RenewSession (sessionId);
-		}
-
-		public bool GetAppStoreEnvironment() {
-			return false;
 		}
 
 		public bool GetDebugLogEnabled() {

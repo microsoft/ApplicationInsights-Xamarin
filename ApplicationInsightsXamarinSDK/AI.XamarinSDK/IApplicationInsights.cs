@@ -37,8 +37,6 @@ namespace AI.XamarinSDK
 
 		void RenewSessionWithId (string sessionId);
 
-		bool GetAppStoreEnvironment() ;
-
 		bool GetDebugLogEnabled() ;
 
 		void SetDebugLogEnabled(bool debugLogEnabled);

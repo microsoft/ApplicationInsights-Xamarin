@@ -69,28 +69,9 @@ namespace AI.XamarinSDK.iOS
 		[Export ("renewSessionWithId:")]
 		void RenewSessionWithId (string sessionId);
 
-		// @property (readonly, getter = isAppStoreEnvironment, nonatomic) BOOL appStoreEnvironment;
-		[Export ("appStoreEnvironment")]
-		bool AppStoreEnvironment { [Bind ("isAppStoreEnvironment")] get; }
-
 		// @property (getter = isDebugLogEnabled, assign, nonatomic) BOOL debugLogEnabled;
 		[Export ("debugLogEnabled")]
 		bool DebugLogEnabled { [Bind ("isDebugLogEnabled")] get; set; }
-
-		// +(void)testIdentifier;
-		[Static]
-		[Export ("testIdentifier")]
-		void TestIdentifier ();
-
-		// +(NSString *)version;
-		[Static]
-		[Export ("version")]
-		string Version { get; }
-
-		// +(NSString *)build;
-		[Static]
-		[Export ("build")]
-		string Build { get; }
 	}
 
 	// @interface MSAITelemetryManager : NSObject
@@ -106,11 +87,6 @@ namespace AI.XamarinSDK.iOS
 		[Static]
 		[Export ("trackEventWithName:properties:")]
 		void TrackEvent (string eventName, NSDictionary properties);
-
-		// +(void)trackEventWithName:(NSString *)eventName properties:(NSDictionary *)properties measurements:(NSDictionary *)measurements;
-		[Static]
-		[Export ("trackEventWithName:properties:measurements:")]
-		void TrackEvent (string eventName, NSDictionary properties, NSDictionary measurements);
 
 		// +(void)trackTraceWithMessage:(NSString *)message;
 		[Static]
