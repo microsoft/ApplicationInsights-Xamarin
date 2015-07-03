@@ -31,9 +31,11 @@
     <Reference Include="System" />
     <Reference Include="nunit.framework">
       <HintPath>..\..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.UITest">
       <HintPath>..\..\packages\Xamarin.UITest.0.8.0\lib\Xamarin.UITest.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
