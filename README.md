@@ -12,7 +12,9 @@ This project provides an Xamarin SDK for Application Insights. [Application Insi
 7. [Automatic Collection of Lifecycle Events](#7)
 8. [Exception Handling (Crashes)](#8)
 9. [Additional configuration](#9)
-10. [Contact](#10)
+10. [Troubleshooting](#10)
+11. [Contact](#11)
+
 
 ## <a name="1"></a> 1. Requirements
 The minimum API level to use the Application Insights Xamarin SDK in your **Android** app is 9. However, automatic collection of lifecycle-events requires API level 15 and up (Ice Cream Sandwich+). For **iOS** builds the minimum iOS version is 6. 
@@ -45,13 +47,13 @@ This is the recommended way to setup Application Insights for your Xamarin app. 
 
 Clone the repository in order to get the SDK sources. It contains 3 subfolder, one for a demo project (*DemoApp*) as well as its Dependencies (*packages*) and one for the SDK (*ApplicationInsightsXamarin*).
 
-Copy the subfolders of *ApplicationInsightsXamarin* listed below to your solution directory, open Xamarin Studio and add them to your solution. This can be done by right clicking the solution name in the solution panel, then click *Add* - *Add Existing Project...*:
+Copy *ApplicationInsightsXamarin* to your solution directory. Open Xamarin Studio and add its projects to your solution. This can be done by right clicking the solution name in the solution panel, then click *Add* - *Add Existing Project...*:
 
 1. **AI.XamarinSDK**
 2. **AI.XamarinSDK.iOS** *(only needed for iOS support)*
 3. **AI.XamarinSDK.Android** & **AI.XamarinSDK.AndroidBindings** *(only needed for Android support)*
 
-[**Note**] In order to successfully build the SDK, you have update all referenced packages. Simply right click on the *Packages* folder of each of those projects and click *Update*.
+[**Note**] In order to successfully build the SDK, you may have to update all referenced packages. Simply right click on the *Packages* folder of each of those projects and click *Update*.
 
 ### 4.2 **Add references to your app projects**
 
@@ -268,7 +270,16 @@ ApplicationInsights.RenewSession("New session ID");
 ```
 [**NOTE**] If you want to manage sessions manually, please disable [Automatic Collection of Lifecycle Events](#7).
 
-##<a name="10"></a> 10. Contact
+##<a name="10"></a> 10. Troubleshooting
+
+### SDK references broken
+
+In order to successfully build the SDK, you may have to update all referenced packages. Simply right click on the *Packages* folder of each of those projects and click *Update*.
+
+### iOS App crashes immediately after start
+
+Please right click on the iOS project and select *Options*. Go to *Build* - *iOS Build* - *General*. Set the *Linker behaviour* to `
+Don't link`. 
+##<a name="11"></a> 11. Contact
 
 If you have further questions or are running into trouble that cannot be resolved by any of the steps here, feel free to contact us at [AppInsights-Xamarin@microsoft.com](mailto:AppInsights-Xamarin@microsoft.com)
-
