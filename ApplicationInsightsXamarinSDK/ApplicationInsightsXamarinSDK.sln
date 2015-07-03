@@ -1,25 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.XamarinSDK.iOS", "AI.XamarinSDK.iOS\AI.XamarinSDK.iOS.csproj", "{4B57344D-C4B3-44F8-8E15-CC5B3AF1CC24}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XamarinTest", "DemoApp\XamarinTest.shproj", "{82C99E84-3FEA-467E-BD7A-92FEFAC3A9DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.XamarinSDK.AndroidBindings", "AI.XamarinSDK.AndroidBindings\AI.XamarinSDK.AndroidBindings.csproj", "{E1779521-C094-4CA0-ACFA-B26A1B2B80F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinTest.iOS", "DemoApp\iOS\XamarinTest.iOS.csproj", "{E8CEA150-C65D-4C92-B24B-C4C292B2FF7C}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AI.XamarinSDK", "AI.XamarinSDK\AI.XamarinSDK.shproj", "{C146023A-3BA3-4697-84C8-FFD30C984EFE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinTest.Droid", "DemoApp\Droid\XamarinTest.Droid.csproj", "{2DE004DF-68B0-40D8-B1E1-0195FB694550}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "XamarinTest", "..\XamarinTest\XamarinTest.shproj", "{82C99E84-3FEA-467E-BD7A-92FEFAC3A9DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinTest.UITests", "DemoApp\UITests\XamarinTest.UITests.csproj", "{61F00129-88E6-460D-8D52-407C794A0D9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinTest.iOS", "..\XamarinTest\iOS\XamarinTest.iOS.csproj", "{E8CEA150-C65D-4C92-B24B-C4C292B2FF7C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyLibrary.iOS", "DemoApp\DummyLibrary.iOS\DummyLibrary.iOS.csproj", "{CCA3EAB7-9B83-4F48-9CBF-CA3155A5969F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinTest.Droid", "..\XamarinTest\Droid\XamarinTest.Droid.csproj", "{2DE004DF-68B0-40D8-B1E1-0195FB694550}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyLibrary.Android", "DemoApp\DummyLibrary.Android\DummyLibrary.Android.csproj", "{68E5289F-6819-4757-812B-6D7AAF78FD7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XamarinTest.UITests", "..\XamarinTest\UITests\XamarinTest.UITests.csproj", "{61F00129-88E6-460D-8D52-407C794A0D9E}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "AI.XamarinSDK", "ApplicationInsightsXamarin\AI.XamarinSDK\AI.XamarinSDK.shproj", "{C146023A-3BA3-4697-84C8-FFD30C984EFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.XamarinSDK.Android", "AI.XamarinSDK.Android\AI.XamarinSDK.Android.csproj", "{25DFBE50-3DE9-402E-B6E0-C089F1425B45}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.XamarinSDK.Android", "ApplicationInsightsXamarin\AI.XamarinSDK.Android\AI.XamarinSDK.Android.csproj", "{25DFBE50-3DE9-402E-B6E0-C089F1425B45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyLibrary.iOS", "..\XamarinTest\DummyLibrary.iOS\DummyLibrary.iOS.csproj", "{CCA3EAB7-9B83-4F48-9CBF-CA3155A5969F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.XamarinSDK.AndroidBindings", "ApplicationInsightsXamarin\AI.XamarinSDK.AndroidBindings\AI.XamarinSDK.AndroidBindings.csproj", "{E1779521-C094-4CA0-ACFA-B26A1B2B80F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DummyLibrary.Android", "..\XamarinTest\DummyLibrary.Android\DummyLibrary.Android.csproj", "{68E5289F-6819-4757-812B-6D7AAF78FD7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AI.XamarinSDK.iOS", "ApplicationInsightsXamarin\AI.XamarinSDK.iOS\AI.XamarinSDK.iOS.csproj", "{4B57344D-C4B3-44F8-8E15-CC5B3AF1CC24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

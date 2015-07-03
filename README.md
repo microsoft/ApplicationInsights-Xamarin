@@ -43,9 +43,9 @@ This is the recommended way to setup Application Insights for your Xamarin app. 
 
 ### 4.1 **Add SDK sources to your Xamarin solution**
 
-Clone the repository in order to get the SDK sources. It contains 2 subfolder, one for a demo project (*XamarinTest*) and one for the SDK (*ApplicationInsightsXamarinSDK*).
+Clone the repository in order to get the SDK sources. It contains 3 subfolder, one for a demo project (*DemoApp*) as well as its Dependencies (*packages*) and one for the SDK (*ApplicationInsightsXamarin*).
 
-Copy the subfolders of *ApplicationInsightsXamarinSDK* listed below to your solution directory, open Xamarin Studio and add them to your solution. This can be done by right clicking the solution name in the solution panel, then click *Add* - *Add Existing Project...*:
+Copy the subfolders of *ApplicationInsightsXamarin* listed below to your solution directory, open Xamarin Studio and add them to your solution. This can be done by right clicking the solution name in the solution panel, then click *Add* - *Add Existing Project...*:
 
 1. **AI.XamarinSDK**
 2. **AI.XamarinSDK.iOS** *(only needed for iOS support)*

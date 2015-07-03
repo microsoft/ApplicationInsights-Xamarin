@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="ApplicationName">ApplicationName</string>
+<string name="Hello">hello</string>
+	<string name="library_name">Droid</string>
+</resources>
