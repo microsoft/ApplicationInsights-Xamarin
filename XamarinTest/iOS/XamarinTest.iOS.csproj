@@ -81,18 +81,23 @@
     <Reference Include="Xamarin.iOS" />
     <Reference Include="Calabash">
       <HintPath>..\..\ApplicationInsightsXamarinSDK\packages\Xamarin.TestCloud.Agent.0.14.1\lib\Xamarin.iOS10\Calabash.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Platform.iOS">
       <HintPath>..\..\ApplicationInsightsXamarinSDK\packages\Xamarin.Forms.1.4.2.6359\lib\Xamarin.iOS10\Xamarin.Forms.Platform.iOS.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
       <HintPath>..\..\ApplicationInsightsXamarinSDK\packages\Xamarin.Forms.1.4.2.6359\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Xaml">
       <HintPath>..\..\ApplicationInsightsXamarinSDK\packages\Xamarin.Forms.1.4.2.6359\lib\Xamarin.iOS10\Xamarin.Forms.Xaml.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Platform">
       <HintPath>..\..\ApplicationInsightsXamarinSDK\packages\Xamarin.Forms.1.4.2.6359\lib\Xamarin.iOS10\Xamarin.Forms.Platform.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
