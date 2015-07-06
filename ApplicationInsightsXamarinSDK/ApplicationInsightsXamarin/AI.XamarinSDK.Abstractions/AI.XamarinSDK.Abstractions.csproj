@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>AI.XamarinSDK.Abstractions</RootNamespace>
     <AssemblyName>AI.XamarinSDK.Abstractions</AssemblyName>
-    <TargetFrameworkProfile>Profile78</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Profile49</TargetFrameworkProfile>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

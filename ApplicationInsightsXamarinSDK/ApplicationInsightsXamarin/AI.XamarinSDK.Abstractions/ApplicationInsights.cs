@@ -5,7 +5,7 @@ using Android.App;
 using Android.Content;
 #endif
 
-namespace AI.XamarinSDK
+namespace AI.XamarinSDK.Abstractions
 {
 	/// <summary>
 	/// This class exposes methods to configure and start the SDK. This is required in order to enable auto collection, crash reporting, and sending of telemetry data.

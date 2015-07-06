@@ -2,6 +2,7 @@
 using Android.Runtime;
 using Android.App;
 using Android.Content;
+using AI.XamarinSDK.Abstractions;
 
 [assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.ApplicationInsightsAndroid))]
 

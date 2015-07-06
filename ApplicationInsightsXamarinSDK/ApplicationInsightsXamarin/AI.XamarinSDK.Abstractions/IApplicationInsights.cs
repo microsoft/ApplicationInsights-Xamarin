@@ -5,7 +5,7 @@ using Android.App;
 using Android.Content;
 #endif
 
-namespace AI.XamarinSDK
+namespace AI.XamarinSDK.Abstractions
 {
 	public interface IApplicationInsights
 	{

@@ -5,6 +5,7 @@ using Android.App;
 using Android.Content;
 using System.Collections.Generic;
 using Com.Microsoft.Applicationinsights.Library;
+using AI.XamarinSDK.Abstractions;
 
 [assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.TelemetryManagerAndroid))]
 

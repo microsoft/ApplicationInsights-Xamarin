@@ -2,7 +2,7 @@
 using UIKit;
 using ObjCRuntime;
 using Foundation;
-using System.Collections.Generic;
+using System.Collections.Generic;using AI.XamarinSDK.Abstractions;
 
 [assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.TelemetryManagerIOS))]
 

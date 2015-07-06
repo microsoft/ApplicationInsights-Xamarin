@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using AI.XamarinSDK;
 using AI.XamarinSDK.iOS;
 using System.Runtime.InteropServices;
+using AI.XamarinSDK.Abstractions;
 
 [assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.ApplicationInsightsIOS))]
 
