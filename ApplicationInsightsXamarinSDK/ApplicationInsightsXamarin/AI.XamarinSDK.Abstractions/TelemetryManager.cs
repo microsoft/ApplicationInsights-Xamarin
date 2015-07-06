@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using System.Collections.Generic;
 
-namespace AI.XamarinSDK
+namespace AI.XamarinSDK.Abstractions
 {
 	/// <summary>
 	/// This class exposes functions to track differnt types of telemetry data. Tracked data will be created, persisted, and sent to the server.
