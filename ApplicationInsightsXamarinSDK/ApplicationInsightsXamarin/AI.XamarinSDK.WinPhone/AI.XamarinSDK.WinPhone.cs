@@ -7,7 +7,6 @@ namespace AI.XamarinSDK.WinPhone
 {
 	public class ApplicationInsightsWinPhone : IApplicationInsights
 	{
-		private static bool _crashManagerDisabled = false;
 
 		public ApplicationInsightsWinPhone (){}
 
