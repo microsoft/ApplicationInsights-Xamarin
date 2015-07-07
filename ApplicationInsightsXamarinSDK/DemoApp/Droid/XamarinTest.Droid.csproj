@@ -66,6 +66,15 @@
       <HintPath>..\..\packages\Xamarin.Android.Support.v4.22.2.0.0\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="AI.XamarinSDK.Abstractions">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Xamarin.1.0.0-alpha1\lib\MonoAndroid10\AI.XamarinSDK.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="AI.XamarinSDK.Android">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Xamarin.1.0.0-alpha1\lib\MonoAndroid10\AI.XamarinSDK.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="AI.XamarinSDK.AndroidBindings">
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Xamarin.1.0.0-alpha1\lib\MonoAndroid10\AI.XamarinSDK.AndroidBindings.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />
@@ -97,10 +106,6 @@
     <ProjectReference Include="..\DummyLibrary.Android\DummyLibrary.Android.csproj">
       <Project>{68E5289F-6819-4757-812B-6D7AAF78FD7B}</Project>
       <Name>DummyLibrary.Android</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ApplicationInsightsXamarin\AI.XamarinSDK.Android\AI.XamarinSDK.Android.csproj">
-      <Project>{25DFBE50-3DE9-402E-B6E0-C089F1425B45}</Project>
-      <Name>AI.XamarinSDK.Android</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

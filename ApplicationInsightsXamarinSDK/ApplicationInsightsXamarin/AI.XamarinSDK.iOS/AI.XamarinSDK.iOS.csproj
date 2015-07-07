@@ -77,10 +77,4 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AI.XamarinSDK.Abstractions\AI.XamarinSDK.Abstractions.csproj">
-      <Project>{5DAA7398-7822-44A5-993B-D595A6921D50}</Project>
-      <Name>AI.XamarinSDK.Abstractions</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>
