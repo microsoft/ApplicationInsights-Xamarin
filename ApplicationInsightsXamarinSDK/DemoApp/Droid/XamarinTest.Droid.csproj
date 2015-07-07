@@ -25,8 +25,8 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AndroidLinkMode>None</AndroidLinkMode>
     <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -36,6 +36,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
     <ConsolePause>false</ConsolePause>
+    <AndroidLinkMode>Full</AndroidLinkMode>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -67,13 +68,13 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="AI.XamarinSDK.Abstractions">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Xamarin.1.0.0-alpha1\lib\MonoAndroid10\AI.XamarinSDK.Abstractions.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Xamarin.1.0.0-alpha1\lib\MonoAndroid23\AI.XamarinSDK.Abstractions.dll</HintPath>
     </Reference>
     <Reference Include="AI.XamarinSDK.Android">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Xamarin.1.0.0-alpha1\lib\MonoAndroid10\AI.XamarinSDK.Android.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Xamarin.1.0.0-alpha1\lib\MonoAndroid23\AI.XamarinSDK.Android.dll</HintPath>
     </Reference>
     <Reference Include="AI.XamarinSDK.AndroidBindings">
-      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Xamarin.1.0.0-alpha1\lib\MonoAndroid10\AI.XamarinSDK.AndroidBindings.dll</HintPath>
+      <HintPath>..\..\packages\Microsoft.ApplicationInsights.Xamarin.1.0.0-alpha1\lib\MonoAndroid23\AI.XamarinSDK.AndroidBindings.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
