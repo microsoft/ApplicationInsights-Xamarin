@@ -1,10 +1,5 @@
 ﻿using System;
 
-#if __ANDROID__
-using Android.App;
-using Android.Content;
-#endif
-
 namespace AI.XamarinSDK.Abstractions
 {
 	/// <summary>
@@ -17,7 +12,6 @@ namespace AI.XamarinSDK.Abstractions
 
 		private ApplicationInsights() {}
 
-		#if __IOS__
 		/// <summary>
 		/// Setup the SDK with the instrumentation key of your app.
 		/// </summary>
@@ -26,19 +20,6 @@ namespace AI.XamarinSDK.Abstractions
 		{
 			target.Setup (instrumentationKey);
 		}
-
-		#elif __ANDROID__
-		/// <summary>
-		/// Setup the SDK with the instrumentation key of your app.
-		/// </summary>
-		/// <param name="context">The application context needed to access app ressources.</param>
-		/// <param name="application">The application needed for auto collecting telemetry data.</param>
-		/// <param name="instrumentationKey">The instrumentation key of your app.</param>
-		public static void Setup (Context context, Application application, string instrumentationKey)
-		{
-			target.Setup (context, application, instrumentationKey);
-		}
-		#endif
 
 		/// <summary>
 		/// Starts the SDK. This should be called after setup().

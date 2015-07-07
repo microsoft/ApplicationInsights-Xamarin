@@ -1,7 +1,9 @@
 ﻿using System;
+using Android;
 using Android.Runtime;
 using Android.App;
 using Android.Content;
+using Xamarin.Forms;
 using AI.XamarinSDK.Abstractions;
 
 [assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.ApplicationInsightsAndroid))]
@@ -16,12 +18,7 @@ namespace AI.XamarinSDK.Android
 
 		public void Setup(string instrumentationKey)
 		{
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (Application.Context, null, instrumentationKey);
-		}
-
-		public void Setup (Context context, Application application, string instrumentationKey)
-		{
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (context, application, instrumentationKey);
+			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (((Activity)Forms.Context).Application, ((Activity)Forms.Context).Application, instrumentationKey);
 		}
 
 		public void Start ()
