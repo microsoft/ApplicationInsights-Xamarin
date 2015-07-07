@@ -14,8 +14,7 @@ namespace XamarinTest
 
 		protected override void OnStart ()
 		{
-			ApplicationInsights.Setup ("");
-			//ApplicationInsights.Setup ("ijhch");
+			ApplicationInsights.Setup ("<YOUR-INSTRUMENTATION-KEY>");
 			ApplicationInsights.Start ();
 		}
 
