@@ -4,15 +4,14 @@ using ObjCRuntime;
 using Foundation;
 using System.Collections.Generic;using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.TelemetryManagerIOS))]
-
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.TelemetryManager))]
 namespace AI.XamarinSDK.iOS
 {
-
-	public class TelemetryManagerIOS : ITelemetryManager
+	[Preserve(AllMembers=true)]
+	public class TelemetryManager : ITelemetryManager
 	{
 
-		public TelemetryManagerIOS(){}
+		public TelemetryManager(){}
 
 		public void TrackEvent (string eventName)
 		{

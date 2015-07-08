@@ -4,16 +4,15 @@ using ObjCRuntime;
 using Foundation;
 using System.Collections.Generic;
 using Xamarin.Forms;
-using AI.XamarinSDK;
-using AI.XamarinSDK.iOS;
 using System.Runtime.InteropServices;
 using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.ApplicationInsightsIOS))]
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.ApplicationInsights))]
 
 namespace AI.XamarinSDK.iOS
 {
-	public class ApplicationInsightsIOS : IApplicationInsights
+	[Preserve(AllMembers=true)]
+	public class ApplicationInsights : IApplicationInsights
 	{
 
 		[DllImport ("libc")]
@@ -26,7 +25,7 @@ namespace AI.XamarinSDK.iOS
 
 		private static bool _crashManagerDisabled = false;
 
-		public ApplicationInsightsIOS(){}
+		public ApplicationInsights(){}
 
 		public void Setup (string instrumentationKey)
 		{
@@ -120,7 +119,7 @@ namespace AI.XamarinSDK.iOS
 			Exception managedException = (Exception) args.ExceptionObject;
 			Console.WriteLine (managedException.Source);
 			if (managedException != null && !managedException.Source.Equals("Xamarin.iOS")) {
-				TelemetryManager.TrackManagedException (managedException, false);
+				AI.XamarinSDK.Abstractions.TelemetryManager.TrackManagedException (managedException, false);
 			}	
 		}
 	}

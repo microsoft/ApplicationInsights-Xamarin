@@ -1,14 +1,14 @@
 ﻿using System;
 using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.WinPhone.ApplicationInsightsWinPhone))]
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.WinPhone.ApplicationInsights))]
 
 namespace AI.XamarinSDK.WinPhone
 {
-	public class ApplicationInsightsWinPhone : IApplicationInsights
+	public class ApplicationInsights : IApplicationInsights
 	{
 
-		public ApplicationInsightsWinPhone (){}
+		public ApplicationInsights (){}
 
 		public void Setup(string instrumentationKey)
 		{
