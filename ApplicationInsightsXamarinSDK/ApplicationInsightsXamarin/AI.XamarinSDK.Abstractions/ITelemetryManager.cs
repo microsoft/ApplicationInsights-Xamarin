@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AI.XamarinSDK
+namespace AI.XamarinSDK.Abstractions
 {
 	public interface ITelemetryManager
 	{

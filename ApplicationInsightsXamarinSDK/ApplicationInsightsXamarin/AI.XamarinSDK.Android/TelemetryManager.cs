@@ -5,15 +5,16 @@ using Android.App;
 using Android.Content;
 using System.Collections.Generic;
 using Com.Microsoft.Applicationinsights.Library;
+using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.TelemetryManagerAndroid))]
-
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.TelemetryManager))]
 namespace AI.XamarinSDK.Android
 {
-	public class TelemetryManagerAndroid : Java.Lang.Object, ITelemetryManager
+	[Preserve(AllMembers=true)]
+	public class TelemetryManager : Java.Lang.Object, ITelemetryManager
 	{
 
-		public TelemetryManagerAndroid(){}
+		public TelemetryManager(){}
 
 		public void TrackEvent (string eventName)
 		{
