@@ -17,7 +17,7 @@ This project provides an Xamarin SDK for Application Insights. [Application Insi
 
 
 ## <a name="1"></a> 1. Requirements
-The minimum API level to use the Application Insights Xamarin SDK in your **Android** app is 9. However, automatic collection of lifecycle-events requires API level 15 and up (Ice Cream Sandwich+). For **iOS** builds the minimum iOS version is 6. 
+The minimum API level to use the Application Insights Xamarin SDK in your **Android** app is 9. However, automatic collection of lifecycle-events requires API level 15 and up (Ice Cream Sandwich+). For **iOS** builds, the minimum iOS version is 6. 
 
 The SDK has been developed and tested with the following framework versions:
 
@@ -45,7 +45,7 @@ This is the recommended way to setup Application Insights for your Xamarin app. 
 
 ### 4.1 **Add SDK sources to your Xamarin solution**
 
-Clone the repository in order to get the SDK sources. It contains 3 subfolder, one for a demo project (*DemoApp*) as well as its Dependencies (*packages*) and one for the SDK (*ApplicationInsightsXamarin*).
+Clone the repository in order to get the SDK sources. It contains 3 subfolders, one for a demo project (*DemoApp*) as well as its Dependencies (*packages*) and one for the SDK (*ApplicationInsightsXamarin*).
 
 Copy *ApplicationInsightsXamarin* to your solution directory. Open Xamarin Studio and add its projects to your solution. This can be done by right clicking the solution name in the solution panel, then click *Add* - *Add Existing Project...*:
 
@@ -146,7 +146,7 @@ You can setup and start the Application Insights Xamarin SDK in different ways.
 	
 4. Replace `<YOUR_IKEY_HERE>`with the instrumentation key of your app.
 	
-**Congratulation, now you're all set to use Application Insights! See [Usage](#6) on how to use Application Insights.**
+**Congratulations, now you're all set to use Application Insights! See [Usage](#6) on how to use Application Insights.**
 
 ## <a name="5"></a> 5. Developer Mode
 
@@ -156,7 +156,6 @@ You can explicitly enable/disable the developer mode like this:
 
 ```csharp
 ApplicationInsights.SetDeveloperMode(false);
-
 ```
 
 ## <a name="6"></a> 6. Basic Usage  ##
