@@ -263,4 +263,4 @@ AI.XamarinSDK.iOS.ApplicationInsights.Init();
 ``` 
 ##<a name="12"></a> 12. Contact
 
-If you have further questions or are running into trouble that cannot be resolved by any of the steps here, feel free to contact us at [AppInsights-Xamarin@microsoft.com](mailto:AppInsights-Xamarin@microsoft.com)
+If you have further questions or are running into trouble that cannot be resolved by any of the steps here, feel free to contact us at [AppInsights-Xamarin@microsoft.com](mailto:AppInsights-Xamarin@microsoft.com).
