@@ -27,6 +27,10 @@ namespace AI.XamarinSDK.iOS
 
 		public ApplicationInsights(){}
 
+		public static void Init(){
+			var forceLoad = new ApplicationInsights ();
+		}
+
 		public void Setup (string instrumentationKey)
 		{
 			MSAIApplicationInsights.Setup (instrumentationKey);

@@ -4,6 +4,7 @@ using AI.XamarinSDK.Abstractions;
 
 namespace XamarinTest
 {
+
 	public class App : Application
 	{
 		public App ()
@@ -14,7 +15,16 @@ namespace XamarinTest
 
 		protected override void OnStart ()
 		{
-			ApplicationInsights.Setup ("<YOUR-INSTRUMENTATION-KEY>");
+			string iKey = null;
+			Device.OnPlatform(
+				Android: () =>{
+					iKey = "<YOUR-ANDROID-KEY>";
+				},
+				iOS: () =>{
+					iKey = "<YOUR-IOS-KEY>";
+				}
+			);
+			ApplicationInsights.Setup (iKey);
 			ApplicationInsights.Start ();
 		}
 
@@ -27,6 +37,7 @@ namespace XamarinTest
 		{
 			// Handle when your app resumes
 		}
+			
 	}
 }
 
