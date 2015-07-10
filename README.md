@@ -90,7 +90,7 @@ Please see the "[Getting an Application Insights Instrumentation Key](https://gi
 		ApplicationInsights.Start ();
 		```
 	
-	* **[NOTE]**: If you plan to support *iOS*, you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinishedLaunching()` of your **AppDelegate.cs**
+	* **[NOTE]**: If you plan to support *iOS*, you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinishedLaunchingWithOptions()` of your **AppDelegate.cs**
 	
 		```csharp
 		AI.XamarinSDK.iOS.ApplicationInsights.Init();
@@ -170,7 +170,7 @@ ApplicationInsights.SetAutoSessionManagementDisabled(true);
 
 ## <a name="8"></a>8. Exception Handling (Crashes)
 
-The Application Insights Xamarin SDK enables crash reporting **per default**. Unhandled exceptions from managed (C# code) & unmanaged code (Java / native library) will be sent to the server as soon as possible: On Android this mighthappen even before the app crashes. For iOS builds unhandled exceptions will be reported right after the next app start.
+The Application Insights Xamarin SDK enables crash reporting **per default**. Unhandled exceptions from managed (C# code) & unmanaged code (Java / native library) will be sent to the server as soon as possible. For both Android and iOS builds, unhandled exceptions will be reported right after the next app start.
 
 This feature can be disabled as follows:
 
@@ -180,7 +180,7 @@ ApplicationInsights.SetCrashManagerDisabled(true);
 //before ApplicationInsights.Start()
 ```
 
-To get more meaningful crash reports (File name and line numbers) you can change the **Debug Informations** level of your plattform specific app projects.
+To get more meaningful crash reports (file name and line numbers) you can change the **Debug Informations** level of your plattform specific app projects.
 
 1. Right click on your Android or iOS app project in the Solution panel
 2. Go to *Options* - *Compiler*
@@ -256,7 +256,7 @@ In order to successfully build the SDK, you may have to update all referenced pa
 
 ### iOS App crashes immediately after start
 
-If you plan to support *iOS* you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinsihedLaunching()` of your **AppDelegate.cs**
+If you plan to support *iOS* you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinishedLaunchingWithOptions` of your **AppDelegate.cs**
 	
 ```csharp
 AI.XamarinSDK.iOS.ApplicationInsights.Init();
