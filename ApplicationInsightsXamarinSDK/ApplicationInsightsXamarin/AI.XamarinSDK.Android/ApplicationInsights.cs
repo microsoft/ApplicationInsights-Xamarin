@@ -1,26 +1,24 @@
 ﻿using System;
+using Android;
 using Android.Runtime;
 using Android.App;
 using Android.Content;
+using Xamarin.Forms;
+using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.ApplicationInsightsAndroid))]
-
+[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.ApplicationInsights))]
 namespace AI.XamarinSDK.Android
 {
-	public class ApplicationInsightsAndroid : Java.Lang.Object, IApplicationInsights
+	[Preserve(AllMembers=true)]
+	public class ApplicationInsights : Java.Lang.Object, IApplicationInsights
 	{
 		private static bool _crashManagerDisabled = false;
 
-		public ApplicationInsightsAndroid (){}
+		public ApplicationInsights (){}
 
 		public void Setup(string instrumentationKey)
 		{
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (Application.Context, null, instrumentationKey);
-		}
-
-		public void Setup (Context context, Application application, string instrumentationKey)
-		{
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (context, application, instrumentationKey);
+			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (((Activity)Forms.Context).Application, ((Activity)Forms.Context).Application, instrumentationKey);
 		}
 
 		public void Start ()
@@ -70,7 +68,7 @@ namespace AI.XamarinSDK.Android
 
 		public void SetUserId (string userId)
 		{
-			ApplicationInsights.SetUserId (userId);
+			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.SetUserId (userId);
 		}
 
 		public void StartNewSession (){
@@ -108,7 +106,7 @@ namespace AI.XamarinSDK.Android
 		{
 			Exception managedException = (Exception)e.Exception;
 			if (managedException != null) {
-				TelemetryManager.TrackManagedException (managedException, false);
+				AI.XamarinSDK.Abstractions.TelemetryManager.TrackManagedException (managedException, false);
 			}	
 		}
 	}

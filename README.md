@@ -1,4 +1,4 @@
-# Application Insights for Xamarin (1.0-alpha.1)
+# Application Insights for Xamarin (1.0-alpha.2)
 
 This project provides an Xamarin SDK for Application Insights. [Application Insights](http://azure.microsoft.com/en-us/services/application-insights/) is a service that allows developers to keep their applications available, performing, and succeeding. This SDK allows your Xamarin apps to send telemetry of various kinds (events, traces, exceptions, etc.) to the Application Insights service where your data can be visualized in the Azure Portal. Currently, we provide support for iOS and Android.
 
@@ -12,8 +12,9 @@ This project provides an Xamarin SDK for Application Insights. [Application Insi
 7. [Automatic Collection of Lifecycle Events](#7)
 8. [Exception Handling (Crashes)](#8)
 9. [Additional configuration](#9)
-10. [Troubleshooting](#10)
-11. [Contact](#11)
+10. [Integrate plugin sources](#10)
+11. [Troubleshooting](#11)
+12. [Contact](#12)
 
 
 ## <a name="1"></a> 1. Requirements
@@ -29,121 +30,70 @@ Older versions might work, but haven't been tested.
 
 ## <a name="2"></a> 2. Release Notes
 
-* Android and iOS support
-	* **Auto collection** (sessions and page views)
-	* **Tracking of telemetry** data (events, metrics, traces, page views, and handled exceptions)
-	* **Crash reporting** for both managed and unmanaged unhandled exceptions
-* Support for plattform specific as well as shared projects
-* Demo project added
+Also see changes in [older versions](NOTES.md).
+
+* Add NuGet support
+* Prevent linker from stripping SDK assemblies (release builds on iOS)
+* Align public interface (remove additional parameters of setup()-method on Android)
+* Add license and release notes
 
 
 ##<a name="3"></a> 3. Breaking Changes & deprecations
 
+* `Using` statement changed: `using AI.XamarinSDK.Abstractions;`
+* `setup()`-method for Android changed: As on iOS this method only takes the instrumentation key as parameter
+
 ##<a name="4"></a> 4. Setup
 
-This is the recommended way to setup Application Insights for your Xamarin app. We're assuming you are using Xamarin Studio to create your apps.
+We're assuming you are using Xamarin Studio to create your apps.
 
-### 4.1 **Add SDK sources to your Xamarin solution**
+### 4.1 **Add SDK to your Xamarin solution**
 
-Clone the repository in order to get the SDK sources. It contains 3 subfolders, one for a demo project (*DemoApp*) as well as its Dependencies (*packages*) and one for the SDK (*ApplicationInsightsXamarin*).
+Clone the repository in order to get the SDK sources. It contains 2 subfolders, one for a demo project (*DemoApp*)  and one for the SDK (*ApplicationInsightsXamarin*).
 
-Copy *ApplicationInsightsXamarin* to your solution directory. Open Xamarin Studio and add its projects to your solution. This can be done by right clicking the solution name in the solution panel, then click *Add* - *Add Existing Project...*:
+There are several ways to integrate the Application Insights Xamarin SDK into your app. The recommend way is to use the NuGet-package. However, you can also integrate the SDK by importing the sources.
 
-1. **AI.XamarinSDK**
-2. **AI.XamarinSDK.iOS** *(only needed for iOS support)*
-3. **AI.XamarinSDK.Android** & **AI.XamarinSDK.AndroidBindings** *(only needed for Android support)*
+1. Expand one of your platform projects inside the solution panel
+2. Right click the **Packages** folder and select ***Add Packages...***
+3. [Configure a local package source](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/nuget_walkthrough/) and let it point to 
+*ApplicationInsightsXamarin/NuGet*
+4. Choose the local package source in the sources dropdown
+4. Check the **Show pre-release packages** and select **ApplicationInsights SDK for Xamarin-Forms**
+5. Click the **Add Package** button
+6. Repeat those steps for all other platform projects
 
-[**Note**] In order to successfully build the SDK, you may have to update all referenced packages. Simply right click on the *Packages* folder of each of those projects and click *Update*.
-
-### 4.2 **Add references to your app projects**
-
-#### Android
-
-1. In the solution panel, select the Android app project.
-2. In the main menu go to *Project* - *Edit References*.
-3. Select the *All* tab and check *AI.XamarinSDK.Android*
-4. Confirm the change by clicking the *OK* button
-
-#### iOS
-
-1. In the solution panel, select the iOS app project.
-2. In the main menu go to *Project* - *Edit References*.
-3. Select the *All* tab and check *AI.XamarinSDK.iOS*
-4. Confirm the change by clicking the *OK* button
-
-### 4.3 Configure the instrumentation key
+### 4.2 Configure the instrumentation key
 
 Please see the "[Getting an Application Insights Instrumentation Key](https://github.com/Microsoft/ApplicationInsights-Home/wiki#getting-an-application-insights-instrumentation-key)" section of the wiki for more information on acquiring a key.
 
-### 4.4 Add code to setup and start Application Insights
+### 4.3 Add code to setup and start Application Insights
 
-You can setup and start the Application Insights Xamarin SDK in different ways.
-
-#### Option 1: Application class (Xamarin.Forms, shared project)
-
-1. Open the application class inside the shared app project (*project_name*.cs)
+1. Depending on the plattforms you want to support, you can setup and start the Application Insights Xamarin SDK in different files:
+	* **Xamarin.Forms** (Android & iOS): Application class (e.g. *project_name*.cs in the apps shared project
+	* **iOS only**: AppDelegate.cs in your iOS platform project
+	* **Android only**: Main Activity of your Android platform project
 2. Add using statements
 
 	```csharp
-	using AI.XamarinSDK;
-
-	#if __ANDROID__
-	using Android;
-	#endif
+	using AI.XamarinSDK.Abstractions;
 	```
 	
-3. Add the following lines of code to the `OnStart ()` method to support both platforms.
+3. Add the following lines of code to on of the following methods 
+	* **Xamarin.Forms** (Android & iOS): `OnStart ()`
+	* **iOS only**: `FinishedLaunching()`
+	* **Android only**: `OnStart ()`
 
-	```csharp
-	#if __IOS__
+		```csharp
+		ApplicationInsights.Setup ("<YOUR_IKEY_HERE>");
+		ApplicationInsights.Start ();
+		```
 	
-	ApplicationInsights.Setup ("<YOUR_IKEY_HERE>");
-	ApplicationInsights.Start ();
+	* **[NOTE]**: If you plan to support *iOS* you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinsihedLaunching()` of your **AppDelegate.cs**
 	
-	#elif __ANDROID__
-
-	Android.App.Application app = ((Android.App.Activity)Forms.Context).Application;
-	ApplicationInsights.Setup (Android.App.Application.Context, app, "<YOUR_IKEY_HERE>");
-	ApplicationInsights.Start ();
-
-	#endif
-	```
-	
-4. Replace `<YOUR_IKEY_HERE>`with the instrumentation key of your app.
-
-#### Option 2: AppDelegate.cs (iOS project)
-
-1. Open *AppDelegate.cs* inside the iOS app project
-2. Add using statements
-
-	```csharp
-	using AI.XamarinSDK;
-	```
-	
-3. Add the following lines of code to the `FinishedLaunching ()` method
-
-	```csharp
-	ApplicationInsights.Setup ("<YOUR_IKEY_HERE>");
-	ApplicationInsights.Start ();
-	```
-4. Replace `<YOUR_IKEY_HERE>`with the instrumentation key of your app.
-
-#### Option 3: MainActivity (Android project)
-
-1. Open your main activity (e.g. *MainActivity.cs*) inside the Android app project
-2. Add using statements
-
-	```csharp
-	using AI.XamarinSDK;
-	```
-	
-3. Add the following lines of code to the `OnCreate ()` method right after `SetContentView (Resource.Layout.Main);`
-
-	```csharp
-	ApplicationInsights.Setup (this.ApplicationContext, this.Application, "<YOUR_IKEY_HERE>");
-	ApplicationInsights.Start ();
-	```
-	
+		```csharp
+		AI.XamarinSDK.iOS.ApplicationInsights.Init();
+		```
+		
 4. Replace `<YOUR_IKEY_HERE>`with the instrumentation key of your app.
 	
 **Congratulations, now you're all set to use Application Insights! See [Usage](#6) on how to use Application Insights.**
@@ -155,7 +105,7 @@ The **developer mode** is enabled automatically in case the debugger is attached
 You can explicitly enable/disable the developer mode like this:
 
 ```csharp
-ApplicationInsights.SetDeveloperMode(false);
+ApplicationInsights.SetDebugLogEnabled(false);
 ```
 
 ## <a name="6"></a> 6. Basic Usage  ##
@@ -201,11 +151,7 @@ Auto collection is **enabled by default**. However, you can disable automatic pa
 
 ### Android
 
-To support the auto collection feature make sure the min SDK of your app is at least API level 14. Also don't forget to provide an Application instance when setting up Application Insights (otherwise auto collection will be disabled):
-
-```csharp
-ApplicationInsights.Setup(this.getApplicationContext(), this.getApplication());
-```
+To support the auto collection feature make sure the min SDK of your app is at least API level 14. 
 
 [**NOTE**] Only 'Activity' instances will be recognized by auto collection. Note that using e.g. `Navigation.PushAsync()` within a Xamarin.Forms page will replace a `Fragment`. However, you can programmatically [track a page view](#6) in situations like this.
 
@@ -269,7 +215,38 @@ ApplicationInsights.RenewSession("New session ID");
 ```
 [**NOTE**] If you want to manage sessions manually, please disable [Automatic Collection of Lifecycle Events](#7).
 
-##<a name="10"></a> 10. Troubleshooting
+##<a name="10"></a> 10. Integrate plugin sources
+
+There are several ways to integrate the Application Insights Xamarin SDK into your app. The recommend way is to use the NuGet-package. However, you can also integrate the SDK by importing the sources:
+
+1. Copy *ApplicationInsightsXamarin* to your solution directory. 
+2. Open Xamarin Studio and add its projects to your solution. This can be done by right clicking the solution name in the solution panel, then click *Add* - *Add Existing Project...*:
+
+	* **AI.XamarinSDK**
+	* **AI.XamarinSDK.iOS** *(only needed for iOS support)*
+	* **AI.XamarinSDK.Android** & **AI.XamarinSDK.AndroidBindings** *(only needed for Android support)*
+
+	[**Note**] In order to successfully build the SDK, you may have to update all referenced packages. Simply right click on the *Packages* folder of each of those projects and click *Update*.
+
+3. Add references to your app projects
+
+	* **Android**
+
+		1. In the solution panel, select the Android app project.
+		2. In the main menu go to *Project* - *Edit References*.
+		3. Select the *All* tab and check *AI.XamarinSDK.Android*.
+		4. Confirm the change by clicking the *OK* button.
+
+	* **iOS**
+
+		1. In the solution panel, select the iOS app project.
+		2. In the main menu go to *Project* - *Edit References*.
+		3. Select the *All* tab and check *AI.XamarinSDK.iOS*.
+		4. Confirm the change by clicking the *OK* button
+	
+	4. Follow instructions in [4.2](#4)..
+		
+##<a name="11"></a> 11. Troubleshooting
 
 ### SDK references broken
 
@@ -277,8 +254,11 @@ In order to successfully build the SDK, you may have to update all referenced pa
 
 ### iOS App crashes immediately after start
 
-Please right click on the iOS project and select *Options*. Go to *Build* - *iOS Build* - *General*. Set the *Linker behaviour* to `
-Don't link`. 
-##<a name="11"></a> 11. Contact
+If you plan to support *iOS* you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinsihedLaunching()` of your **AppDelegate.cs**
+	
+```csharp
+AI.XamarinSDK.iOS.ApplicationInsights.Init();
+``` 
+##<a name="12"></a> 12. Contact
 
 If you have further questions or are running into trouble that cannot be resolved by any of the steps here, feel free to contact us at [AppInsights-Xamarin@microsoft.com](mailto:AppInsights-Xamarin@microsoft.com)
