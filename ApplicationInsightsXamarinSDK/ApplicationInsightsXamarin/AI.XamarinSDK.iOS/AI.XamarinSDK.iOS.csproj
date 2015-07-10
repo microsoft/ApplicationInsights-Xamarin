@@ -56,11 +56,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.cs" />
-    <Compile Include="ApplicationInsightsIOS.cs" />
-    <Compile Include="TelemetryManagerIOS.cs" />
     <Compile Include="libApplicationInsights.linkwith.cs">
       <DependentUpon>libApplicationInsights.a</DependentUpon>
     </Compile>
+    <Compile Include="ApplicationInsights.cs" />
+    <Compile Include="TelemetryManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <ObjcBindingApiDefinition Include="ApiDefinition.cs" />
@@ -68,7 +68,6 @@
   <ItemGroup>
     <ObjcBindingCoreSource Include="StructsAndEnums.cs" />
   </ItemGroup>
-  <Import Project="..\AI.XamarinSDK\Shared.projitems" Label="Shared" Condition="Exists('..\AI.XamarinSDK\Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
   <Import Project="..\packages\Xamarin.Forms.1.4.3.6374\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\packages\Xamarin.Forms.1.4.3.6374\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Import Project="..\..\packages\Xamarin.Forms.1.4.3.6374\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.4.3.6374\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
@@ -77,5 +76,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AI.XamarinSDK.Abstractions\AI.XamarinSDK.Abstractions.csproj">
+      <Project>{5DAA7398-7822-44A5-993B-D595A6921D50}</Project>
+      <Name>AI.XamarinSDK.Abstractions</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

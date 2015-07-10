@@ -44,20 +44,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\iOS\XamarinTest.iOS.csproj">
-      <Project>{E8CEA150-C65D-4C92-B24B-C4C292B2FF7C}</Project>
-      <Name>XamarinTest.iOS</Name>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Droid\XamarinTest.Droid.csproj">
-      <Project>{2DE004DF-68B0-40D8-B1E1-0195FB694550}</Project>
-      <Name>XamarinTest.Droid</Name>
-      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
-      <Private>False</Private>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
 </Project>

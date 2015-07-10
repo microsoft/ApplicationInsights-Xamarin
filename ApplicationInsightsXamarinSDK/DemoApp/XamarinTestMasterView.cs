@@ -1,6 +1,6 @@
 ﻿using System;
 using Xamarin.Forms;
-using AI.XamarinSDK;
+using AI.XamarinSDK.Abstractions;
 using System.Collections.Generic;
 
 namespace XamarinTest

@@ -1,13 +1,10 @@
 ﻿using System;
 using Xamarin.Forms;
-using AI.XamarinSDK;
-
-#if __ANDROID__
-using Android;
-#endif
+using AI.XamarinSDK.Abstractions;
 
 namespace XamarinTest
 {
+
 	public class App : Application
 	{
 		public App ()
@@ -18,18 +15,17 @@ namespace XamarinTest
 
 		protected override void OnStart ()
 		{
-			#if __IOS__
-
-			ApplicationInsights.Setup ("<YOUR_IKEY_HERE>");
+			string iKey = null;
+			Device.OnPlatform(
+				Android: () =>{
+					iKey = "<YOUR-ANDROID-KEY>";
+				},
+				iOS: () =>{
+					iKey = "<YOUR-IOS-KEY>";
+				}
+			);
+			ApplicationInsights.Setup (iKey);
 			ApplicationInsights.Start ();
-
-			#elif __ANDROID__
-
-			Android.App.Application app = ((Android.App.Activity)Forms.Context).Application;
-			ApplicationInsights.Setup (Android.App.Application.Context, app, "<YOUR_IKEY_HERE>");
-			ApplicationInsights.Start ();
-
-			#endif
 		}
 
 		protected override void OnSleep ()
@@ -41,6 +37,7 @@ namespace XamarinTest
 		{
 			// Handle when your app resumes
 		}
+			
 	}
 }
 
