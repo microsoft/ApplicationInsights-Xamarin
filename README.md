@@ -58,8 +58,8 @@ There are several ways to integrate the Application Insights Xamarin SDK into yo
 3. [Configure a local package source](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/nuget_walkthrough/) and let it point to 
 *ApplicationInsightsXamarin/NuGet*
 4. Choose the local package source in the sources dropdown
-4. Check the **Show pre-release packages** and select **ApplicationInsights SDK for Xamarin-Forms**
-5. Click the **Add Package** button
+4. Check the **Show pre-release packages** checkmark and select **ApplicationInsights SDK for Xamarin-Forms** from the list of available packages.
+5. Click the **Add Package** button. Application Insights should now show up under `Packages` of your project in the solution explorer.
 6. Repeat those steps for all other platform projects
 
 ### 4.2 Configure the instrumentation key
@@ -78,17 +78,19 @@ Please see the "[Getting an Application Insights Instrumentation Key](https://gi
 	using AI.XamarinSDK.Abstractions;
 	```
 	
-3. Add the following lines of code to on of the following methods 
-	* **Xamarin.Forms** (Android & iOS): `OnStart ()`
-	* **iOS only**: `FinishedLaunching()`
-	* **Android only**: `OnStart ()`
+3. Depening on your plattform, navigate to 
+	* **Xamarin.Forms** (Android & iOS): `OnStart ()` in your Application class
+	* **iOS only**: `FinishedLaunching()` in your`AppDelegate.cs`
+	* **Android only**: `OnCreate ()` in your `MainActivity.cs`
+	
+	and add the following lines of code there.
 
 		```csharp
 		ApplicationInsights.Setup ("<YOUR_IKEY_HERE>");
 		ApplicationInsights.Start ();
 		```
 	
-	* **[NOTE]**: If you plan to support *iOS* you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinsihedLaunching()` of your **AppDelegate.cs**
+	* **[NOTE]**: If you plan to support *iOS*, you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinishedLaunching()` of your **AppDelegate.cs**
 	
 		```csharp
 		AI.XamarinSDK.iOS.ApplicationInsights.Init();
