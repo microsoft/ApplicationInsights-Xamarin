@@ -17,7 +17,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="eventName">The name of the custom event.</param>
 		public static void TrackEvent (string eventName)
 		{
-			DependencyService.Get<ITelemetryManager>().TrackEvent(eventName);
+			if (Utils.IsSupportedPlatform ()) {
+				DependencyService.Get<ITelemetryManager>().TrackEvent(eventName);
+			}
 		}
 
 		/// <summary>
@@ -27,7 +29,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="properties">Custom properties that should be added to this event.</param>
 		public static void TrackEvent (string eventName, Dictionary<string, string> properties)
 		{
-			DependencyService.Get<ITelemetryManager>().TrackEvent(eventName, properties);
+			if (Utils.IsSupportedPlatform ()) {
+				DependencyService.Get<ITelemetryManager>().TrackEvent(eventName, properties);
+			}
 		}
 
 		/// <summary>
@@ -36,7 +40,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="message">The message to be tracked.</param>
 		public static void TrackTrace (string message)
 		{
-			DependencyService.Get<ITelemetryManager>().TrackTrace(message);
+			if (Utils.IsSupportedPlatform ()) {
+				DependencyService.Get<ITelemetryManager>().TrackTrace(message);
+			}
 		}
 
 		/// <summary>
@@ -46,7 +52,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="properties">Custom properties that should be added to this message.</param>
 		public static void TrackTrace (string message, Dictionary<string, string> properties)
 		{
-			DependencyService.Get<ITelemetryManager>().TrackTrace(message, properties);
+			if (Utils.IsSupportedPlatform ()) {
+				DependencyService.Get<ITelemetryManager>().TrackTrace(message, properties);
+			}
 		}
 
 		/// <summary>
@@ -56,7 +64,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="value">The numeric metric value.</param>
 		public static void TrackMetric (string metricName, double value)
 		{
-			DependencyService.Get<ITelemetryManager>().TrackMetric(metricName, value);
+			if (Utils.IsSupportedPlatform ()) {
+				DependencyService.Get<ITelemetryManager>().TrackMetric(metricName, value);
+			}
 		}
 
 		/// <summary>
@@ -67,7 +77,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="properties">Custom properties that should be added to this metric.</param>
 		public static void TrackMetric (string metricName, double value, Dictionary<string, string> properties)
 		{
-			DependencyService.Get<ITelemetryManager>().TrackMetric(metricName, value, properties);
+			if (Utils.IsSupportedPlatform ()) {
+				DependencyService.Get<ITelemetryManager>().TrackMetric(metricName, value, properties);
+			}
 		}
 
 		/// <summary>
@@ -76,7 +88,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="pageName">The name of the page.</param>
 		public static void TrackPageView (string pageName)
 		{
-			DependencyService.Get<ITelemetryManager>().TrackPageView(pageName);
+			if (Utils.IsSupportedPlatform ()) {
+				DependencyService.Get<ITelemetryManager>().TrackPageView(pageName);
+			}
 		}
 
 		/// <summary>
@@ -86,7 +100,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="duration">The time the page was visible to the user</param>
 		public static void TrackPageView (string pageName, int duration)
 		{
-			DependencyService.Get<ITelemetryManager>().TrackPageView(pageName, duration);
+			if (Utils.IsSupportedPlatform ()) {
+				DependencyService.Get<ITelemetryManager>().TrackPageView(pageName, duration);
+			}
 		}
 
 		/// <summary>
@@ -97,7 +113,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="properties">Custom properties that should be added to this page view object.</param>
 		public static void TrackPageView (string pageName, int duration, Dictionary<string, string> properties)
 		{
-			DependencyService.Get<ITelemetryManager>().TrackPageView(pageName, duration, properties);
+			if (Utils.IsSupportedPlatform ()) {
+				DependencyService.Get<ITelemetryManager>().TrackPageView(pageName, duration, properties);
+			}
 		}
 
 		/// <summary>
@@ -107,7 +125,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="handled">If set to <c>true</c> the exception has been handled by the developer.</param>
 		public static void TrackManagedException (Exception  exception, bool handled)
 		{
-			DependencyService.Get<ITelemetryManager>().TrackManagedException(exception, handled);
+			if (Utils.IsSupportedPlatform ()) {
+				DependencyService.Get<ITelemetryManager>().TrackManagedException(exception, handled);
+			}
 		}
 	}
 }

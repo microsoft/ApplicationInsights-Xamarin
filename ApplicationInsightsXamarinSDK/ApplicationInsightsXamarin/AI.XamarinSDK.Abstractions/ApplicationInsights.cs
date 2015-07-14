@@ -1,4 +1,5 @@
 ﻿using System;
+using Xamarin.Forms;
 
 namespace AI.XamarinSDK.Abstractions
 {
@@ -8,8 +9,8 @@ namespace AI.XamarinSDK.Abstractions
 	public class ApplicationInsights
 	{
 
-		private static readonly IApplicationInsights target = Xamarin.Forms.DependencyService.Get<IApplicationInsights> ();
-
+		private static readonly IApplicationInsights target = GetTarget();
+		
 		private ApplicationInsights() {}
 
 		/// <summary>
@@ -18,7 +19,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="instrumentationKey">The instrumentation key of your app.</param>
 		public static void Setup (string instrumentationKey)
 		{
-			target.Setup (instrumentationKey);
+			if (Utils.IsSupportedPlatform ()) {
+				target.Setup (instrumentationKey);
+			}
 		}
 
 		/// <summary>
@@ -26,7 +29,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// </summary>
 		public static void Start ()
 		{
-			target.Start ();
+			if (Utils.IsSupportedPlatform()) {
+				target.Start ();
+			}
 		}
 
 		/// <summary>
@@ -35,7 +40,10 @@ namespace AI.XamarinSDK.Abstractions
 		/// <returns>The server URL.</returns>
 		public static string GetServerUrl ()
 		{
-			return target.GetServerUrl ();
+			if (Utils.IsSupportedPlatform()) {
+				return target.GetServerUrl ();
+			}
+			return null;
 		}
 
 		/// <summary>
@@ -44,7 +52,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="serverUrl">Server URL.</param>
 		public static void SetServerUrl (string serverUrl)
 		{
-			target.SetServerUrl (serverUrl);
+			if (Utils.IsSupportedPlatform()) {
+				target.SetServerUrl (serverUrl);
+			}
 		}
 
 		/// <summary>
@@ -53,7 +63,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="crashManagerDisabled">If set to <c>true</c> the crash manager will be disabled. Default is <c>false</c>.</param>
 		public static void SetCrashManagerDisabled (bool crashManagerDisabled)
 		{
-			target.SetCrashManagerDisabled (crashManagerDisabled);
+			if (Utils.IsSupportedPlatform()) {
+				target.SetCrashManagerDisabled (crashManagerDisabled);
+			}
 		}
 
 		/// <summary>
@@ -62,7 +74,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="telemetryManagerDisabled">If set to <c>true</c> the telemetry manager disabled. Default is <c>false</c>.</param>
 		public static void SetTelemetryManagerDisabled (bool telemetryManagerDisabled)
 		{
-			target.SetTelemetryManagerDisabled (telemetryManagerDisabled);
+			if (Utils.IsSupportedPlatform()) {
+				target.SetTelemetryManagerDisabled (telemetryManagerDisabled);
+			}
 		}
 
 		/// <summary>
@@ -80,7 +94,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="autoSessionManagementDisabled">If set to <c>true</c> the auto session management will be disabled. Default is <c>false</c>.</param>
 		public static void SetAutoSessionManagementDisabled (bool autoSessionManagementDisabled)
 		{
-			target.SetAutoSessionManagementDisabled  (autoSessionManagementDisabled);
+			if (Utils.IsSupportedPlatform()) {
+				target.SetAutoSessionManagementDisabled  (autoSessionManagementDisabled);
+			}
 		}
 
 		/// <summary>
@@ -89,7 +105,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="userId">User identifier.</param>
 		public static void SetUserId (string userId)
 		{
-			target.SetUserId  (userId);
+			if (Utils.IsSupportedPlatform()) {
+				target.SetUserId  (userId);
+			}
 		}
 
 		/// <summary>
@@ -97,7 +115,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// </summary>
 		public static void StartNewSession ()
 		{
-			target.StartNewSession  ();
+			if (Utils.IsSupportedPlatform()) {
+				target.StartNewSession  ();
+			}
 		}
 
 		/// <summary>
@@ -106,7 +126,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="appBackgroundTime">The interval at which sessions are renewed.</param>
 		public static void SetSessionExpirationTime (int appBackgroundTime)
 		{
-			target.SetSessionExpirationTime (appBackgroundTime);
+			if (Utils.IsSupportedPlatform()) {
+				target.SetSessionExpirationTime (appBackgroundTime);
+			}
 		}
 
 		/// <summary>
@@ -115,7 +137,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="sessionId">Custom session identifier.</param>
 		public static void RenewSessionWithId (string sessionId)
 		{
-			target.RenewSessionWithId (sessionId);
+			if (Utils.IsSupportedPlatform()) {
+				target.RenewSessionWithId (sessionId);
+			}
 		}
 
 		/// <summary>
@@ -124,7 +148,10 @@ namespace AI.XamarinSDK.Abstractions
 		/// <returns><c>true</c>, if debug log is enabled, <c>false</c> otherwise.</returns>
 		public static bool GetDebugLogEnabled()
 		{
-			return target.GetDebugLogEnabled ();
+			if (Utils.IsSupportedPlatform()) {
+				return target.GetDebugLogEnabled ();
+			}
+			return false;
 		}
 
 		/// <summary>
@@ -133,7 +160,16 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="debugLogEnabled">If set to <c>true</c> debug log is enabled.</param>
 		public static void SetDebugLogEnabled(bool debugLogEnabled)
 		{
-			target.SetDebugLogEnabled (debugLogEnabled);
+			if (Utils.IsSupportedPlatform()) {
+				target.SetDebugLogEnabled (debugLogEnabled);
+			}
+		}
+
+		private static IApplicationInsights GetTarget(){
+			if (Utils.IsSupportedPlatform ()) {
+				return DependencyService.Get<IApplicationInsights> ();
+			}
+			return null;
 		}
 	}
 }
