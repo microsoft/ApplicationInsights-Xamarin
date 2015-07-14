@@ -10,7 +10,7 @@ namespace AI.XamarinSDK.Abstractions
 		}
 
 		public static Boolean IsSupportedPlatform(){
-			return !(Device.OS == TargetPlatform.iOS || Device.OS == TargetPlatform.Android);
+			return (Device.OS == TargetPlatform.iOS || Device.OS == TargetPlatform.Android);
 		}
 	}
 }
