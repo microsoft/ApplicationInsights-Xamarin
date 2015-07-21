@@ -2,11 +2,11 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
    <metadata minClientVersion="2.8.1">
        <id>Microsoft.ApplicationInsights.Xamarin</id>
-       <version>1.0.0-alpha2</version>
+       <version>1.0.0-alpha3</version>
        <title>ApplicationInsights SDK for Xamarin.Forms</title>
        <authors>Microsoft</authors>
        <dependencies>
-         <dependency id="Xamarin.Forms" version="1.4.3.6374" />
+         <dependency id="Xamarin.Forms" version="1.4.3.6376" />
        </dependencies>
        <projectUrl>https://github.com/Microsoft/ApplicationInsights-Xamarin</projectUrl>
        <licenseUrl>https://github.com/Microsoft/ApplicationInsights-Xamarin/blob/master/LICENSE</licenseUrl>
