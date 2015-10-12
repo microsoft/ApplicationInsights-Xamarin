@@ -85,7 +85,9 @@ namespace AI.XamarinSDK.Abstractions
 		/// <param name="autoPageViewTrackingDisabled">If set to <c>true</c> auto page view tracking will be disabled. Default is <c>false</c>.</param>
 		public static void SetAutoPageViewTrackingDisabled (bool autoPageViewTrackingDisabled)
 		{
-			target.SetAutoPageViewTrackingDisabled  (autoPageViewTrackingDisabled);
+			if (Utils.IsSupportedPlatform()) {
+				target.SetAutoPageViewTrackingDisabled  (autoPageViewTrackingDisabled);
+			}
 		}
 
 		/// <summary>

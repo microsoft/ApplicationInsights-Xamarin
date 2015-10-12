@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+   <metadata minClientVersion="2.8.1">
+       <id>Microsoft.ApplicationInsights.Xamarin</id>
+       <version>1.0.0-alpha3</version>
+       <title>ApplicationInsights SDK for Xamarin.Forms</title>
+       <authors>Microsoft</authors>
+       <dependencies>
+         <dependency id="Xamarin.Forms" version="1.4.3.6376" />
+       </dependencies>
+       <projectUrl>https://github.com/Microsoft/ApplicationInsights-Xamarin</projectUrl>
+       <licenseUrl>https://github.com/Microsoft/ApplicationInsights-Xamarin/blob/master/LICENSE</licenseUrl>
+       <requireLicenseAcceptance>false</requireLicenseAcceptance>
+       <description>
+         This project provides an Xamarin SDK for Application Insights.
+       </description>
+       <summary>
+         This project provides an Xamarin SDK for Application Insights. Application Insights is a service that allows developers to keep their applications available, performing, and succeeding. This SDK allows your Xamarin apps to send telemetry of various kinds (events, traces, exceptions, etc.) to the Application Insights service where your data can be visualized in the Azure Portal. Currently, we provide support for iOS and Android.
+       </summary>
+       <tags>xamarin, xamarin.forms, android, ios, windows phone, application insights</tags>
+   </metadata>
+   <files>
+     <!--Core-->
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.Abstractions/bin/Release/AI.XamarinSDK.Abstractions.dll" target="lib/portable-net45+wp8+win8+MonoAndroid10+MonoTouch10+Xamarin.iOS10/AI.XamarinSDK.Abstractions.dll" />
+
+    <!--win
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.Abstractions/bin/Release/AI.XamarinSDK.Abstractions.dll" target="lib/win81/AI.XamarinSDK.Abstractions.dll" />
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.WinPhone/bin/Release/AI.XamarinSDK.WinPhone.dll" target="lib/win81/AI.XamarinSDK.WinPhone.dll" />
+
+     -->
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.Abstractions/bin/Release/AI.XamarinSDK.Abstractions.dll" target="lib/wpa81/AI.XamarinSDK.Abstractions.dll" />
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.WinPhone/bin/Release/AI.XamarinSDK.WinPhone.dll" target="lib/wpa81/AI.XamarinSDK.WinPhone.dll" />
+
+     <!--Win Phone-->
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.Abstractions/bin/Release/AI.XamarinSDK.Abstractions.dll" target="lib/wp80/AI.XamarinSDK.Abstractions.dll" />
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.WinPhone/bin/Release/AI.XamarinSDK.WinPhone.dll" target="lib/wp80/AI.XamarinSDK.WinPhone.dll" />
+     
+     <!--Xamarin.Android-->
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.Abstractions/bin/Release/AI.XamarinSDK.Abstractions.dll" target="lib/MonoAndroid10/AI.XamarinSDK.Abstractions.dll" />
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.Android/bin/Release/AI.XamarinSDK.Android.dll" target="lib/MonoAndroid10/AI.XamarinSDK.Android.dll" />
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.AndroidBindings/bin/Release/AI.XamarinSDK.AndroidBindings.dll" target="lib/MonoAndroid10/AI.XamarinSDK.AndroidBindings.dll" />
+
+     <!--Xamarin.iOS Unified-->
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.Abstractions/bin/Release/AI.XamarinSDK.Abstractions.dll" target="lib/Xamarin.iOS10/AI.XamarinSDK.Abstractions.dll" />
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.iOS/bin/Release/AI.XamarinSDK.iOS.dll" target="lib/Xamarin.iOS10/AI.XamarinSDK.IOS.dll" />
+
+     <!--Xamarin.iOS-->
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.Abstractions/bin/Release/AI.XamarinSDK.Abstractions.dll" target="lib/MonoTouch10/AI.XamarinSDK.Abstractions.dll" />
+     <file src="ApplicationInsightsXamarin/AI.XamarinSDK.iOS/bin/Release/AI.XamarinSDK.iOS.dll" target="lib/MonoTouch10/AI.XamarinSDK.IOS.dll" />
+     
+   </files>
+</package>
