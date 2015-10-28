@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.WinPhone.TelemetryManager))]
-
-namespace AI.XamarinSDK.WinPhone
+namespace AI.XamarinSDK
 {
 
 	public class TelemetryManager : ITelemetryManager

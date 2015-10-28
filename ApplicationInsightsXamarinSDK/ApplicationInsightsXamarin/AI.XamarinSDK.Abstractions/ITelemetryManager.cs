@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace AI.XamarinSDK.Abstractions
+namespace AI.XamarinSDK
 {
 	public interface ITelemetryManager
 	{
@@ -23,6 +23,6 @@ namespace AI.XamarinSDK.Abstractions
 
 		void TrackPageView (string pageName, int duration, Dictionary<string, string> properties);
 
-		void TrackManagedException (Exception  exception, bool handled);
+        void TrackManagedException (Exception  exception, bool handled);
 	}
 }

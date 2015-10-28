@@ -7,8 +7,6 @@ using Xamarin.Forms;
 using System.Runtime.InteropServices;
 using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.ApplicationInsights))]
-
 namespace AI.XamarinSDK.iOS
 {
 	[Preserve(AllMembers=true)]
@@ -123,7 +121,7 @@ namespace AI.XamarinSDK.iOS
 			Exception managedException = (Exception) args.ExceptionObject;
 			Console.WriteLine (managedException.Source);
 			if (managedException != null && !managedException.Source.Equals("Xamarin.iOS")) {
-				AI.XamarinSDK.Abstractions.TelemetryManager.TrackManagedException (managedException, false);
+                CrossTelemetryManager.Current.TrackManagedException(managedException, false);
 			}	
 		}
 	}

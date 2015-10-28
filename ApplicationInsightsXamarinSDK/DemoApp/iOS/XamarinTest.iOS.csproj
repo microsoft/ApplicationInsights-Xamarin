@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -8,7 +8,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>XamarinTest.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>XamarinTest.iOS</AssemblyName>
+    <AssemblyName>XamarinTestiOS</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -134,17 +134,17 @@
   <Import Project="..\..\ApplicationInsightsXamarinSDK\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\ApplicationInsightsXamarinSDK\packages\Xamarin.Forms.1.4.2.6359\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <Import Project="..\..\packages\Xamarin.Forms.1.4.3.6374\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.1.4.3.6374\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10\Xamarin.Forms.targets')" />
   <ItemGroup>
+    <ProjectReference Include="..\..\ApplicationInsightsXamarin\AI.XamarinSDK.Abstractions\AI.XamarinSDK.Abstractions.csproj">
+      <Project>{5daa7398-7822-44a5-993b-d595a6921d50}</Project>
+      <Name>AI.XamarinSDK.Abstractions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\ApplicationInsightsXamarin\AI.XamarinSDK.iOS\AI.XamarinSDK.iOS.csproj">
-      <Project>{4B57344D-C4B3-44F8-8E15-CC5B3AF1CC24}</Project>
+      <Project>{4b57344d-c4b3-44f8-8e15-cc5b3af1cc24}</Project>
       <Name>AI.XamarinSDK.iOS</Name>
     </ProjectReference>
     <ProjectReference Include="..\DummyLibrary.iOS\DummyLibrary.iOS.csproj">
       <Project>{CCA3EAB7-9B83-4F48-9CBF-CA3155A5969F}</Project>
       <Name>DummyLibrary.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ApplicationInsightsXamarin\AI.XamarinSDK.Abstractions\AI.XamarinSDK.Abstractions.csproj">
-      <Project>{5DAA7398-7822-44A5-993B-D595A6921D50}</Project>
-      <Name>AI.XamarinSDK.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>
