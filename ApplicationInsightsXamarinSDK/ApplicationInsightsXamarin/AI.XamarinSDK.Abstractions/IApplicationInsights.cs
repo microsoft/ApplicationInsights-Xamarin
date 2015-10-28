@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AI.XamarinSDK.Abstractions
+namespace AI.XamarinSDK
 {
 	public interface IApplicationInsights
 	{

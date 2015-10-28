@@ -5,13 +5,10 @@ using Android.App;
 using Android.Content;
 using System.Collections.Generic;
 using Com.Microsoft.Applicationinsights.Library;
-using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.TelemetryManager))]
-namespace AI.XamarinSDK.Android
+namespace AI.XamarinSDK
 {
-	[Preserve(AllMembers=true)]
-	public class TelemetryManager : Java.Lang.Object, ITelemetryManager
+	public class TelemetryManager : ITelemetryManager
 	{
 
 		public TelemetryManager(){}
@@ -61,15 +58,16 @@ namespace AI.XamarinSDK.Android
 			TelemetryClient.Instance.TrackPageView (pageName, properties);
 		}
 
-		public void TrackManagedException (Exception  exception, bool handled)
-		{
-			if (exception != null) {
-				string type = exception.GetType ().Name;
-				string stacktrace = exception.StackTrace;
-				string message = exception.Message;
-				TelemetryClient.Instance.TrackManagedException (type, message, stacktrace, handled);
-			}	
-		}
+        public void TrackManagedException(Exception exception, bool handled)
+        {
+            if (exception != null)
+            {
+                string type = exception.GetType().Name;
+                string stacktrace = exception.StackTrace;
+                string message = exception.Message;
+                TelemetryClient.Instance.TrackManagedException(type, message, stacktrace, handled);
+            }
+        }
 
 	}
 }

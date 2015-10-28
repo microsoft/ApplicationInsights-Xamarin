@@ -3,11 +3,8 @@
    <metadata minClientVersion="2.8.1">
        <id>Microsoft.ApplicationInsights.Xamarin</id>
        <version>1.0.0-alpha2</version>
-       <title>ApplicationInsights SDK for Xamarin.Forms</title>
+       <title>ApplicationInsights SDK for Xamarin</title>
        <authors>Microsoft</authors>
-       <dependencies>
-         <dependency id="Xamarin.Forms" version="1.4.3.6374" />
-       </dependencies>
        <projectUrl>https://github.com/Microsoft/ApplicationInsights-Xamarin</projectUrl>
        <licenseUrl>https://github.com/Microsoft/ApplicationInsights-Xamarin/blob/master/LICENSE</licenseUrl>
        licenseUrl

@@ -18,7 +18,7 @@ namespace XamarinTest.iOS
 //			#if ENABLE_TEST_CLOUD
 //			Xamarin.Calabash.Start();
 //			#endif
-			AI.XamarinSDK.iOS.ApplicationInsights.Init();
+			CrossApplicationInsights.Init();
 			LoadApplication (new App ());
 			return base.FinishedLaunching (app, options);
 		}

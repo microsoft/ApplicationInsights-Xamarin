@@ -3,14 +3,10 @@ using Android;
 using Android.Runtime;
 using Android.App;
 using Android.Content;
-using Xamarin.Forms;
-using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.ApplicationInsights))]
-namespace AI.XamarinSDK.Android
+namespace AI.XamarinSDK
 {
-	[Preserve(AllMembers=true)]
-	public class ApplicationInsights : Java.Lang.Object, IApplicationInsights
+	public class ApplicationInsights : IApplicationInsights
 	{
 		private static bool _crashManagerDisabled = false;
 
@@ -18,7 +14,7 @@ namespace AI.XamarinSDK.Android
 
 		public void Setup(string instrumentationKey)
 		{
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (((Activity)Forms.Context).Application, ((Activity)Forms.Context).Application, instrumentationKey);
+            Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup(Application.Context, (Application)Application.Context, instrumentationKey);
 		}
 
 		public void Start ()
@@ -27,7 +23,7 @@ namespace AI.XamarinSDK.Android
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Start ();
 		}
 
-		public string GetServerUrl ()
+        public string GetServerUrl()
 		{
 			return Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Config.EndpointUrl;
 		}
@@ -84,7 +80,7 @@ namespace AI.XamarinSDK.Android
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.RenewSession (sessionId);
 		}
 
-		public bool GetDebugLogEnabled() 
+        public bool GetDebugLogEnabled() 
 		{
 			return Com.Microsoft.Applicationinsights.Library.ApplicationInsights.DeveloperMode;
 		}
@@ -106,7 +102,7 @@ namespace AI.XamarinSDK.Android
 		{
 			Exception managedException = (Exception)e.Exception;
 			if (managedException != null) {
-				AI.XamarinSDK.Abstractions.TelemetryManager.TrackManagedException (managedException, false);
+				CrossTelemetryManager.Current.TrackManagedException (managedException, false);
 			}	
 		}
 	}
