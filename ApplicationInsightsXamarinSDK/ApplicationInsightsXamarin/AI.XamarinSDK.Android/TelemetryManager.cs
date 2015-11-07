@@ -43,7 +43,7 @@ namespace AI.XamarinSDK.Android
 
 		public void TrackMetric (string metricName, double value, Dictionary<string, string> properties)
 		{
-			TelemetryClient.Instance.TrackMetric (metricName, value);
+			TelemetryClient.Instance.TrackMetric (metricName, value, properties);
 		}
 
 		public void TrackPageView (string pageName)
