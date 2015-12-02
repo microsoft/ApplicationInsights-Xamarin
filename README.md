@@ -18,7 +18,7 @@ This project provides an Xamarin SDK for Application Insights. [Application Insi
 
 
 ## <a name="1"></a> 1. Requirements
-The minimum API level to use the Application Insights Xamarin SDK in your **Android** app is 9. However, automatic collection of lifecycle-events requires API level 15 and up (Ice Cream Sandwich+). For **iOS** builds the minimum iOS version is 6. 
+The minimum API level to use the Application Insights Xamarin SDK in your **Android** app is 9. However, automatic collection of lifecycle-events requires API level 15 and up (Ice Cream Sandwich+). For **iOS** builds, the minimum iOS version is 6. 
 
 The SDK has been developed and tested with the following framework versions:
 
@@ -49,7 +49,7 @@ We're assuming you are using Xamarin Studio to create your apps.
 
 ### 4.1 **Add SDK to your Xamarin solution**
 
-Clone the repository in order to get the SDK sources. It contains 2 subfolder, one for a demo project (*DemoApp*)  and one for the SDK (*ApplicationInsightsXamarin*).
+Clone the repository in order to get the SDK sources. It contains 2 subfolders, one for a demo project (*DemoApp*)  and one for the SDK (*ApplicationInsightsXamarin*).
 
 There are several ways to integrate the Application Insights Xamarin SDK into your app. The recommend way is to use the NuGet-package. However, you can also integrate the SDK by importing the sources.
 
@@ -58,8 +58,8 @@ There are several ways to integrate the Application Insights Xamarin SDK into yo
 3. [Configure a local package source](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/nuget_walkthrough/) and let it point to 
 *ApplicationInsightsXamarin/NuGet*
 4. Choose the local package source in the sources dropdown
-4. Check the **Show pre-release packages** and select **ApplicationInsights SDK for Xamarin-Forms**
-5. Click the **Add Package** button
+4. Check the **Show pre-release packages** checkmark and select **ApplicationInsights SDK for Xamarin-Forms** from the list of available packages.
+5. Click the **Add Package** button. Application Insights should now show up under `Packages` of your project in the solution explorer.
 6. Repeat those steps for all other platform projects
 
 ### 4.2 Configure the instrumentation key
@@ -78,17 +78,19 @@ Please see the "[Getting an Application Insights Instrumentation Key](https://gi
 	using AI.XamarinSDK.Abstractions;
 	```
 	
-3. Add the following lines of code to on of the following methods 
-	* **Xamarin.Forms** (Android & iOS): `OnStart ()`
-	* **iOS only**: `FinishedLaunching()`
-	* **Android only**: `OnStart ()`
+3. Depening on your plattform, navigate to 
+	* **Xamarin.Forms** (Android & iOS): `OnStart ()` in your Application class
+	* **iOS only**: `FinishedLaunching()` in your`AppDelegate.cs`
+	* **Android only**: `OnCreate ()` in your `MainActivity.cs`
+	
+	and add the following lines of code there.
 
 		```csharp
 		ApplicationInsights.Setup ("<YOUR_IKEY_HERE>");
 		ApplicationInsights.Start ();
 		```
 	
-	* **[NOTE]**: If you plan to support *iOS* you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinsihedLaunching()` of your **AppDelegate.cs**
+	* **[NOTE]**: If you plan to support *iOS*, you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinishedLaunchingWithOptions()` of your **AppDelegate.cs**
 	
 		```csharp
 		AI.XamarinSDK.iOS.ApplicationInsights.Init();
@@ -96,7 +98,7 @@ Please see the "[Getting an Application Insights Instrumentation Key](https://gi
 		
 4. Replace `<YOUR_IKEY_HERE>`with the instrumentation key of your app.
 	
-**Congratulation, now you're all set to use Application Insights! See [Usage](#6) on how to use Application Insights.**
+**Congratulations, now you're all set to use Application Insights! See [Usage](#6) on how to use Application Insights.**
 
 ## <a name="5"></a> 5. Developer Mode
 
@@ -168,7 +170,7 @@ ApplicationInsights.SetAutoSessionManagementDisabled(true);
 
 ## <a name="8"></a>8. Exception Handling (Crashes)
 
-The Application Insights Xamarin SDK enables crash reporting **per default**. Unhandled exceptions from managed (C# code) & unmanaged code (Java / native library) will be sent to the server as soon as possible: On Android this mighthappen even before the app crashes. For iOS builds unhandled exceptions will be reported right after the next app start.
+The Application Insights Xamarin SDK enables crash reporting **per default**. Unhandled exceptions from managed (C# code) & unmanaged code (Java / native library) will be sent to the server as soon as possible. For both Android and iOS builds, unhandled exceptions will be reported right after the next app start.
 
 This feature can be disabled as follows:
 
@@ -178,7 +180,7 @@ ApplicationInsights.SetCrashManagerDisabled(true);
 //before ApplicationInsights.Start()
 ```
 
-To get more meaningful crash reports (File name and line numbers) you can change the **Debug Informations** level of your plattform specific app projects.
+To get more meaningful crash reports (file name and line numbers) you can change the **Debug Informations** level of your plattform specific app projects.
 
 1. Right click on your Android or iOS app project in the Solution panel
 2. Go to *Options* - *Compiler*
@@ -254,11 +256,11 @@ In order to successfully build the SDK, you may have to update all referenced pa
 
 ### iOS App crashes immediately after start
 
-If you plan to support *iOS* you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinsihedLaunching()` of your **AppDelegate.cs**
+If you plan to support *iOS* you currently need to make a direct call to the iOS assembly so that it doesn't get stripped by the linker. Add the following line right after the Xamarin.Forms init()-call inside the `FinishedLaunchingWithOptions` of your **AppDelegate.cs**
 	
 ```csharp
 AI.XamarinSDK.iOS.ApplicationInsights.Init();
 ``` 
 ##<a name="12"></a> 12. Contact
 
-If you have further questions or are running into trouble that cannot be resolved by any of the steps here, feel free to contact us at [AppInsights-Xamarin@microsoft.com](mailto:AppInsights-Xamarin@microsoft.com)
+If you have further questions or are running into trouble that cannot be resolved by any of the steps here, feel free to contact us at [AppInsights-Xamarin@microsoft.com](mailto:AppInsights-Xamarin@microsoft.com).
