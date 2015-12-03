@@ -3,13 +3,10 @@ using UIKit;
 using ObjCRuntime;
 using Foundation;
 using System.Collections.Generic;
-using Xamarin.Forms;
 using System.Runtime.InteropServices;
-using AI.XamarinSDK.Abstractions;
+using AI.XamarinSDK.iOS;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.ApplicationInsights))]
-
-namespace AI.XamarinSDK.iOS
+namespace AI.XamarinSDK
 {
 	[Preserve(AllMembers=true)]
 	public class ApplicationInsights : IApplicationInsights
@@ -123,7 +120,7 @@ namespace AI.XamarinSDK.iOS
 			Exception managedException = (Exception) args.ExceptionObject;
 			Console.WriteLine (managedException.Source);
 			if (managedException != null && !managedException.Source.Equals("Xamarin.iOS")) {
-				AI.XamarinSDK.Abstractions.TelemetryManager.TrackManagedException (managedException, false);
+				CrossTelemetryManager.Current.TrackManagedException (managedException, false);
 			}	
 		}
 	}

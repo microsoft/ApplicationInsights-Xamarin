@@ -2,10 +2,10 @@
 using UIKit;
 using ObjCRuntime;
 using Foundation;
-using System.Collections.Generic;using AI.XamarinSDK.Abstractions;
+using System.Collections.Generic;
+using AI.XamarinSDK.iOS;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.iOS.TelemetryManager))]
-namespace AI.XamarinSDK.iOS
+namespace AI.XamarinSDK
 {
 	[Preserve(AllMembers=true)]
 	public class TelemetryManager : ITelemetryManager

@@ -4,6 +4,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 using XamarinTest;
+using Xamarin.Forms;
 
 namespace XamarinTest.iOS
 {
@@ -18,7 +19,7 @@ namespace XamarinTest.iOS
 //			#if ENABLE_TEST_CLOUD
 //			Xamarin.Calabash.Start();
 //			#endif
-			AI.XamarinSDK.iOS.ApplicationInsights.Init();
+			
 			LoadApplication (new App ());
 			return base.FinishedLaunching (app, options);
 		}

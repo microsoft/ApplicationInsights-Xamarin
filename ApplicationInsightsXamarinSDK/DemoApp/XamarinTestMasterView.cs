@@ -1,7 +1,7 @@
 ﻿using System;
-using Xamarin.Forms;
-using AI.XamarinSDK.Abstractions;
+using AI.XamarinSDK;
 using System.Collections.Generic;
+using Xamarin.Forms;
 
 namespace XamarinTest
 {
@@ -118,7 +118,7 @@ namespace XamarinTest
 				On = true ,
 			};
 			autoSessionManagementCell.OnChanged += (sender, ea) => {
-				ApplicationInsights.SetAutoSessionManagementDisabled(!autoSessionManagementCell.On);
+                CrossApplicationInsights.Current.SetAutoSessionManagementDisabled(!autoSessionManagementCell.On);
 			};
 
 			autoPageViewsCell = new SwitchCell { 
@@ -126,7 +126,7 @@ namespace XamarinTest
 				On = true ,
 			};
 			autoPageViewsCell.OnChanged += (sender, ea) => {
-				ApplicationInsights.SetAutoPageViewTrackingDisabled(!autoPageViewsCell.On);
+                CrossApplicationInsights.Current.SetAutoPageViewTrackingDisabled(!autoPageViewsCell.On);
 			};
 
 			// TODO: also update ApplicationInsights config if input field lost focus
@@ -135,7 +135,7 @@ namespace XamarinTest
 				Placeholder = "Custom server URL" 
 			};
 			serverURLCell.Completed += (sender, ea) => {
-				ApplicationInsights.SetServerUrl(serverURLCell.Text);
+                CrossApplicationInsights.Current.SetServerUrl(serverURLCell.Text);
 			};
 
 			userIDCell = new EntryCell(){ 
@@ -143,7 +143,7 @@ namespace XamarinTest
 				Placeholder = "Custom user ID"
 			};
 			userIDCell.Completed += (sender, ea) => {
-				ApplicationInsights.SetUserId(userIDCell.Text);
+                CrossApplicationInsights.Current.SetUserId(userIDCell.Text);
 			};
 		}
 
@@ -153,19 +153,19 @@ namespace XamarinTest
 			case TelemetryType.Event:
 				Dictionary<string, string> properties = new Dictionary<string, string> ();
 				properties.Add ("Xamarin Key", "Custom Property Value");
-				TelemetryManager.TrackEvent ("My custom event", properties);
+                CrossTelemetryManager.Current.TrackEvent("My custom event", properties);
 				break;
 			case TelemetryType.Metric:
-				TelemetryManager.TrackMetric ("My custom metric", 2.2);
+                CrossTelemetryManager.Current.TrackMetric("My custom metric", 2.2);
 				break;
 			case TelemetryType.Message:
-				TelemetryManager.TrackTrace ("My custom message");
+                CrossTelemetryManager.Current.TrackTrace("My custom message");
 				break;
 			case TelemetryType.PageView:
-				TelemetryManager.TrackPageView ("My custom page view");
+                CrossTelemetryManager.Current.TrackPageView("My custom page view");
 				break;
 			case TelemetryType.Session:
-				ApplicationInsights.RenewSessionWithId (new DateTime().Date.ToString());
+                CrossApplicationInsights.Current.RenewSessionWithId(new DateTime().Date.ToString());
 				break;
 			case TelemetryType.HandledException:
 				try {            

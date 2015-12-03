@@ -1,9 +1,6 @@
 ﻿using System;
-using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.WinPhone.ApplicationInsights))]
-
-namespace AI.XamarinSDK.WinPhone
+namespace AI.XamarinSDK
 {
 	public class ApplicationInsights : IApplicationInsights
 	{

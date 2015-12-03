@@ -1,6 +1,7 @@
 ﻿using System;
+using AI.XamarinSDK;
 using Xamarin.Forms;
-using AI.XamarinSDK.Abstractions;
+
 
 namespace XamarinTest
 {
@@ -18,14 +19,14 @@ namespace XamarinTest
 			string iKey = null;
 			Device.OnPlatform(
 				Android: () =>{
-					iKey = "<YOUR-ANDROID-KEY>";
+                    iKey = "<YOUR-ANDROID-KEY>";
 				},
 				iOS: () =>{
 					iKey = "<YOUR-IOS-KEY>";
 				}
 			);
-			ApplicationInsights.Setup (iKey);
-			ApplicationInsights.Start ();
+            CrossApplicationInsights.Current.Setup(iKey);
+            CrossApplicationInsights.Current.Start();
 		}
 
 		protected override void OnSleep ()

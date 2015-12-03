@@ -28,9 +28,9 @@ namespace XamarinTest.Droid
 		{
 			global::Xamarin.Forms.Platform.Resource.String.ApplicationName = global::XamarinTest.Droid.Resource.String.ApplicationName;
 			global::Xamarin.Forms.Platform.Resource.String.Hello = global::XamarinTest.Droid.Resource.String.Hello;
-			global::AI.XamarinSDK.Android.Resource.String.ApplicationName = global::XamarinTest.Droid.Resource.String.ApplicationName;
-			global::AI.XamarinSDK.Android.Resource.String.Hello = global::XamarinTest.Droid.Resource.String.Hello;
-			global::AI.XamarinSDK.Android.Resource.String.library_name = global::XamarinTest.Droid.Resource.String.library_name;
+			global::AI.XamarinSDK.Resource.String.ApplicationName = global::XamarinTest.Droid.Resource.String.ApplicationName;
+			global::AI.XamarinSDK.Resource.String.Hello = global::XamarinTest.Droid.Resource.String.Hello;
+			global::AI.XamarinSDK.Resource.String.library_name = global::XamarinTest.Droid.Resource.String.library_name;
 		}
 		
 		public partial class Attribute
