@@ -1,5 +1,7 @@
 # Application Insights for Xamarin (1.0-alpha.2)
 
+<span style="color:green">If you want to use the a version of the SDK, which doesn't have a dependency on Xamarin.Forms, please switch to</span> [**feature/remove-xamarin-forms**](https://github.com/Microsoft/ApplicationInsights-Xamarin/tree/feature/remove-xamarin-forms) *(Thanks to [xvare](https://github.com/xvare))*. However, changes on this branch have not been fully tested, yet.
+
 This project provides an Xamarin SDK for Application Insights. [Application Insights](http://azure.microsoft.com/en-us/services/application-insights/) is a service that allows developers to keep their applications available, performing, and succeeding. This SDK allows your Xamarin apps to send telemetry of various kinds (events, traces, exceptions, etc.) to the Application Insights service where your data can be visualized in the Azure Portal. Currently, we provide support for iOS and Android.
 
 ## Content
