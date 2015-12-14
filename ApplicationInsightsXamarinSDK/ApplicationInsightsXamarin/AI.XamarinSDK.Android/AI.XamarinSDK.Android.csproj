@@ -60,13 +60,17 @@
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AI.XamarinSDK.Abstractions\AI.XamarinSDK.Abstractions.csproj">
-      <Project>{5DAA7398-7822-44A5-993B-D595A6921D50}</Project>
-      <Name>AI.XamarinSDK.Abstractions</Name>
-    </ProjectReference>
     <ProjectReference Include="..\AI.XamarinSDK.AndroidBindings\AI.XamarinSDK.AndroidBindings.csproj">
       <Project>{E1779521-C094-4CA0-ACFA-B26A1B2B80F3}</Project>
       <Name>AI.XamarinSDK.AndroidBindings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AI.XamarinSDK\AI.XamarinSDK.csproj">
+      <Project>{3EED7498-1CA1-4B9B-8D34-5E0455D0DECF}</Project>
+      <Name>AI.XamarinSDK</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AI.XamarinSDK.Abstractions\AI.XamarinSDK.Abstractions.csproj">
+      <Project>{5DAA7398-7822-44A5-993B-D595A6921D50}</Project>
+      <Name>AI.XamarinSDK.Abstractions</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

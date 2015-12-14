@@ -48,5 +48,9 @@
       <Project>{5DAA7398-7822-44A5-993B-D595A6921D50}</Project>
       <Name>AI.XamarinSDK.Abstractions</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AI.XamarinSDK\AI.XamarinSDK.csproj">
+      <Project>{3EED7498-1CA1-4B9B-8D34-5E0455D0DECF}</Project>
+      <Name>AI.XamarinSDK</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
