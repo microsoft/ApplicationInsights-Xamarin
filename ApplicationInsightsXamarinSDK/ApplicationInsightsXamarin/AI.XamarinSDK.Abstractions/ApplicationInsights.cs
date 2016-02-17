@@ -58,17 +58,6 @@ namespace AI.XamarinSDK.Abstractions
 		}
 
 		/// <summary>
-		/// Configures the auto collection of app crashes. This method should be called in between setup() and start()
-		/// </summary>
-		/// <param name="crashManagerDisabled">If set to <c>true</c> the crash manager will be disabled. Default is <c>false</c>.</param>
-		public static void SetCrashManagerDisabled (bool crashManagerDisabled)
-		{
-			if (Utils.IsSupportedPlatform()) {
-				target.SetCrashManagerDisabled (crashManagerDisabled);
-			}
-		}
-
-		/// <summary>
 		/// Configures the tracking of custom events. This method should be called in between setup() and start()
 		/// </summary>
 		/// <param name="telemetryManagerDisabled">If set to <c>true</c> the telemetry manager disabled. Default is <c>false</c>.</param>

@@ -117,17 +117,5 @@ namespace AI.XamarinSDK.Abstractions
 				DependencyService.Get<ITelemetryManager>().TrackPageView(pageName, duration, properties);
 			}
 		}
-
-		/// <summary>
-		/// Tracks a managed handled/unhandled exception
-		/// </summary>
-		/// <param name="exception">The exception object that should be tracked</param>
-		/// <param name="handled">If set to <c>true</c> the exception has been handled by the developer.</param>
-		public static void TrackManagedException (Exception  exception, bool handled)
-		{
-			if (Utils.IsSupportedPlatform ()) {
-				DependencyService.Get<ITelemetryManager>().TrackManagedException(exception, handled);
-			}
-		}
 	}
 }

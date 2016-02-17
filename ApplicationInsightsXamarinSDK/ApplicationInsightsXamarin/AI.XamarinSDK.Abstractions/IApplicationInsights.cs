@@ -12,8 +12,6 @@ namespace AI.XamarinSDK.Abstractions
 
 		void SetServerUrl (string serverUrl);
 
-		void SetCrashManagerDisabled (bool crashManagerDisabled);
-
 		void SetTelemetryManagerDisabled (bool telemetryManagerDisabled);
 
 		void SetAutoPageViewTrackingDisabled (bool autoPageViewTrackingDisabled);
