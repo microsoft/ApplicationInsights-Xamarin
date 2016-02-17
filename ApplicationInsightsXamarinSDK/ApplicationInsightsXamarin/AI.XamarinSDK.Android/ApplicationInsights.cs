@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android;
 using Android.Runtime;
 using Android.App;
@@ -7,38 +8,34 @@ using Xamarin.Forms;
 using AI.XamarinSDK.Abstractions;
 
 [assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.ApplicationInsights))]
-namespace AI.XamarinSDK.Android
-{
+namespace AI.XamarinSDK.Android  {
+	
 	[Preserve(AllMembers=true)]
 	public class ApplicationInsights : Java.Lang.Object, IApplicationInsights {
 
 		public ApplicationInsights (){}
 
-		public void Setup(string instrumentationKey)
-		{
+		public void Setup(string instrumentationKey) {
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Setup (((Activity)Forms.Context).Application, ((Activity)Forms.Context).Application, instrumentationKey);
 		}
 
-		public void Start ()
-		{
-			registerUnhandledExceptionHandler ();
+		public void Start () {
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Start ();
 		}
 
-		public string GetServerUrl ()
-		{
-			return Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Config.EndpointUrl;
+		public string GetServerUrl () {
+			return Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Configuration.EndpointUrl;
 		}
 
-		public void SetServerUrl (string serverUrl)
-		{
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Config.EndpointUrl = serverUrl;
+		public void SetServerUrl (string serverUrl)	{
+			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Configuration.EndpointUrl = serverUrl;
 		}
+			
+		public void SetTelemetryManagerDisabled (bool telemetryManagerDisabled)	{
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.SetTelemetryDisabled(telemetryManagerDisabled);
 		}
 
-		public void SetAutoPageViewTrackingDisabled (bool autoPageViewTrackingDisabled)
-		{
+		public void SetAutoPageViewTrackingDisabled (bool autoPageViewTrackingDisabled)	{
 			if (autoPageViewTrackingDisabled) {
 				Com.Microsoft.Applicationinsights.Library.ApplicationInsights.DisableAutoPageViewTracking();
 			} else {
@@ -55,31 +52,31 @@ namespace AI.XamarinSDK.Android
 			}
 		}
 
-		public void SetUserId (string userId)
-		{
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.SetUserId (userId);
+		public void SetAuthUserId (string authUserId) {
+			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.TelemetryContext.AuthenticatedUserId = authUserId;
 		}
 
-		public void StartNewSession (){
+		public void SetCommonProperties(Dictionary<string, string> properties) {
+			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.CommonProperties = properties;
 		}
 
-		public void SetSessionExpirationTime (int appBackgroundTime)
-		{
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Config.SessionIntervalMs = appBackgroundTime;
+		public void StartNewSession () {
+			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.RenewSession (null);
 		}
 
-		public void RenewSessionWithId (string sessionId)
-		{
+		public void SetSessionExpirationTime (int appBackgroundTime) {
+			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Configuration.SessionIntervalMs = appBackgroundTime;
+		}
+
+		public void RenewSessionWithId (string sessionId) {
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.RenewSession (sessionId);
 		}
 
-		public bool GetDebugLogEnabled() 
-		{
+		public bool GetDebugLogEnabled() {
 			return Com.Microsoft.Applicationinsights.Library.ApplicationInsights.DeveloperMode;
 		}
 
-		public void SetDebugLogEnabled(bool debugLogEnabled) 
-		{
+		public void SetDebugLogEnabled(bool debugLogEnabled) {
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.DeveloperMode = debugLogEnabled;
 		}
 	}

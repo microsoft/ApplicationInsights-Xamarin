@@ -3,8 +3,10 @@ using Foundation;
 using ObjCRuntime;
 using AI.XamarinSDK;
 
-namespace AI.XamarinSDK.iOS
-{
+namespace AI.XamarinSDK.iOS {
+	// This declares the callback signature for the block:
+	delegate void UserConfigurationBlock (MSAIUser  user);
+
 	// @interface MSAIApplicationInsights : NSObject
 	[BaseType (typeof(NSObject))]
 	interface MSAIApplicationInsights
@@ -44,10 +46,10 @@ namespace AI.XamarinSDK.iOS
 		[Export ("setAutoSessionManagementDisabled:")]
 		void SetAutoSessionManagementDisabled (bool autoSessionManagementDisabled);
 
-		// +(void)setUserId:(NSString *)userId;
+		// + (void)setUserWithConfigurationBlock:(void (^)(MSAIUser *user))userConfigurationBlock;
 		[Static]
-		[Export ("setUserId:")]
-		void SetUserId (string userId);
+		[Export ("setUserWithConfigurationBlock:")]
+		void SetUser (UserConfigurationBlock block);
 
 		// +(void)startNewSession;
 		[Static]
@@ -73,6 +75,11 @@ namespace AI.XamarinSDK.iOS
 	[BaseType (typeof(NSObject))]
 	interface MSAITelemetryManager
 	{
+		// +(void)trackPageView:(NSString *)pageName duration:(long)duration properties:(NSDictionary *)properties;
+		[Static]
+		[Export ("setCommonProperties:")]
+		void SetCommonProperties (NSDictionary commonProperties);
+
 		// +(void)trackEventWithName:(NSString *)eventName;
 		[Static]
 		[Export ("trackEventWithName:")]
@@ -117,6 +124,14 @@ namespace AI.XamarinSDK.iOS
 		[Static]
 		[Export ("trackPageView:duration:properties:")]
 		void TrackPageView (string pageName, nint duration, NSDictionary properties);
+	}
 
+	// @interface MSAIUser : NSObject
+	[BaseType (typeof(NSObject))]
+	interface MSAIUser
+	{
+		// @property (nonatomic, copy) NSString *authUserId;
+		[Export ("setAuthUserId:")]
+		void SetAuthUserId (string authUserId);
 	}
 }

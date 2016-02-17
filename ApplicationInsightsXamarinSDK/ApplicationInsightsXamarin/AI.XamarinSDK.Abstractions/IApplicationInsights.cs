@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AI.XamarinSDK.Abstractions
 {
@@ -18,7 +19,9 @@ namespace AI.XamarinSDK.Abstractions
 
 		void SetAutoSessionManagementDisabled (bool autoSessionManagementDisabled);
 
-		void SetUserId (string userId);
+		void SetAuthUserId (string authUserId);
+
+		void SetCommonProperties (Dictionary<string, string> properties);
 
 		void StartNewSession ();
 
