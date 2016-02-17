@@ -10,9 +10,7 @@ using AI.XamarinSDK.Abstractions;
 namespace AI.XamarinSDK.Android
 {
 	[Preserve(AllMembers=true)]
-	public class ApplicationInsights : Java.Lang.Object, IApplicationInsights
-	{
-		private static bool _crashManagerDisabled = false;
+	public class ApplicationInsights : Java.Lang.Object, IApplicationInsights {
 
 		public ApplicationInsights (){}
 
@@ -36,15 +34,6 @@ namespace AI.XamarinSDK.Android
 		{
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.Config.EndpointUrl = serverUrl;
 		}
-
-		public void  SetCrashManagerDisabled (bool crashManagerDisabled)
-		{
-			_crashManagerDisabled = crashManagerDisabled;
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.SetExceptionTrackingDisabled(crashManagerDisabled);
-		}
-
-		public void SetTelemetryManagerDisabled (bool telemetryManagerDisabled)
-		{
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.SetTelemetryDisabled(telemetryManagerDisabled);
 		}
 
@@ -92,22 +81,6 @@ namespace AI.XamarinSDK.Android
 		public void SetDebugLogEnabled(bool debugLogEnabled) 
 		{
 			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.DeveloperMode = debugLogEnabled;
-		}
-
-		private void registerUnhandledExceptionHandler()
-		{
-			Com.Microsoft.Applicationinsights.Library.ApplicationInsights.SetExceptionTrackingDisabled (true);
-			if (!_crashManagerDisabled) {
-				AndroidEnvironment.UnhandledExceptionRaiser += OnUnhandledExceptionRaiser;
-			}
-		}
-
-		public void OnUnhandledExceptionRaiser(object sender, RaiseThrowableEventArgs e)
-		{
-			Exception managedException = (Exception)e.Exception;
-			if (managedException != null) {
-				AI.XamarinSDK.Abstractions.TelemetryManager.TrackManagedException (managedException, false);
-			}	
 		}
 	}
 }
