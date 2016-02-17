@@ -33,8 +33,12 @@ namespace XamarinTest
 			Title = "Xamarin SDK";
 			NavigationPage.SetHasNavigationBar (this, true);
 
-			// Set up page
+			// Set up common properties
+			Dictionary<string, string> commonProperties = new Dictionary<string, string> ();
+			commonProperties.Add ("Common Key", "Common Property Value");
+			ApplicationInsights.SetCommonProperties (commonProperties);
 
+			// Set up page
 			tableView = new TableView {
 				Intent = TableIntent.Settings,
 				Root = new TableRoot {
@@ -112,7 +116,7 @@ namespace XamarinTest
 				Placeholder = "Custom user ID"
 			};
 			userIDCell.Completed += (sender, ea) => {
-				ApplicationInsights.SetUserId(userIDCell.Text);
+				ApplicationInsights.SetAuthUserId(userIDCell.Text);
 			};
 		}
 
@@ -131,7 +135,7 @@ namespace XamarinTest
 				TelemetryManager.TrackTrace ("My custom message");
 				break;
 			case TelemetryType.PageView:
-				TelemetryManager.TrackPageView ("My custom page view");
+				TelemetryManager.TrackPageView ("My custom page view", 100);
 				break;
 			case TelemetryType.Session:
 				ApplicationInsights.RenewSessionWithId (new DateTime().Date.ToString());
