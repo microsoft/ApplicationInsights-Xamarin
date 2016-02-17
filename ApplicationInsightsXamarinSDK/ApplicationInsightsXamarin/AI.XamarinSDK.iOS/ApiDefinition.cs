@@ -29,11 +29,6 @@ namespace AI.XamarinSDK.iOS
 		[Export ("serverURL", ArgumentSemantic.Strong)]
 		string ServerURL { get; set; }
 
-		// +(void)setCrashManagerDisabled:(BOOL)crashManagerDisabled;
-		[Static]
-		[Export ("setCrashManagerDisabled:")]
-		void SetCrashManagerDisabled (bool crashManagerDisabled);
-
 		// +(void)setTelemetryManagerDisabled:(BOOL)telemetryManagerDisabled;
 		[Static]
 		[Export ("setTelemetryManagerDisabled:")]
@@ -123,9 +118,5 @@ namespace AI.XamarinSDK.iOS
 		[Export ("trackPageView:duration:properties:")]
 		void TrackPageView (string pageName, nint duration, NSDictionary properties);
 
-		// +(void)trackManagedExceptionWithType:(NSString *)type message:(NSString *)message stacktrace:(NSString *)stacktrace handled:(BOOL)handled;
-		[Static]
-		[Export ("trackManagedExceptionWithType:message:stacktrace:handled:")]
-		void TrackManagedException (string type, string message, string stacktrace, bool handled);
 	}
 }

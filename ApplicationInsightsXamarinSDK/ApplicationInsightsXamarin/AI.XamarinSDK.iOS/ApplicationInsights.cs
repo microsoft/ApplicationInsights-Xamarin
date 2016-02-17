@@ -12,18 +12,7 @@ using AI.XamarinSDK.Abstractions;
 namespace AI.XamarinSDK.iOS
 {
 	[Preserve(AllMembers=true)]
-	public class ApplicationInsights : IApplicationInsights
-	{
-
-		[DllImport ("libc")]
-		private static extern int sigaction (Signal sig, IntPtr act, IntPtr oact);
-		
-		enum Signal {
-			SIGBUS = 10,
-			SIGSEGV = 11
-		}
-
-		private static bool _crashManagerDisabled = false;
+	public class ApplicationInsights : IApplicationInsights {
 
 		public ApplicationInsights(){}
 
@@ -37,19 +26,8 @@ namespace AI.XamarinSDK.iOS
 			MSAIApplicationInsights.SetAutoSessionManagementDisabled (false);
 		}
 
-		public void Start ()
-		{
-			IntPtr sigbus = Marshal.AllocHGlobal (512);
-			IntPtr sigsegv = Marshal.AllocHGlobal (512);
-
-			// Store Mono SIGSEGV and SIGBUS handlers
-			sigaction (Signal.SIGBUS, IntPtr.Zero, sigbus);
-			sigaction (Signal.SIGSEGV, IntPtr.Zero, sigsegv);
-
+		public void Start () {
 			MSAIApplicationInsights.Start ();
-			registerUnhandledExceptionHandler ();         
-			sigaction (Signal.SIGBUS, sigbus, IntPtr.Zero);
-			sigaction (Signal.SIGSEGV, sigsegv, IntPtr.Zero);
 		}
 
 		public string GetServerUrl ()
@@ -61,14 +39,6 @@ namespace AI.XamarinSDK.iOS
 			MSAIApplicationInsights.SharedInstance.ServerURL = serverUrl; 
 		}
 
-		public void  SetCrashManagerDisabled (bool crashManagerDisabled)
-		{
-			_crashManagerDisabled = crashManagerDisabled;
-			MSAIApplicationInsights.SetCrashManagerDisabled (crashManagerDisabled);
-		}
-
-		public void SetTelemetryManagerDisabled (bool telemetryManagerDisabled)
-		{
 			MSAIApplicationInsights.SetTelemetryManagerDisabled(telemetryManagerDisabled);
 		}
 
@@ -109,22 +79,6 @@ namespace AI.XamarinSDK.iOS
 		public void SetDebugLogEnabled(bool debugLogEnabled) 
 		{
 			MSAIApplicationInsights.SharedInstance.DebugLogEnabled = debugLogEnabled; 
-		}
-
-		private void registerUnhandledExceptionHandler()
-		{
-			if (!_crashManagerDisabled) {
-				System.AppDomain.CurrentDomain.UnhandledException += OnUnhandledException;
-			}
-		}
-
-		public void OnUnhandledException(object e, System.UnhandledExceptionEventArgs args)
-		{
-			Exception managedException = (Exception) args.ExceptionObject;
-			Console.WriteLine (managedException.Source);
-			if (managedException != null && !managedException.Source.Equals("Xamarin.iOS")) {
-				AI.XamarinSDK.Abstractions.TelemetryManager.TrackManagedException (managedException, false);
-			}	
 		}
 	}
 }
