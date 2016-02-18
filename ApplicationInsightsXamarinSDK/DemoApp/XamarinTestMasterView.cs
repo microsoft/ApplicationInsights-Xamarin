@@ -33,11 +33,6 @@ namespace XamarinTest
 			Title = "Xamarin SDK";
 			NavigationPage.SetHasNavigationBar (this, true);
 
-			// Set up common properties
-			Dictionary<string, string> commonProperties = new Dictionary<string, string> ();
-			commonProperties.Add ("Common Key", "Common Property Value");
-			ApplicationInsights.SetCommonProperties (commonProperties);
-
 			// Set up page
 			tableView = new TableView {
 				Intent = TableIntent.Settings,
