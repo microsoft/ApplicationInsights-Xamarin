@@ -72,8 +72,6 @@
     </Reference>
     <Reference Include="FormsViewGroup">
       <HintPath>..\..\packages\Xamarin.Forms.2.0.1.6505\lib\MonoAndroid10\FormsViewGroup.dll</HintPath>
-    <Compile Include="DummyLibraryAndroid.cs" />
-    <Compile Include="DummyLibraryAndroid.cs" />
       <Private>False</Private>
     </Reference>
     <Reference Include="Xamarin.Forms.Core">
@@ -99,10 +97,6 @@
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
     <None Include="packages.config" />
-    <ProjectReference Include="..\DummyLibrary.Android\DummyLibrary.Android.csproj">
-      <Project>{68E5289F-6819-4757-812B-6D7AAF78FD7B}</Project>
-      <Name>DummyLibrary.Android</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\layout\" />

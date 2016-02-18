@@ -138,10 +138,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\ApplicationInsightsXamarin\AI.XamarinSDK.iOS\AI.XamarinSDK.iOS.csproj">
       <Project>{4B57344D-C4B3-44F8-8E15-CC5B3AF1CC24}</Project>
-    <ProjectReference Include="..\DummyLibrary.iOS\DummyLibrary.iOS.csproj">
-      <Project>{CCA3EAB7-9B83-4F48-9CBF-CA3155A5969F}</Project>
-      <Name>DummyLibrary.iOS</Name>
-    </ProjectReference>
       <Name>AI.XamarinSDK.iOS</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\ApplicationInsightsXamarin\AI.XamarinSDK.Abstractions\AI.XamarinSDK.Abstractions.csproj">
