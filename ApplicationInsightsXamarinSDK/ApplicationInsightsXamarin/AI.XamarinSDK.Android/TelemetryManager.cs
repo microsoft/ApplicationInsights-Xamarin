@@ -7,67 +7,79 @@ using System.Collections.Generic;
 using Com.Microsoft.Applicationinsights.Library;
 using AI.XamarinSDK.Abstractions;
 
-[assembly: Xamarin.Forms.Dependency (typeof (AI.XamarinSDK.Android.TelemetryManager))]
+[assembly: Xamarin.Forms.Dependency(typeof(AI.XamarinSDK.Android.TelemetryManager))]
 namespace AI.XamarinSDK.Android
 {
-	[Preserve(AllMembers=true)]
+	[Preserve(AllMembers = true)]
 	public class TelemetryManager : Java.Lang.Object, ITelemetryManager
 	{
 
-		public TelemetryManager(){}
-
-		public void TrackEvent (string eventName)
+		public TelemetryManager()
 		{
-			TelemetryClient.Instance.TrackEvent (eventName);
 		}
 
-		public void TrackEvent (string eventName, Dictionary<string, string> properties)
+		public void TrackEvent(string eventName)
 		{
-			TelemetryClient.Instance.TrackEvent (eventName, properties);
+			TelemetryClient.Instance.TrackEvent(eventName);
 		}
 
-		public void TrackTrace (string message)
+		public void TrackEvent(string eventName, Dictionary<string, string> properties)
 		{
-			TelemetryClient.Instance.TrackTrace (message);
+			if (properties != null)
+				TelemetryClient.Instance.TrackEvent(eventName, properties);
+			else
+				TelemetryClient.Instance.TrackEvent(eventName);
 		}
 
-		public void TrackTrace (string message, Dictionary<string, string> properties)
+		public void TrackTrace(string message)
 		{
-			TelemetryClient.Instance.TrackTrace (message, properties);
+			TelemetryClient.Instance.TrackTrace(message);
 		}
 
-		public void TrackMetric (string metricName, double value)
+		public void TrackTrace(string message, Dictionary<string, string> properties)
 		{
-			TelemetryClient.Instance.TrackMetric (metricName, value);
+			if (properties != null)
+				TelemetryClient.Instance.TrackTrace(message, properties);
+			else
+				TelemetryClient.Instance.TrackTrace(message);
 		}
 
-		public void TrackMetric (string metricName, double value, Dictionary<string, string> properties)
+		public void TrackMetric(string metricName, double value)
 		{
-			TelemetryClient.Instance.TrackMetric (metricName, value);
+			TelemetryClient.Instance.TrackMetric(metricName, value);
 		}
 
-		public void TrackPageView (string pageName)
+		public void TrackMetric(string metricName, double value, Dictionary<string, string> properties)
 		{
-			TelemetryClient.Instance.TrackPageView (pageName);
+			TelemetryClient.Instance.TrackMetric(metricName, value);
 		}
 
-		public void TrackPageView (string pageName, int duration)
+		public void TrackPageView(string pageName)
 		{
-			TelemetryClient.Instance.TrackPageView (pageName);
+			TelemetryClient.Instance.TrackPageView(pageName);
 		}
 
-		public void TrackPageView (string pageName, int duration, Dictionary<string, string> properties)
+		public void TrackPageView(string pageName, int duration)
 		{
-			TelemetryClient.Instance.TrackPageView (pageName, properties);
+			TelemetryClient.Instance.TrackPageView(pageName);
 		}
 
-		public void TrackManagedException (Exception  exception, bool handled)
+		public void TrackPageView(string pageName, int duration, Dictionary<string, string> properties)
 		{
-			if (exception != null) {
-				string type = exception.GetType ().Name;
-				string stacktrace = exception.StackTrace;
+			if (properties != null)
+				TelemetryClient.Instance.TrackPageView(pageName, properties);
+			else
+				TelemetryClient.Instance.TrackPageView(pageName);
+		}
+
+		public void TrackManagedException(Exception  exception, bool handled)
+		{
+			if (exception != null)
+			{
+				string type = exception.GetType().Name;
+				string stacktrace = exception.StackTrace ?? string.Empty;
 				string message = exception.Message;
-				TelemetryClient.Instance.TrackManagedException (type, message, stacktrace, handled);
+				TelemetryClient.Instance.TrackManagedException(type, message, stacktrace, handled);
 			}	
 		}
 
