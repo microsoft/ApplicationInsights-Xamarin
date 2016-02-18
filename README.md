@@ -1,6 +1,18 @@
-# Application Insights for Xamarin (1.0-alpha.2)
+# Application Insights for Xamarin.Forms (1.0-alpha.3)
+
+<span style="color:green">If you want to use the a version of the SDK, which doesn't have a dependency on Xamarin.Forms, please switch to</span> [**feature/remove-xamarin-forms**](https://github.com/Microsoft/ApplicationInsights-Xamarin/tree/feature/remove-xamarin-forms) *(Thanks to [xvare](https://github.com/xvare))*. However, changes on this branch have not been fully tested, yet.
 
 This project provides an Xamarin SDK for Application Insights. [Application Insights](http://azure.microsoft.com/en-us/services/application-insights/) is a service that allows developers to keep their applications available, performing, and succeeding. This SDK allows your Xamarin apps to send telemetry of various kinds (events, traces, exceptions, etc.) to the Application Insights service where your data can be visualized in the Azure Portal. Currently, we provide support for iOS and Android.
+
+##Breaking Changes!
+
+Version 1.0-alpha.3 of the Application Insights SDK for Xamarin.Forms comes with two major changes:
+
+Crash Reporting and the API to send handled exceptions have been removed from the SDK. In addition, the Application Insights SDK for Xamarin.Forms is now deprecated.
+
+The reason for this is that [HockeyApp](http://hockeyapp.net/releases) is now our major offering for mobile and cross-plattform crash reporting, beta distribution and user feedback. We are focusing all our efforts on enhancing the HockeySDK and adding telemetry features to make HockeyApp the best platform to build awesome apps. We've launched [HockeyApp Preseason](http://hockeyapp.net/blog/2016/02/02/introducing-preseason.html) so you can try all the new bits yourself, including User Metrics.
+
+We apologize for any inconvenience and please feel free to [contact us](http://support.hockeyapp.net/) at any time.
 
 ## Content
 1. [Requirements](#1)
@@ -10,21 +22,19 @@ This project provides an Xamarin SDK for Application Insights. [Application Insi
 5. [Developer Mode](#5)
 6. [Basic Usage](#6)
 7. [Automatic Collection of Lifecycle Events](#7)
-8. [Exception Handling (Crashes)](#8)
-9. [Additional configuration](#9)
-10. [Integrate plugin sources](#10)
-11. [Troubleshooting](#11)
-12. [Contact](#12)
+8. [Additional configuration](#8)
+9. [Integrate plugin sources](#9)
+10. [Troubleshooting](#10)
+11. [Contact](#11)
 
 
 ## <a name="1"></a> 1. Requirements
-The minimum API level to use the Application Insights Xamarin SDK in your **Android** app is 9. However, automatic collection of lifecycle-events requires API level 15 and up (Ice Cream Sandwich+). For **iOS** builds the minimum iOS version is 6. 
+The minimum API level to use the Application Insights SDK for Xamarin.Forms in your **Android** app is 9. However, automatic collection of lifecycle-events requires API level 15 and up (Ice Cream Sandwich+). For **iOS** builds the minimum iOS version is 6. Furthermore, the SDK has a dependency on 2.0.1.6505.
 
 The SDK has been developed and tested with the following framework versions:
 
-* Mono Framework MDK 4.0.2.5
-* Xamarin.Android 5.1.4.16
-* Xamarin.iOS 8.10.3.2
+* Xamarin.Android 6.0.1.10
+* Xamarin.iOS 9.4.1.25
 
 Older versions might work, but haven't been tested.
 
@@ -32,16 +42,19 @@ Older versions might work, but haven't been tested.
 
 Also see changes in [older versions](NOTES.md).
 
-* Add NuGet support
-* Prevent linker from stripping SDK assemblies (release builds on iOS)
-* Align public interface (remove additional parameters of setup()-method on Android)
-* Add license and release notes
+* Update underlying SDKs
+  * Application Insights SDK for iOS 1.0-beta.7
+  * Application Insights SDK for Android 1.0-beta.9
+* Remove crash/exception reporting APIs
+* Add APIs for setting common properties
+* Remove API to set the `userID` field, add API to set the `authUserID` (fixes user statistics)
+* Minor bugfixes
 
 
 ##<a name="3"></a> 3. Breaking Changes & deprecations
 
-* `Using` statement changed: `using AI.XamarinSDK.Abstractions;`
-* `setup()`-method for Android changed: As on iOS this method only takes the instrumentation key as parameter
+* Remove crash reporting and APIs for exception tracking
+* `ApplicationInsights.SetUserId(string)` changed to `ApplicationInsights.SetAuthUserId(string)`
 
 ##<a name="4"></a> 4. Setup
 
@@ -49,7 +62,7 @@ We're assuming you are using Xamarin Studio to create your apps.
 
 ### 4.1 **Add SDK to your Xamarin solution**
 
-Clone the repository in order to get the SDK sources. It contains 2 subfolder, one for a demo project (*DemoApp*)  and one for the SDK (*ApplicationInsightsXamarin*).
+Clone the repository in order to get the SDK sources. It contains 3 subfolder, one for a demo project (*DemoApp*), one for a local NuGet package (*NuGet*), and another one for the SDK sources (*ApplicationInsightsXamarin*).
 
 There are several ways to integrate the Application Insights Xamarin SDK into your app. The recommend way is to use the NuGet-package. However, you can also integrate the SDK by importing the sources.
 
@@ -58,7 +71,7 @@ There are several ways to integrate the Application Insights Xamarin SDK into yo
 3. [Configure a local package source](http://developer.xamarin.com/guides/cross-platform/application_fundamentals/nuget_walkthrough/) and let it point to 
 *ApplicationInsightsXamarin/NuGet*
 4. Choose the local package source in the sources dropdown
-4. Check the **Show pre-release packages** and select **ApplicationInsights SDK for Xamarin-Forms**
+4. Check the **Show pre-release packages** and select **ApplicationInsights SDK for Xamarin.Forms**
 5. Click the **Add Package** button
 6. Repeat those steps for all other platform projects
 
@@ -94,7 +107,7 @@ Please see the "[Getting an Application Insights Instrumentation Key](https://gi
 		AI.XamarinSDK.iOS.ApplicationInsights.Init();
 		```
 		
-4. Replace `<YOUR_IKEY_HERE>`with the instrumentation key of your app.
+4. Replace `<YOUR_IKEY_HERE>` with the instrumentation key of your app.
 	
 **Congratulation, now you're all set to use Application Insights! See [Usage](#6) on how to use Application Insights.**
 
@@ -110,7 +123,7 @@ ApplicationInsights.SetDebugLogEnabled(false);
 
 ## <a name="6"></a> 6. Basic Usage  ##
 
-The ```TelemetryManager``` provides various class methods to track events, traces, metrics page views, and handled exceptions. The class should only be used after *ApplicationInsights* has been [set up & started](#4).
+The ```TelemetryManager``` provides various class methods to track events, traces, metrics, and page views. The class should only be used after *ApplicationInsights* has been [set up & started](#4).
 
 ```csharp
 //track an event
@@ -124,13 +137,6 @@ TelemetryManager.TrackTrace ("My custom message");
 
 //track a metric
 TelemetryManager.TrackMetric ("My custom metric", 2.2);
-
-//track handled exceptions
-try {            
-	int value = 1 / int.Parse("0");
-}catch (Exception e){ 
-	TelemetryManager.TrackManagedException (e, true);
-}
 ```
 
 Some data types allow for custom properties.
@@ -166,29 +172,11 @@ ApplicationInsights.SetAutoSessionManagementDisabled(true);
 //before ApplicationInsights.Start()
 ```
 
-## <a name="8"></a>8. Exception Handling (Crashes)
-
-The Application Insights Xamarin SDK enables crash reporting **per default**. Unhandled exceptions from managed (C# code) & unmanaged code (Java / native library) will be sent to the server as soon as possible: On Android this mighthappen even before the app crashes. For iOS builds unhandled exceptions will be reported right after the next app start.
-
-This feature can be disabled as follows:
-
-```java
-//after ApplicationInsights.Setup(...);
-ApplicationInsights.SetCrashManagerDisabled(true);
-//before ApplicationInsights.Start()
-```
-
-To get more meaningful crash reports (File name and line numbers) you can change the **Debug Informations** level of your plattform specific app projects.
-
-1. Right click on your Android or iOS app project in the Solution panel
-2. Go to *Options* - *Compiler*
-3. Set *Debug Informations* to `Full`. Make sure you have selected the right target (Debug/Release) before you check the results.
-
-## <a name="9"></a>9. Additional Configuration
+## <a name="8"></a>8. Additional Configuration
 
 To configure Application Insights according to your needs, there are some other options listed here
 
-### 9.1 Set User Session Time
+### 8.1 Set User Session Time
 
 The default time the users entering the app counts as a new session is 20s. If you want to set it to a different value, do the following:
 
@@ -197,7 +185,7 @@ The default time the users entering the app counts as a new session is 20s. If y
 ApplicationInsights.SetSessionExpirationTime(30000)
 ```
 
-### 9.2 Set Different Endpoint
+### 8.2 Set Different Endpoint
 
 You can also configure a different server endpoint for the SDK if needed:
 
@@ -205,17 +193,30 @@ You can also configure a different server endpoint for the SDK if needed:
 ApplicationInsights.SetServerUrl("https://myServer.com/track");
 ```
 
-### 9.3 Override sessionID and userID
+### 8.3 Override sessionID and ID of authenticated users
 
 Application Insights manages IDs for a session and for individual users for you. If you want to override the generated IDs with your own, it can be done like this:
 
-```java
-ApplicationInsights.SetUserId("User371263");
+```csharp
+ApplicationInsights.SetAuthUserId("User371263");
 ApplicationInsights.RenewSession("New session ID");
 ```
 [**NOTE**] If you want to manage sessions manually, please disable [Automatic Collection of Lifecycle Events](#7).
 
-##<a name="10"></a> 10. Integrate plugin sources
+### 8.4 Setting common properties
+
+Common properties are key-value-pairs that are added to all telemetry events, that are sent out.
+
+```csharp
+// Set common properties
+Dictionary<string, string> commonProperties = new Dictionary<string, string> ();
+commonProperties.Add ("Common Key", "Common Property Value");
+ApplicationInsights.SetCommonProperties (commonProperties);
+```
+
+[**NOTE**] Depending on the platform your are running on, the common property API behaves is slightly different. While it is possible to set those properties at any time if your app is running on iOS, you can only set common properties on Android between the `Setup()` and `Start()` call (otherwise the call will just be ignored).
+
+##<a name="9"></a> 9. Integrate plugin sources
 
 There are several ways to integrate the Application Insights Xamarin SDK into your app. The recommend way is to use the NuGet-package. However, you can also integrate the SDK by importing the sources:
 
@@ -246,7 +247,7 @@ There are several ways to integrate the Application Insights Xamarin SDK into yo
 	
 	4. Follow instructions in [4.2](#4)..
 		
-##<a name="11"></a> 11. Troubleshooting
+##<a name="10"></a> 10. Troubleshooting
 
 ### SDK references broken
 
@@ -259,6 +260,7 @@ If you plan to support *iOS* you currently need to make a direct call to the iOS
 ```csharp
 AI.XamarinSDK.iOS.ApplicationInsights.Init();
 ``` 
-##<a name="12"></a> 12. Contact
 
-If you have further questions or are running into trouble that cannot be resolved by any of the steps here, feel free to contact us at [AppInsights-Xamarin@microsoft.com](mailto:AppInsights-Xamarin@microsoft.com)
+##<a id="11"></a> 11. Contact
+
+If you have further questions or are running into trouble that cannot be resolved by any of the steps here, feel free to open a GitHub issue here or contact us at [support@hockeyapp.net](mailto:support@hockeyapp.net)

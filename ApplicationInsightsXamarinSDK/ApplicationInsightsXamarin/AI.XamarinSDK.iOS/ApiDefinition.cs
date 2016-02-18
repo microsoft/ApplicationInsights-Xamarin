@@ -3,8 +3,10 @@ using Foundation;
 using ObjCRuntime;
 using AI.XamarinSDK;
 
-namespace AI.XamarinSDK.iOS
-{
+namespace AI.XamarinSDK.iOS {
+	// This declares the callback signature for the block:
+	delegate void UserConfigurationBlock (MSAIUser  user);
+
 	// @interface MSAIApplicationInsights : NSObject
 	[BaseType (typeof(NSObject))]
 	interface MSAIApplicationInsights
@@ -29,11 +31,6 @@ namespace AI.XamarinSDK.iOS
 		[Export ("serverURL", ArgumentSemantic.Strong)]
 		string ServerURL { get; set; }
 
-		// +(void)setCrashManagerDisabled:(BOOL)crashManagerDisabled;
-		[Static]
-		[Export ("setCrashManagerDisabled:")]
-		void SetCrashManagerDisabled (bool crashManagerDisabled);
-
 		// +(void)setTelemetryManagerDisabled:(BOOL)telemetryManagerDisabled;
 		[Static]
 		[Export ("setTelemetryManagerDisabled:")]
@@ -49,10 +46,10 @@ namespace AI.XamarinSDK.iOS
 		[Export ("setAutoSessionManagementDisabled:")]
 		void SetAutoSessionManagementDisabled (bool autoSessionManagementDisabled);
 
-		// +(void)setUserId:(NSString *)userId;
+		// + (void)setUserWithConfigurationBlock:(void (^)(MSAIUser *user))userConfigurationBlock;
 		[Static]
-		[Export ("setUserId:")]
-		void SetUserId (string userId);
+		[Export ("setUserWithConfigurationBlock:")]
+		void SetUser (UserConfigurationBlock block);
 
 		// +(void)startNewSession;
 		[Static]
@@ -78,6 +75,11 @@ namespace AI.XamarinSDK.iOS
 	[BaseType (typeof(NSObject))]
 	interface MSAITelemetryManager
 	{
+		// +(void)trackPageView:(NSString *)pageName duration:(long)duration properties:(NSDictionary *)properties;
+		[Static]
+		[Export ("setCommonProperties:")]
+		void SetCommonProperties (NSDictionary commonProperties);
+
 		// +(void)trackEventWithName:(NSString *)eventName;
 		[Static]
 		[Export ("trackEventWithName:")]
@@ -122,10 +124,14 @@ namespace AI.XamarinSDK.iOS
 		[Static]
 		[Export ("trackPageView:duration:properties:")]
 		void TrackPageView (string pageName, nint duration, NSDictionary properties);
+	}
 
-		// +(void)trackManagedExceptionWithType:(NSString *)type message:(NSString *)message stacktrace:(NSString *)stacktrace handled:(BOOL)handled;
-		[Static]
-		[Export ("trackManagedExceptionWithType:message:stacktrace:handled:")]
-		void TrackManagedException (string type, string message, string stacktrace, bool handled);
+	// @interface MSAIUser : NSObject
+	[BaseType (typeof(NSObject))]
+	interface MSAIUser
+	{
+		// @property (nonatomic, copy) NSString *authUserId;
+		[Export ("setAuthUserId:")]
+		void SetAuthUserId (string authUserId);
 	}
 }

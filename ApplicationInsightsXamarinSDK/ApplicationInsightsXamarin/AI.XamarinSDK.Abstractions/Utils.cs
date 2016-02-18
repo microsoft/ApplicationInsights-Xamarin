@@ -1,12 +1,9 @@
 ﻿using System;
 using Xamarin.Forms;
 
-namespace AI.XamarinSDK.Abstractions
-{
-	public class Utils
-	{
-		public Utils ()
-		{
+namespace AI.XamarinSDK.Abstractions {
+	public class Utils {
+		public Utils () {
 		}
 
 		public static Boolean IsSupportedPlatform(){

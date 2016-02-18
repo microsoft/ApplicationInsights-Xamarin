@@ -21,11 +21,7 @@ namespace XamarinTest
 			Message,
 			Metric,
 			PageView,
-			Session,
-			HandledException,
-			UnhandledException,
-			UnmanagedSignal,
-			UnmanagedException
+			Session
 		};
 
 		public XamarinTestMasterView ()
@@ -38,37 +34,9 @@ namespace XamarinTest
 			NavigationPage.SetHasNavigationBar (this, true);
 
 			// Set up page
-
 			tableView = new TableView {
 				Intent = TableIntent.Settings,
 				Root = new TableRoot {
-					new TableSection ("Crash reproting") {
-						new TextCell { 
-							Text = "Managed exception crash",
-							Command = new Command (() => TrackTelemetryData(TelemetryType.UnhandledException))
-						},
-						new TextCell { 
-							Text = "Managed handled exception",
-							Command = new Command (() => TrackTelemetryData(TelemetryType.HandledException))
-						},
-						#if __IOS__
-						new TextCell { 
-							Text = "Unmanaged signal crash",
-							Command = new Command (() => TrackTelemetryData(TelemetryType.UnmanagedSignal))
-						},
-						#elif __ANDROID__
-						new TextCell { 
-							Text = "Managed Java exception",
-							Command = new Command (() => {
-								throw new Java.Lang.NullPointerException();
-							})
-						},
-						#endif
-						new TextCell { 
-							Text = "Unmanaged exception crash",
-							Command = new Command (() => TrackTelemetryData(TelemetryType.UnmanagedException))
-						}
-					},
 					new TableSection ("Telemetry data") {
 						new TextCell { 
 							Text = "Track event",
@@ -143,7 +111,7 @@ namespace XamarinTest
 				Placeholder = "Custom user ID"
 			};
 			userIDCell.Completed += (sender, ea) => {
-				ApplicationInsights.SetUserId(userIDCell.Text);
+				ApplicationInsights.SetAuthUserId(userIDCell.Text);
 			};
 		}
 
@@ -162,28 +130,10 @@ namespace XamarinTest
 				TelemetryManager.TrackTrace ("My custom message");
 				break;
 			case TelemetryType.PageView:
-				TelemetryManager.TrackPageView ("My custom page view");
+				TelemetryManager.TrackPageView ("My custom page view", 100);
 				break;
 			case TelemetryType.Session:
 				ApplicationInsights.RenewSessionWithId (new DateTime().Date.ToString());
-				break;
-			case TelemetryType.HandledException:
-				try {            
-					throw(new NullReferenceException());
-				}catch (Exception e){ 
-					// App shouldn't crash because of that
-				}
-				break;
-			case TelemetryType.UnhandledException:
-				int value = 1 / int.Parse("0");
-				break;
-			case TelemetryType.UnmanagedSignal:
-				#if __IOS__
-				DummyLibrary.TriggerSignalCrash ();
-				#endif
-				break;
-			case TelemetryType.UnmanagedException:
-				DummyLibrary.TriggerExceptionCrash ();
 				break;
 			default:
 				break;

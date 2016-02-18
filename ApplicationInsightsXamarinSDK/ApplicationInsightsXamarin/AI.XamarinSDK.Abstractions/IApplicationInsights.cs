@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AI.XamarinSDK.Abstractions
 {
@@ -12,15 +13,15 @@ namespace AI.XamarinSDK.Abstractions
 
 		void SetServerUrl (string serverUrl);
 
-		void SetCrashManagerDisabled (bool crashManagerDisabled);
-
 		void SetTelemetryManagerDisabled (bool telemetryManagerDisabled);
 
 		void SetAutoPageViewTrackingDisabled (bool autoPageViewTrackingDisabled);
 
 		void SetAutoSessionManagementDisabled (bool autoSessionManagementDisabled);
 
-		void SetUserId (string userId);
+		void SetAuthUserId (string authUserId);
+
+		void SetCommonProperties (Dictionary<string, string> properties);
 
 		void StartNewSession ();
 
