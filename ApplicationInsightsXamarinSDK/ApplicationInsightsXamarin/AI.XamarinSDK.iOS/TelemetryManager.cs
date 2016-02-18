@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using UIKit;
 using ObjCRuntime;
 using Foundation;
@@ -71,17 +71,6 @@ namespace AI.XamarinSDK.iOS
 				MSAITelemetryManager.TrackPageView(pageName, duration, Utils.ConvertToNSDictionary(properties));
 			else
 				MSAITelemetryManager.TrackPageView(pageName, duration);
-		}
-
-		public void TrackManagedException(Exception  exception, bool handled)
-		{
-			if (exception != null)
-			{
-				string type = exception.GetType().Name;
-				string stacktrace = exception.StackTrace ?? string.Empty;
-				string message = exception.Message;
-				MSAITelemetryManager.TrackManagedException(type, message, stacktrace, handled);
-			}	
 		}
 	}
 }

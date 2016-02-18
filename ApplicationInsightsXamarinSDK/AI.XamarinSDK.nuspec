@@ -6,7 +6,7 @@
        <title>ApplicationInsights SDK for Xamarin.Forms</title>
        <authors>Microsoft</authors>
        <dependencies>
-         <dependency id="Xamarin.Forms" version="1.4.3.6376" />
+         <dependency id="Xamarin.Forms" version="2.0.1.6505" />
        </dependencies>
        <projectUrl>https://github.com/Microsoft/ApplicationInsights-Xamarin</projectUrl>
        <licenseUrl>https://github.com/Microsoft/ApplicationInsights-Xamarin/blob/master/LICENSE</licenseUrl>

@@ -1,11 +1,11 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using Android;
 using Android.Runtime;
 using Android.App;
 using Android.Content;
-using System.Collections.Generic;
-using Com.Microsoft.Applicationinsights.Library;
 using AI.XamarinSDK.Abstractions;
+using Com.Microsoft.Applicationinsights.Library;
 
 [assembly: Xamarin.Forms.Dependency(typeof(AI.XamarinSDK.Android.TelemetryManager))]
 namespace AI.XamarinSDK.Android
@@ -71,18 +71,6 @@ namespace AI.XamarinSDK.Android
 			else
 				TelemetryClient.Instance.TrackPageView(pageName);
 		}
-
-		public void TrackManagedException(Exception  exception, bool handled)
-		{
-			if (exception != null)
-			{
-				string type = exception.GetType().Name;
-				string stacktrace = exception.StackTrace ?? string.Empty;
-				string message = exception.Message;
-				TelemetryClient.Instance.TrackManagedException(type, message, stacktrace, handled);
-			}	
-		}
-
 	}
 }
 

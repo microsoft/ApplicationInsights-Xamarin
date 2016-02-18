@@ -2,19 +2,16 @@
 
 using Xamarin.Forms;
 
-namespace XamarinTest
-{
-	public class XamarinTestDetailView : ContentPage
-	{
+namespace XamarinTest {
+	public class XamarinTestDetailView : ContentPage {
 
-		public XamarinTestDetailView (string labelText)
-		{
+		public XamarinTestDetailView (string labelText) {
 
 			Content = new StackLayout {
 				VerticalOptions = LayoutOptions.Center,
 				Children = {
 					new Label {
-						XAlign = TextAlignment.Center,
+						HorizontalTextAlignment = TextAlignment.Center,
 						Text = labelText
 					}
 				}
