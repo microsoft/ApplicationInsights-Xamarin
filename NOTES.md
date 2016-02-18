@@ -1,5 +1,14 @@
 # Release Notes
 
+## 1.0-alpha.3
+* Update underlying SDKs
+  * Application Insights SDK for iOS 1.0-beta.7
+  * Application Insights SDK for Android 1.0-beta.9
+* Remove crash/exception reporting APIs
+* Add APIs for setting common properties
+* Remove API to set the `userID` field, add API to set the `authUserID` (fixes user statistics)
+* Minor bugfixes
+
 ## 1.0-alpha.2
 * Add NuGet support
 * Prevent linker from stripping SDK assemblies (release builds on iOS)
